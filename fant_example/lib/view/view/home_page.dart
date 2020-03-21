@@ -1,3 +1,4 @@
+import 'package:example/comm/theme_notification.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -6,6 +7,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  bool select = false;
+
   @override
   void initState() {
     super.initState();
@@ -19,7 +22,14 @@ class HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Center(
-        child: Text('hello world'),
+        child: Switch(
+          value: select,
+          onChanged: (value) {
+            select = !select;
+            setState(() {});
+            ThemeNotification(select).dispatch(context);
+          },
+        ),
       ),
     );
   }
