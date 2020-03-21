@@ -1,6 +1,6 @@
 import 'package:example/comm/theme_notification.dart';
 import 'package:example/view/view/home_page.dart';
-import 'package:fant/theme/theme.dart';
+import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,8 +23,8 @@ class IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ThemeNotification>(
-      onNotification: (ThemeNotification themeNotification) {
-        if (themeNotification.isDark) {
+      onNotification: (ThemeNotification bean) {
+        if (bean.isDark) {
           themeMode = ThemeMode.dark;
         } else {
           themeMode = ThemeMode.system;
