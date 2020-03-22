@@ -49,7 +49,7 @@ class Toast {
     //显示的时间 单位毫秒
     int showTime = 1000,
     //显示的背景
-    Color bgColor = Colors.black,
+    Color bgColor = Colors.black87,
     //显示的文本颜色
     Color textColor = Colors.white,
     //显示的文字大小
@@ -136,7 +136,7 @@ class Toast {
     if (_toastPosition == ToastPosition.top) {
       backResult = MediaQuery.of(context).size.height * 1 / 4;
     } else if (_toastPosition == ToastPosition.center) {
-      backResult = MediaQuery.of(context).size.height * 2 / 5;
+      backResult = MediaQuery.of(context).size.height * 1 / 2;
     } else {
       backResult = MediaQuery.of(context).size.height * 3 / 4;
     }

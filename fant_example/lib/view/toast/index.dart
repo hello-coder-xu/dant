@@ -10,13 +10,40 @@ class ToastDemo extends StatelessWidget {
         title: Text('toast'),
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                Toast.toast(context, msg: "中间显示的");
+            OutlineButton(
+              onPressed: () {
+                Toast.toast(
+                  context,
+                  msg: "顶部",
+                  position: ToastPosition.top,
+                  bgColor: Colors.red,
+                );
               },
-              child: Text('toast'),
+              child: Text('Toast 顶部'),
+            ),
+            OutlineButton(
+              onPressed: () {
+                Toast.toast(
+                  context,
+                  msg: "中间",
+                  position: ToastPosition.center,
+                );
+              },
+              child: Text('Toast 中间'),
+            ),
+            OutlineButton(
+              onPressed: () {
+                Toast.toast(
+                  context,
+                  msg: "底部",
+                  position: ToastPosition.bottom,
+                );
+              },
+              child: Text('Toast 底部'),
             ),
           ],
         ),
