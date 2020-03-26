@@ -155,18 +155,19 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: buildToastPosition(context),
-      child: FadeTransition(
-        opacity: _controller,
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(40)),
-          width: ScreenUtil.screenWidthDp,
-          alignment: Alignment.center,
-          child: _buildToastWidget(),
-        ),
+    Widget toastView = FadeTransition(
+      opacity: _controller,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(40)),
+        width: ScreenUtil.screenWidthDp,
+        alignment: Alignment.center,
+        child: _buildToastWidget(),
       ),
     );
+    if (widget.toastPosition == ToastPosition.center || widget.type == ToastType.loading) {
+      return toastView;
+    }
+    return Positioned(top: buildToastPosition(context), child: toastView);
   }
 
   //toast绘制
