@@ -12,7 +12,7 @@ class FToast {
   static showToast(
     BuildContext context, {
     String msg,
-    int showTime = 1000,
+    int showTime = 2000,
     Color bgColor = Colors.black87,
     Color textColor = Colors.white,
     double textSize = 14,
