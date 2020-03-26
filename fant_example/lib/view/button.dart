@@ -27,6 +27,14 @@ class ButtonDemoState extends State<ButtonDemo> {
                     FToast.showToast(context, msg: 'hello');
                   }),
               SizedBox(height: 8),
+              FButton.fButtonFit(
+                  msg: "button fit",
+                  radius: Radius.circular(20),
+                  outLine: true,
+                  onPressed: () {
+                    FToast.showToast(context, msg: 'hello');
+                  }),
+              SizedBox(height: 8),
               FButton.fButton(msg: "button"),
               SizedBox(height: 8),
               FButton.fButtonFit(

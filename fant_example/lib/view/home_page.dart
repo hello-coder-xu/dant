@@ -1,7 +1,9 @@
 import 'package:example/bean/HomeBean.dart';
-import 'package:example/view/view/button.dart';
-import 'package:example/view/view/theme.dart';
-import 'package:example/view/view/toast.dart';
+import 'package:example/view/badge.dart';
+import 'package:example/view/button.dart';
+import 'package:example/view/theme.dart';
+import 'package:example/view/toast.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,6 +17,7 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'toast', page: ToastDemo()),
     HomeBean(name: 'theme', page: ThemeDemo()),
     HomeBean(name: 'button', page: ButtonDemo()),
+    HomeBean(name: 'Badge', page: BadgeDemo()),
   ];
 
   @override

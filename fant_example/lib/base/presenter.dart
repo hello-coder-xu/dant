@@ -1,4 +1,6 @@
-import 'package:example/view/base/model.dart';
+
+
+import 'package:example/base/model.dart';
 
 class Presenter {
   final Model model;

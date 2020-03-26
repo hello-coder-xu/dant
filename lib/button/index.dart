@@ -17,6 +17,7 @@ class FButton {
     double elevation = 5,
     IconPosition position = IconPosition.Left,
     VoidCallback onPressed,
+    bool outLine = false,
   }) {
     return _FButton(
       msg: msg,
@@ -32,6 +33,7 @@ class FButton {
       onPressed: onPressed,
       round: false,
       type: Type.FButton,
+      outLine: outLine,
     );
   }
 
@@ -47,6 +49,7 @@ class FButton {
     double elevation = 5,
     IconPosition position = IconPosition.Left,
     VoidCallback onPressed,
+    bool outLine = false,
   }) {
     return _FButton(
       msg: msg,
@@ -62,6 +65,7 @@ class FButton {
       onPressed: onPressed,
       round: false,
       type: Type.FButtonFit,
+      outLine: outLine,
     );
   }
 
@@ -77,6 +81,7 @@ class FButton {
     IconPosition position = IconPosition.Left,
     VoidCallback onPressed,
     double roundSize = 48,
+    bool outLine = false,
   }) {
     return _FButton(
       msg: msg,
@@ -92,6 +97,7 @@ class FButton {
       round: true,
       type: Type.FButtonRound,
       roundSize: roundSize,
+      outLine: outLine,
     );
   }
 }
@@ -115,6 +121,7 @@ class _FButton extends StatelessWidget {
   final bool round;
   final Type type;
   final double roundSize;
+  final bool outLine;
 
   _FButton({
     this.msg,
@@ -132,16 +139,13 @@ class _FButton extends StatelessWidget {
     this.round,
     this.type,
     this.roundSize,
+    this.outLine,
   });
 
   @override
   Widget build(BuildContext context) {
-    BoxDecoration boxDecoration;
+    BoxDecoration boxDecoration = getBoxDecoration(context);
     if (type == Type.FButtonRound) {
-      boxDecoration = BoxDecoration(
-        color: getBgColor(context),
-        shape: BoxShape.circle,
-      );
       return Ink(
         decoration: boxDecoration,
         width: roundSize,
@@ -153,12 +157,6 @@ class _FButton extends StatelessWidget {
         ),
       );
     } else {
-      boxDecoration = BoxDecoration(
-        color: getBgColor(context),
-        borderRadius: BorderRadius.all(radius ?? Radius.circular(3)),
-        shape: BoxShape.rectangle,
-      );
-
       return Ink(
         decoration: boxDecoration,
         width: type == Type.FButtonFit ? ScreenUtil.screenWidthDp : null,
@@ -182,7 +180,40 @@ class _FButton extends StatelessWidget {
   }
 
   Color getTextColor(BuildContext context) {
-    return bgColor ?? Colors.white;
+    if (outLine) return getBgColor(context);
+    return textColor ?? Colors.white;
+  }
+
+  BoxDecoration getBoxDecoration(BuildContext context) {
+    BoxDecoration boxDecoration;
+    if (type == Type.FButtonRound) {
+      if (outLine) {
+        boxDecoration = BoxDecoration(
+          border: Border.all(color: getBgColor(context), width: 1),
+          shape: BoxShape.circle,
+        );
+      } else {
+        boxDecoration = BoxDecoration(
+          color: getBgColor(context),
+          shape: BoxShape.circle,
+        );
+      }
+    } else {
+      if (outLine) {
+        boxDecoration = BoxDecoration(
+          border: Border.all(color: getBgColor(context), width: 1),
+          borderRadius: BorderRadius.all(radius ?? Radius.circular(3)),
+          shape: BoxShape.rectangle,
+        );
+      } else {
+        boxDecoration = BoxDecoration(
+          color: getBgColor(context),
+          borderRadius: BorderRadius.all(radius ?? Radius.circular(3)),
+          shape: BoxShape.rectangle,
+        );
+      }
+    }
+    return boxDecoration;
   }
 
   //按钮视图

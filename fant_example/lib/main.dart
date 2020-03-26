@@ -1,5 +1,5 @@
 import 'package:example/comm/theme_notification.dart';
-import 'package:example/view/view/home_page.dart';
+import 'package:example/view/home_page.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
