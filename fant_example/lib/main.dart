@@ -3,6 +3,7 @@ import 'package:example/view/view/home_page.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(IndexPage());
 }
@@ -28,6 +29,7 @@ class IndexPageState extends State<IndexPage> {
           themeMode = ThemeMode.dark;
         } else {
           themeMode = ThemeMode.system;
+
         }
         setState(() {});
         return true;

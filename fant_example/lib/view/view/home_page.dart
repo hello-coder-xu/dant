@@ -2,6 +2,7 @@ import 'package:example/bean/HomeBean.dart';
 import 'package:example/view/theme/index.dart';
 import 'package:example/view/toast/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,8 +24,7 @@ class HomePageState extends State<HomePage> {
     HomeBean bean = list[position];
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, new MaterialPageRoute(builder: (context) => bean.page));
+        Navigator.push(context, new MaterialPageRoute(builder: (context) => bean.page));
       },
       child: Container(
         color: Colors.green,
@@ -39,6 +39,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 360, height: 640, allowFontScaling: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -52,8 +53,7 @@ class HomePageState extends State<HomePage> {
           crossAxisSpacing: 10.0,
           childAspectRatio: 1.0,
         ),
-        itemBuilder: (BuildContext context, int index) =>
-            getItemContainer(index),
+        itemBuilder: (BuildContext context, int index) => getItemContainer(index),
       ),
     );
   }
