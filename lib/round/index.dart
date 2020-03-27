@@ -12,7 +12,7 @@ class FRound extends StatelessWidget {
 
   FRound({
     this.type = FRoundType.Point,
-    this.size = 8.0,
+    this.size,
     this.color,
     this.child,
     this.textStyle,
@@ -21,16 +21,17 @@ class FRound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (type == FRoundType.Point) {
+      double tempSize = size ?? 8;
       return Container(
-        width: size,
-        height: size,
+        width: tempSize,
+        height: tempSize,
         decoration: BoxDecoration(
           color: color ?? Theme.of(context).primaryColorLight,
           shape: BoxShape.circle,
         ),
       );
     } else if (type == FRoundType.Round) {
-      double tempSize = size == 8 ? 10 : size;
+      double tempSize = size ?? 16;
       return Container(
         width: tempSize,
         height: tempSize,
@@ -42,10 +43,11 @@ class FRound extends StatelessWidget {
         child: getContent(),
       );
     } else {
-      Radius radius = Radius.circular(size / 2);
+      double tempSize = size ?? 16;
+      Radius radius = Radius.circular(tempSize / 2);
       return Container(
-        height: size,
-        padding: EdgeInsets.symmetric(horizontal: 8),
+        height: tempSize,
+        padding: EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           color: color ?? Theme.of(context).primaryColorLight,
           borderRadius: BorderRadius.horizontal(left: radius, right: radius),
@@ -72,7 +74,7 @@ class FRound extends StatelessWidget {
   //内容
   Widget getContent() {
     if (child is String) {
-      return Text(child, style: getTextStyle());
+      return Text(child, style: getTextStyle(), maxLines: 1);
     } else if (child is Widget) {
       return child;
     } else {
