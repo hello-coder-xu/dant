@@ -8,8 +8,8 @@ enum FBadgePosition { Left, Right, LeftTop, RightTop }
 class FBadge extends StatelessWidget {
   final FBadgeType type;
   final Color color;
+  final Color textColor;
   final int num;
-  final TextStyle textStyle;
   final bool limit;
   final Widget child;
   final FBadgePosition position;
@@ -18,8 +18,8 @@ class FBadge extends StatelessWidget {
     @required this.child,
     this.type = FBadgeType.Point,
     this.color,
+    this.textColor,
     this.num,
-    this.textStyle,
     this.limit = false,
     this.position = FBadgePosition.RightTop,
   });
@@ -40,10 +40,9 @@ class FBadge extends StatelessWidget {
     return '$num';
   }
 
-
   //字体样式
   TextStyle getTextStyle() {
-    return textStyle ?? TextStyle(fontSize: 8, color: Colors.white);
+    return TextStyle(fontSize: 8, color: textColor ?? Colors.white);
   }
 
   //获取角标
@@ -51,7 +50,7 @@ class FBadge extends StatelessWidget {
     if (type == FBadgeType.Point) {
       return FRound(type: FRoundType.Point, color: color);
     } else if (type == FBadgeType.Round) {
-      return FRound(type: FRoundType.Round,  color: color, child: Text(getNumber(), style: getTextStyle()));
+      return FRound(type: FRoundType.Round, color: color, child: Text(getNumber(), style: getTextStyle()));
     } else {
       return FRound(type: FRoundType.Ellipse, color: color, child: Text(getNumber(), style: getTextStyle()));
     }
@@ -80,7 +79,7 @@ class FBadge extends StatelessWidget {
     }
 
     if (position == FBadgePosition.Left || position == FBadgePosition.Right) {
-      return Row(children: children,mainAxisAlignment: MainAxisAlignment.center,mainAxisSize: MainAxisSize.min);
+      return Row(children: children, mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min);
     } else {
       return Stack(children: children, overflow: Overflow.visible);
     }
