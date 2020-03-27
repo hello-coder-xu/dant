@@ -12,7 +12,6 @@ class FBadge extends StatelessWidget {
   final TextStyle textStyle;
   final bool limit;
   final Widget child;
-  final double space;
   final FBadgePosition position;
 
   FBadge({
@@ -22,7 +21,6 @@ class FBadge extends StatelessWidget {
     this.num,
     this.textStyle,
     this.limit = false,
-    this.space = 0,
     this.position = FBadgePosition.RightTop,
   });
 
