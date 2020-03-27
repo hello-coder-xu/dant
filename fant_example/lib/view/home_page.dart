@@ -1,6 +1,7 @@
 import 'package:example/bean/HomeBean.dart';
 import 'package:example/view/badge.dart';
 import 'package:example/view/button.dart';
+import 'package:example/view/dialog.dart';
 import 'package:example/view/theme.dart';
 import 'package:example/view/toast.dart';
 
@@ -18,6 +19,7 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'theme', page: ThemeDemo()),
     HomeBean(name: 'button', page: ButtonDemo()),
     HomeBean(name: 'Badge', page: BadgeDemo()),
+    HomeBean(name: 'dialog', page: DialogDemo()),
   ];
 
   @override

@@ -9,7 +9,7 @@ enum ToastPosition { top, center, bottom }
 enum ToastType { text, loading }
 
 class FToast {
-  static showToast(
+  static void showToast(
     BuildContext context, {
     String msg,
     int showTime = 2000,
@@ -77,7 +77,6 @@ Function _showToast(
       builder: (BuildContext context) => _FToastView(
             msg,
             key: key,
-            showTime: showTime,
             bgColor: bgColor,
             textColor: textColor,
             textSize: textSize,
@@ -87,7 +86,14 @@ Function _showToast(
             type: type,
           ));
   //插入到整个布局的最上层
-  overlayState.insert(_overlayEntry);
+  overlayState?.insert(_overlayEntry);
+
+  if (type == ToastType.text) {
+    Future.delayed(Duration(milliseconds: showTime), () {
+      key.currentState?._hide();
+      _overlayEntry.remove();
+    });
+  }
 
   return () {
     key.currentState?._hide();
@@ -98,9 +104,6 @@ Function _showToast(
 class _FToastView extends StatefulWidget {
   // 提示内容
   final String msg;
-
-  // toast显示时间
-  final int showTime;
 
   // 背景颜色
   final Color bgColor;
@@ -123,10 +126,11 @@ class _FToastView extends StatefulWidget {
   //显示类型
   final ToastType type;
 
+  final VoidCallback close;
+
   _FToastView(
     this.msg, {
     Key key,
-    this.showTime,
     this.bgColor,
     this.textColor,
     this.textSize,
@@ -134,6 +138,7 @@ class _FToastView extends StatefulWidget {
     this.pdHorizontal,
     this.pdVertical,
     this.type,
+    this.close,
   }) : super(key: key);
 
   @override
@@ -144,7 +149,6 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
   static const Duration _fadeInDuration = Duration(milliseconds: 150);
   static const Duration _fadeOutDuration = Duration(milliseconds: 75);
   AnimationController _controller;
-  Timer timer;
 
   @override
   void initState() {
@@ -228,22 +232,16 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
   //显示
   void _show() {
     _controller?.forward();
-    if (widget.type == ToastType.text) {
-      timer = Timer.periodic(Duration(milliseconds: widget.showTime), (timer) {
-        _hide();
-      });
-    }
   }
 
   //隐藏
   void _hide() {
-    timer?.cancel();
-    timer = null;
     _controller?.reverse();
   }
 
   @override
   void dispose() {
+    _hide();
     _controller.dispose();
     super.dispose();
   }
