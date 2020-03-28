@@ -1,3 +1,4 @@
+import 'package:fant/fant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,11 @@ class FDialog {
     String title,
     dynamic content,
     String confirm = '知道了',
-    Color confirmColor,
+    Color confirmBgColor,
+    Color confirmTextColor,
     bool showClose,
     VoidCallback onPress,
-    bool barrierDismissible = false,
+    bool barrierDismissible = true,
   }) {
     showDialog(
         context: context,
@@ -26,7 +28,8 @@ class FDialog {
               showClose: showClose,
               content: content,
               cancel: confirm,
-              cancelColor: confirmColor,
+              cancelBgColor: confirmBgColor,
+              cancelTextColor: confirmTextColor,
               cancelOnPress: onPress,
             ),
             shape: RoundedRectangleBorder(borderRadius: _borderRadius),
@@ -37,17 +40,17 @@ class FDialog {
   static void showConfirm(
     BuildContext context, {
     String title,
-    bool showClose,
+    bool showClose = false,
     dynamic content,
     String cancel = '取消',
     String confirm = '確定',
-    Color cancelColor,
-    Color confirmColor,
-    bool cancelFit,
-    bool confirmFit,
-    VoidCallback cancelOnPress,
-    VoidCallback confirmOnPress,
-    bool barrierDismissible = false,
+    Color cancelBgColor,
+    Color confirmBgColor,
+    Color cancelTextColor,
+    Color confirmTextColor,
+    VoidCallback onCancelPress,
+    VoidCallback onConfirmPress,
+    bool barrierDismissible = true,
   }) {
     showDialog(
         context: context,
@@ -61,12 +64,12 @@ class FDialog {
               content: content,
               cancel: cancel,
               confirm: confirm,
-              cancelColor: cancelColor,
-              confirmColor: confirmColor,
-              cancelFit: cancelFit,
-              confirmFit: confirmFit,
-              cancelOnPress: cancelOnPress,
-              confirmOnPress: confirmOnPress,
+              cancelBgColor: cancelBgColor,
+              confirmBgColor: confirmBgColor,
+              cancelTextColor: cancelTextColor,
+              confirmTextColor: confirmTextColor,
+              cancelOnPress: onCancelPress,
+              confirmOnPress: onConfirmPress,
             ),
             shape: RoundedRectangleBorder(borderRadius: _borderRadius),
           );
@@ -80,10 +83,10 @@ class _FDialog extends StatelessWidget {
   final dynamic content;
   final String cancel;
   final String confirm;
-  final Color cancelColor;
-  final Color confirmColor;
-  final bool cancelFit;
-  final bool confirmFit;
+  final Color cancelBgColor;
+  final Color confirmBgColor;
+  final Color cancelTextColor;
+  final Color confirmTextColor;
   final VoidCallback cancelOnPress;
   final VoidCallback confirmOnPress;
 
@@ -93,10 +96,10 @@ class _FDialog extends StatelessWidget {
     this.showClose = false,
     this.cancel,
     this.confirm,
-    this.cancelColor,
-    this.confirmColor,
-    this.cancelFit = false,
-    this.confirmFit = false,
+    this.cancelBgColor,
+    this.confirmBgColor,
+    this.cancelTextColor,
+    this.confirmTextColor,
     this.cancelOnPress,
     this.confirmOnPress,
   });
@@ -106,7 +109,7 @@ class _FDialog extends StatelessWidget {
     List<Widget> children = [];
     children.add(_titleView(context));
     children.add(Flexible(child: _contentView()));
-    children.add(Divider(height: 1));
+    children.add(FDivider());
     children.add(buttonView(context));
 
     return IntrinsicHeight(child: Column(children: children));
@@ -115,12 +118,15 @@ class _FDialog extends StatelessWidget {
   Widget _titleView(BuildContext context) {
     if (title == null) return SizedBox.shrink();
 
-    Widget titleView = Text(
-      title,
-      style: TextStyle(fontSize: 16),
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      textAlign: TextAlign.center,
+    Widget titleView = Container(
+      alignment: Alignment.center,
+      constraints: BoxConstraints(minHeight: 40),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 16),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
 
     if (showClose) {
@@ -158,11 +164,13 @@ class _FDialog extends StatelessWidget {
         child: Container(
           height: 42,
           decoration: BoxDecoration(
-            color: cancelFit ? cancelColor ?? Theme.of(context).backgroundColor : Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(_circular)),
+            color: cancelBgColor ?? Theme.of(context).backgroundColor,
+            borderRadius:
+                BorderRadius.vertical(bottom: Radius.circular(_circular)),
           ),
           alignment: Alignment.center,
-          child: Text(cancel),
+          child: Text(cancel,
+              style: TextStyle(color: cancelTextColor, fontSize: 14)),
         ),
       );
     }
@@ -172,28 +180,34 @@ class _FDialog extends StatelessWidget {
         onTap: () => onCancel(context),
         child: Container(
           decoration: BoxDecoration(
-            color: cancelFit ? cancelColor ?? Theme.of(context).backgroundColor : Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(_circular)),
+            color: cancelBgColor ?? Theme.of(context).backgroundColor,
+            borderRadius:
+                BorderRadius.only(bottomLeft: Radius.circular(_circular)),
           ),
           height: 42,
           alignment: Alignment.center,
-          child: Text(cancel),
+          child: Text(cancel,
+              style: TextStyle(color: cancelTextColor, fontSize: 14)),
         ),
       ),
     ));
-
-    children.add(Container(height: 20, child: VerticalDivider(width: 1)));
+    children.add(Container(
+      height: 16,
+      child: FDivider(type: FDividerType.vertical),
+    ));
     children.add(Expanded(
       child: InkWell(
         onTap: () => onConfirm(context),
         child: Container(
           decoration: BoxDecoration(
-            color: confirmFit ? confirmColor ?? Theme.of(context).backgroundColor : Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(_circular)),
+            color: confirmBgColor ?? Theme.of(context).backgroundColor,
+            borderRadius:
+                BorderRadius.only(bottomRight: Radius.circular(_circular)),
           ),
           alignment: Alignment.center,
           height: 42,
-          child: Text(confirm),
+          child: Text(confirm,
+              style: TextStyle(color: confirmTextColor, fontSize: 14)),
         ),
       ),
     ));
@@ -209,7 +223,7 @@ class _FDialog extends StatelessWidget {
   //取消
   void onCancel(BuildContext context) {
     hide(context);
-    if(cancelOnPress!=null){
+    if (cancelOnPress != null) {
       cancelOnPress();
     }
   }
@@ -217,7 +231,7 @@ class _FDialog extends StatelessWidget {
   //确定
   void onConfirm(BuildContext context) {
     hide(context);
-    if(confirmOnPress!=null){
+    if (confirmOnPress != null) {
       confirmOnPress();
     }
   }

@@ -43,14 +43,41 @@ class DialogDemoState extends State<DialogDemo> {
             FButton.fButton(
               msg: 'confirm',
               onPressed: () {
-                FDialog.showConfirm(context, content: 'hello');
+                FDialog.showConfirm(
+                  context,
+                  content: '我是一个内容',
+                  title: '提示',
+                  onCancelPress: () {
+                    FToast.showToast(context, msg: '取消');
+                  },
+                  onConfirmPress: () {
+                    FToast.showToast(context, msg: '确认');
+                  },
+                );
               },
             ),
             SizedBox(height: 16),
             FButton.fButton(
-              msg: '显示',
+              msg: 'confirm 自定义',
               onPressed: () {
-                FDialog.showAlert(context);
+                FDialog.showConfirm(
+                  context,
+                  content: '我是一个内容',
+                  title: '提示',
+                  showClose: true,
+                  cancel: '我的知道了',
+                  confirm: '前往',
+                  cancelBgColor: Colors.red,
+                  cancelTextColor: Colors.white,
+                  confirmBgColor: Colors.blue,
+                  confirmTextColor: Colors.red,
+                  onCancelPress: () {
+                    FToast.showToast(context, msg: '我的知道了');
+                  },
+                  onConfirmPress: () {
+                    FToast.showToast(context, msg: '前往');
+                  },
+                );
               },
             ),
           ],
