@@ -16,7 +16,7 @@ class FToast {
     Color bgColor = Colors.black87,
     Color textColor = Colors.white,
     double textSize = 14,
-    ToastPosition position = ToastPosition.center,
+    ToastPosition position = ToastPosition.bottom,
     double pdHorizontal = 20,
     double pdVertical = 10,
   }) {
