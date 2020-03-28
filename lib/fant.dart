@@ -7,3 +7,4 @@ export 'package:fant/round/index.dart';
 export 'package:fant/badge/index.dart';
 export 'package:fant/dialog/index.dart';
 export 'package:fant/divider/index.dart';
+export 'package:fant/bottomsheet/index.dart';

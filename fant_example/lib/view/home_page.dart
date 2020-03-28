@@ -1,5 +1,6 @@
 import 'package:example/bean/HomeBean.dart';
 import 'package:example/view/badge.dart';
+import 'package:example/view/bottomsheet.dart';
 import 'package:example/view/button.dart';
 import 'package:example/view/dialog.dart';
 import 'package:example/view/theme.dart';
@@ -21,6 +22,7 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'button', page: ButtonDemo()),
     HomeBean(name: 'Badge', page: BadgeDemo()),
     HomeBean(name: 'dialog', page: DialogDemo()),
+    HomeBean(name: 'bottomsheet', page: BottomSheetDemo()),
   ];
 
   @override
@@ -32,7 +34,8 @@ class HomePageState extends State<HomePage> {
     HomeBean bean = list[position];
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, new MaterialPageRoute(builder: (context) => bean.page));
+        Navigator.push(
+            context, new MaterialPageRoute(builder: (context) => bean.page));
       },
       child: Container(
         color: Colors.green,
@@ -61,7 +64,8 @@ class HomePageState extends State<HomePage> {
           crossAxisSpacing: 10.0,
           childAspectRatio: 1.0,
         ),
-        itemBuilder: (BuildContext context, int index) => getItemContainer(index),
+        itemBuilder: (BuildContext context, int index) =>
+            getItemContainer(index),
       ),
     );
   }
