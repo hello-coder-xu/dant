@@ -39,8 +39,6 @@ class FBottomSheet {
     bool roundTop = false,
     bool isDismissible = true,
   }) {
-
-
     showModalBottomSheet(
       context: context,
       shape: roundTop
@@ -136,22 +134,12 @@ class _FBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [];
-    children.add(contentView(context));
-
-    return IntrinsicHeight(child: SingleChildScrollView(child: Column(children: children)));
-  }
-
-  Widget contentView(BuildContext context) {
-    List<Widget> children = [];
-
-    children.add(child);
     return Container(
       constraints: BoxConstraints(
         maxHeight: ScreenUtil.screenHeightDp * 0.8,
         minHeight: ScreenUtil.screenHeightDp * 0.1,
       ),
-      child: SingleChildScrollView(child: Column(children: children)),
+      child: SingleChildScrollView(child: Column(children: [child])),
     );
   }
 }
