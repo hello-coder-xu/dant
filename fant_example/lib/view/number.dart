@@ -28,7 +28,7 @@ class NumberDemoState extends State<NumberDemo> {
             FNumber(
               disableInput: true,
               min: -10,
-              max: 9999,
+              max: 999,
               step: 2,
               onChange: (num) {
                 print('test num=$num');
