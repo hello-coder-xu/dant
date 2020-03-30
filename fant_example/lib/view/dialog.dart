@@ -62,7 +62,45 @@ class DialogDemoState extends State<DialogDemo> {
               onPressed: () {
                 FDialog.showConfirm(
                   context,
-                  content: '我是一个内容',
+                  content: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        Text('输入说明：'),
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: '请输入内容',
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: false,
+                              onChanged: (value) {},
+                            ),
+                            Expanded(child: Text('服务条款，应用规则')),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Radio(
+                              value: true,
+                              groupValue: '1',
+                              onChanged: (value) {},
+                            ),
+                            Expanded(child: Text('服务条款，应用规则，服务条款，应用规则，服务条款，应用规则，服务条款，应用规则')),
+                          ],
+                        ),
+                        Container(
+                          height: 200,
+                          color: Colors.blue,
+                        ),
+                        Container(
+                          height: 400,
+                          color: Colors.red,
+                        ),
+                      ],
+                    ),
+                  ),
                   title: '提示',
                   showClose: true,
                   cancel: '我的知道了',
