@@ -14,11 +14,27 @@ class NumberDemoState extends State<NumberDemo> {
         title: new Text('NumberDemo'),
       ),
       body: Center(
-        child: FNumber(
-          disableInput: false,
-          onChange: (num) {
-            print('test num=$num');
-          },
+        child: Column(
+          children: <Widget>[
+            ListTile(title: Text('默认min:0,max:999,可编辑')),
+            FNumber(
+              disableInput: false,
+              onChange: (num) {
+                print('test num=$num');
+              },
+            ),
+            SizedBox(height: 16),
+            ListTile(title: Text('min:10,max:99,不可编辑,每次以2变化')),
+            FNumber(
+              disableInput: true,
+              min: -10,
+              max: 9999,
+              step: 2,
+              onChange: (num) {
+                print('test num=$num');
+              },
+            ),
+          ],
         ),
       ),
     );

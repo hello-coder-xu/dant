@@ -8,12 +8,11 @@ const double _KDefaultTextFontSize = 14;
 
 class FNumber extends StatefulWidget {
   final num defaultValue;
-  final num min;
-  final num max;
-  final num step;
-  final bool disabled;
+  final int min;
+  final int max;
+  final int step;
   final bool disableInput;
-  final ValueChanged<num> onChange;
+  final ValueChanged<int> onChange;
 
   FNumber({
     Key key,
@@ -21,10 +20,10 @@ class FNumber extends StatefulWidget {
     this.min = 0,
     this.max = 999,
     this.step = 1,
-    this.disabled = false,
     this.disableInput = false,
     this.onChange,
   })  : assert(max > min),
+        assert(step >= 1),
         super(key: key);
 
   @override
@@ -41,9 +40,10 @@ class FNumberState extends State<FNumber> {
   @override
   void initState() {
     super.initState();
-    recordNumber = widget.defaultValue;
-    controller = TextEditingController(text: '${widget.defaultValue}');
+    recordNumber = math.min(widget.max, math.max(widget.defaultValue, widget.min));
+    controller = TextEditingController(text: '$recordNumber');
     controller.addListener(valueChange);
+
 
     valueChange();
   }
@@ -63,9 +63,10 @@ class FNumberState extends State<FNumber> {
     ));
 
     children.add(SizedBox(width: _KDefaultSpace));
+
     children.add(Container(
-      width: 40,
       height: _KDefaultButtonSize + 5,
+      width: 40,
       decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(3),
