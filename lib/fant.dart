@@ -9,3 +9,4 @@ export 'package:fant/dialog/index.dart';
 export 'package:fant/divider/index.dart';
 export 'package:fant/bottomsheet/index.dart';
 export 'package:fant/number/index.dart';
+export 'package:fant/swipe/index.dart';
