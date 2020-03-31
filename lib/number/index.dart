@@ -44,7 +44,6 @@ class FNumberState extends State<FNumber> {
     controller = TextEditingController(text: '$recordNumber');
     controller.addListener(valueChange);
 
-
     valueChange();
   }
 
@@ -112,7 +111,7 @@ class FNumberState extends State<FNumber> {
 
   void onRemove() {
     unFocus();
-    num number = getNumber();
+    int number = getNumber();
     number = math.max(widget.min, number - widget.step);
     if (number != recordNumber) {
       updateControllerValue(number);
@@ -121,14 +120,14 @@ class FNumberState extends State<FNumber> {
 
   void onAdd() {
     unFocus();
-    num number = getNumber();
+    int number = getNumber();
     number = math.min(widget.max, number + widget.step);
     if (number != recordNumber) {
       updateControllerValue(number);
     }
   }
 
-  num getNumber() {
+  int getNumber() {
     String temp = controller.text;
     if (temp == null || temp.length == 0) {
       return widget.min;
@@ -147,21 +146,26 @@ class FNumberState extends State<FNumber> {
     num number = getNumber();
     enableMin = number != widget.min;
     enableMax = number != widget.max;
-    if (enableMax || enableMin) {
-      recordNumber = number;
-      setState(() {});
-      callBackNumber();
+    if (number != recordNumber) {
+      if (enableMax || enableMin) {
+        recordNumber = number;
+        setState(() {});
+        callBackNumber();
+      }
     }
   }
 
   void inputComplete() {
     unFocus();
-    callBackNumber();
+    int temp = getNumber();
+    controller.text = '$temp';
+    recordNumber = temp;
+//    callBackNumber();
   }
 
   void callBackNumber() {
     if (widget.onChange != null) {
-      num temp = getNumber();
+      int temp = getNumber();
       widget.onChange(temp);
     }
   }
