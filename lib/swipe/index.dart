@@ -3,10 +3,7 @@ import 'dart:async';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
-enum FSwipeIndicatorAxis {
-  horizontal,
-  vertical,
-}
+enum FSwipeIndicatorAxis { horizontal, vertical }
 
 class FSwipe extends StatefulWidget {
   final GlobalKey key;
@@ -17,19 +14,17 @@ class FSwipe extends StatefulWidget {
 
   final Axis scrollDirection;
 
-  final double width;
-
   final double height;
 
   final int defaultIndex;
 
   final bool loop;
 
-  final int playDuration;
-
   final bool autoPlay;
 
   final int duration;
+
+  final int speed;
 
   final Curve curve;
 
@@ -51,15 +46,14 @@ class FSwipe extends StatefulWidget {
       @required this.itemCount,
       @required this.itemBuilder,
       this.scrollDirection = Axis.horizontal,
-      this.width,
       this.height = 200,
       this.defaultIndex = 0,
       this.loop = true,
       this.indicators = true,
-      this.pointPosition = Alignment.topRight,
-      this.playDuration = 3000,
+      this.pointPosition = Alignment.bottomCenter,
       this.autoPlay = true,
-      this.duration = 280,
+      this.duration = 3000,
+      this.speed = 280,
       this.curve = Curves.bounceIn,
       this.unSelectPointColor = Colors.white,
       this.selectPointColor = Colors.red,
@@ -78,16 +72,18 @@ class FSwipeState extends State<FSwipe> {
   int position;
   int itemCount;
   double pointSize;
-  double _kPointPaddingSpace;
+  double pointPaddingSpace;
+  Timer timer;
 
   @override
   void initState() {
     super.initState();
     itemCount = widget.loop ? widget.itemCount + 2 : widget.itemCount;
     position = widget.defaultIndex;
-    _kPointPaddingSpace = widget.height / 50;
+    pointPaddingSpace = widget.height / 50;
     pointSize = widget.height / 40;
     _pageController = PageController(initialPage: position);
+    startAutoPlay();
   }
 
   @override
@@ -104,13 +100,19 @@ class FSwipeState extends State<FSwipe> {
   }
 
   Widget _pageView() {
-    return PageView.builder(
+    Widget child = PageView.builder(
       controller: _pageController,
       scrollDirection: widget.scrollDirection,
       itemBuilder: _itemBuilder,
       onPageChanged: _onPageChanged,
       itemCount: itemCount,
     );
+
+    if (widget.autoPlay) {
+      child = Listener(onPointerDown: onPointerDown, onPointerUp: onPointerUp, child: child);
+    }
+
+    return child;
   }
 
   Widget _indicatorView() {
@@ -123,14 +125,14 @@ class FSwipeState extends State<FSwipe> {
     double paddingVertical;
     if (widget.fSwipeIndicatorAxis == FSwipeIndicatorAxis.horizontal) {
       child = Row(children: children, mainAxisSize: MainAxisSize.min);
-      paddingHorizontal = _kPointPaddingSpace * 2;
-      paddingVertical = _kPointPaddingSpace;
-      pointPaddingHorizontal = _kPointPaddingSpace;
+      paddingHorizontal = pointPaddingSpace * 2;
+      paddingVertical = pointPaddingSpace;
+      pointPaddingHorizontal = pointPaddingSpace;
     } else {
       child = Column(children: children, mainAxisSize: MainAxisSize.min);
-      paddingHorizontal = _kPointPaddingSpace;
-      paddingVertical = _kPointPaddingSpace * 2;
-      pointPaddingVertical = _kPointPaddingSpace;
+      paddingHorizontal = pointPaddingSpace;
+      paddingVertical = pointPaddingSpace * 2;
+      pointPaddingVertical = pointPaddingSpace;
     }
 
     List.generate(widget.itemCount, (index) {
@@ -148,7 +150,7 @@ class FSwipeState extends State<FSwipe> {
       margin: EdgeInsets.all(widget.height / 20),
       padding: EdgeInsets.symmetric(horizontal: paddingHorizontal, vertical: paddingVertical),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(pointSize + _kPointPaddingSpace * 2)),
+        borderRadius: BorderRadius.all(Radius.circular(pointSize + pointPaddingSpace * 2)),
         color: Colors.black12,
       ),
       child: child,
@@ -164,7 +166,9 @@ class FSwipeState extends State<FSwipe> {
   }
 
   void _onPageChanged(int index) {
-    position = index;
+    if(index!=position){
+      _callBackOnChange(index%widget.itemCount);
+    }
     if (widget.loop) {
       if (index == 0) {
         position = widget.itemCount;
@@ -176,14 +180,62 @@ class FSwipeState extends State<FSwipe> {
         Timer(Duration(milliseconds: 300), () {
           _pageController.jumpToPage(position);
         });
+      } else {
+        position = index;
       }
+    } else {
+      position = index;
     }
     setState(() {});
+  }
+
+  void setIndex(int index) {
+    _pageController.animateToPage(index, duration: Duration(milliseconds: widget.speed), curve: widget.curve);
+  }
+
+  void previousPage() {
+    _pageController.previousPage(duration: Duration(milliseconds: widget.speed), curve: widget.curve);
+  }
+
+  void nextPage() {
+    _pageController.nextPage(duration: Duration(milliseconds: widget.speed), curve: widget.curve);
+  }
+
+  void startAutoPlay() {
+    if (!widget.autoPlay) return;
+    if (timer?.isActive ?? false) {
+      timer.cancel();
+    }
+
+    timer = Timer.periodic(Duration(milliseconds: widget.duration), (_) {
+      if (position == widget.itemCount - 1 && !widget.loop) {
+        setIndex(0);
+        return;
+      }
+      nextPage();
+    });
+  }
+
+  // 停止自动播放
+  void stopAutoPlay() {
+    timer?.cancel();
+    timer = null;
+  }
+
+  onPointerDown(event) => stopAutoPlay();
+
+  onPointerUp(event) => startAutoPlay();
+
+  void _callBackOnChange(int number) {
+    if (widget.onChang != null) {
+      widget.onChang(number);
+    }
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    stopAutoPlay();
     super.dispose();
   }
 }
