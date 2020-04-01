@@ -5,6 +5,7 @@ import 'package:example/view/button.dart';
 import 'package:example/view/dialog.dart';
 import 'package:example/view/marquee.dart';
 import 'package:example/view/number.dart';
+import 'package:example/view/star.dart';
 import 'package:example/view/swipe.dart';
 import 'package:example/view/theme.dart';
 import 'package:example/view/toast.dart';
@@ -27,8 +28,9 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'dialog', page: DialogDemo()),
     HomeBean(name: 'bottomsheet', page: BottomSheetDemo()),
     HomeBean(name: 'number', page: NumberDemo()),
-    HomeBean(name: 'swipedemo', page: SwipeDemo()),
-    HomeBean(name: 'marqueedemo', page: MarqueeDemo()),
+    HomeBean(name: 'swipe', page: SwipeDemo()),
+    HomeBean(name: 'marquee', page: MarqueeDemo()),
+    HomeBean(name: 'star', page: StarDemo()),
   ];
 
   @override
