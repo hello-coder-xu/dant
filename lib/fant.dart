@@ -10,3 +10,5 @@ export 'package:fant/divider/index.dart';
 export 'package:fant/bottomsheet/index.dart';
 export 'package:fant/number/index.dart';
 export 'package:fant/swipe/index.dart';
+export 'package:fant/marquee/index.dart';
+export 'package:fant/notice/index.dart';
