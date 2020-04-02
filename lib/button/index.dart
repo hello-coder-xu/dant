@@ -6,6 +6,7 @@ enum IconPosition { Left, Right, Top, Bottom }
 
 class FButton {
   static Widget fButton({
+    Key key,
     String msg,
     Color bgColor,
     Color textColor,
@@ -20,6 +21,7 @@ class FButton {
     bool outLine = false,
   }) {
     return _FButton(
+      key: key,
       msg: msg,
       bgColor: bgColor,
       textColor: textColor,
@@ -38,6 +40,7 @@ class FButton {
   }
 
   static Widget fButtonFit({
+    Key key,
     String msg,
     Color bgColor,
     Color textColor,
@@ -52,6 +55,7 @@ class FButton {
     bool outLine = false,
   }) {
     return _FButton(
+      key: key,
       msg: msg,
       bgColor: bgColor,
       textColor: textColor,
@@ -70,6 +74,7 @@ class FButton {
   }
 
   static Widget fButtonRound({
+    Key key,
     String msg,
     Color bgColor,
     Color textColor,
@@ -84,6 +89,7 @@ class FButton {
     bool outLine = false,
   }) {
     return _FButton(
+      key: key,
       msg: msg,
       bgColor: bgColor,
       textColor: textColor,
@@ -140,7 +146,8 @@ class _FButton extends StatelessWidget {
     this.type,
     this.roundSize,
     this.outLine,
-  });
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

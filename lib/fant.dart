@@ -13,3 +13,5 @@ export 'package:fant/swipe/index.dart';
 export 'package:fant/marquee/index.dart';
 export 'package:fant/notice/index.dart';
 export 'package:fant/star/index.dart';
+export 'package:fant/popup/index.dart';
+export 'package:fant/popup/ftriangle.dart';

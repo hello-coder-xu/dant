@@ -1,6 +1,7 @@
 import 'package:example/bean/HomeBean.dart';
 import 'package:example/view/badge.dart';
 import 'package:example/view/bottomsheet.dart';
+import 'package:example/view/bubble.dart';
 import 'package:example/view/button.dart';
 import 'package:example/view/dialog.dart';
 import 'package:example/view/marquee.dart';
@@ -9,6 +10,7 @@ import 'package:example/view/star.dart';
 import 'package:example/view/swipe.dart';
 import 'package:example/view/theme.dart';
 import 'package:example/view/toast.dart';
+import 'package:example/view/triangle.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -31,6 +33,8 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'swipe', page: SwipeDemo()),
     HomeBean(name: 'marquee', page: MarqueeDemo()),
     HomeBean(name: 'star', page: StarDemo()),
+    HomeBean(name: 'triangle', page: TriangleDemo()),
+    HomeBean(name: 'bubble', page: BubbleDemo()),
   ];
 
   @override
