@@ -58,10 +58,19 @@ class BubbleDemoState extends State<BubbleDemo> {
       color: Colors.red,
       position: fPopupPosition,
       child: Container(
-        width: 100,
-        height: 30,
         alignment: Alignment.center,
-        child: Text(value),
+        padding: EdgeInsets.all(8),
+        child: Row(
+          children: <Widget>[
+            Text(value),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.clear, size: 16, color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }
