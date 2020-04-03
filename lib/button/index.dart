@@ -5,7 +5,8 @@ enum FButtonType { min, max }
 
 class FButton extends StatelessWidget {
   final dynamic child;
-  final Color bgColor;
+  final Color fitColor;
+  final Color borderColor;
   final Radius radius;
   final VoidCallback onPressed;
   final bool round;
@@ -15,7 +16,8 @@ class FButton extends StatelessWidget {
 
   FButton({
     this.child,
-    this.bgColor,
+    this.fitColor,
+    this.borderColor,
     this.radius = const Radius.circular(5),
     this.onPressed,
     this.round = false,
@@ -25,20 +27,30 @@ class FButton extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  Color getFitColor(BuildContext context) {
+    return fitColor ?? Theme.of(context).buttonColor;
+  }
+
+  Color getBorderColor(BuildContext context) {
+    return borderColor ?? getFitColor(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget tempChild;
     if (outLine) {
       tempChild = OutlineButton(
         child: Util.getView(child),
-        onPressed: onTag,
-        shape: getShapeBorder(context),
+        onPressed: _onTag,
+        borderSide: BorderSide(color: getBorderColor(context),width: 1),
+        shape: _getShapeBorder(context),
       );
     } else {
       tempChild = RaisedButton(
         child: Util.getView(child),
-        onPressed: onTag,
-        shape: getShapeBorder(context),
+        onPressed: _onTag,
+        color: getFitColor(context),
+        shape: _getShapeBorder(context),
       );
     }
 
@@ -54,15 +66,9 @@ class FButton extends StatelessWidget {
     return tempChild;
   }
 
-  void onTag() {
-    if (onPressed != null) {
-      onPressed();
-    }
-  }
-
-  ShapeBorder getShapeBorder(BuildContext context) {
+  ShapeBorder _getShapeBorder(BuildContext context) {
     ShapeBorder shapeBorder;
-    Color tempColor = bgColor ?? Theme.of(context).buttonColor;
+    Color tempColor = getBorderColor(context);
     if (round) {
       shapeBorder = CircleBorder(
         side: BorderSide(color: tempColor, width: 1),
@@ -74,5 +80,11 @@ class FButton extends StatelessWidget {
       );
     }
     return shapeBorder;
+  }
+
+  void _onTag() {
+    if (onPressed != null) {
+      onPressed();
+    }
   }
 }

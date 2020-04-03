@@ -24,8 +24,9 @@ class ButtonDemoState extends State<ButtonDemo> {
               FButton(child: "默认"),
               SizedBox(height: 8),
               FButton(
-                  child: "圆角20，填充",
+                  child: "圆角20，填充,红色",
                   radius: Radius.circular(20),
+                  fitColor: Colors.blue,
                   onPressed: () {
                     FToast.showToast(context, msg: 'hello');
                   }),
@@ -47,6 +48,7 @@ class ButtonDemoState extends State<ButtonDemo> {
               FButton(
                 child: "圆型按钮",
                 roundSize: 80,
+                fitColor: Colors.red,
                 round: true,
               ),
               SizedBox(height: 8),
@@ -55,6 +57,7 @@ class ButtonDemoState extends State<ButtonDemo> {
                 roundSize: 80,
                 round: true,
                 outLine: true,
+                borderColor: Colors.red,
               ),
             ],
           ),

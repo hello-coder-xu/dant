@@ -1,3 +1,4 @@
+import 'package:fant/button/index.dart';
 import 'package:flutter/material.dart';
 
 enum FOperationType { empty, loading, error, reload }
@@ -34,23 +35,17 @@ class FOperation extends StatelessWidget {
     } else if (type == FOperationType.reload) {
       children.add(Icon(Icons.hourglass_empty));
       children.add(SizedBox(height: 8));
-      children.add(Text('点击重新加载', style: TextStyle(fontSize: 14, color: Colors.blue)));
+      children.add(FButton(child: '点击重新加载', onPressed: onReload));
     }
 
-    Widget tempChild = Container(
+    return Container(
       color: bgColor,
       alignment: Alignment.center,
       child: Column(children: children, mainAxisSize: MainAxisSize.min),
     );
+  }
 
-    if (type == FOperationType.reload && child == null) {
-      tempChild = GestureDetector(
-        child: tempChild,
-        onTap: () {
-          if (reload != null) reload();
-        },
-      );
-    }
-    return tempChild;
+  void onReload() {
+    if (reload != null) reload();
   }
 }
