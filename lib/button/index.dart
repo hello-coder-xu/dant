@@ -13,17 +13,19 @@ class FButton extends StatelessWidget {
   final FButtonType type;
   final double roundSize;
   final bool outLine;
+  final bool enable;
 
   FButton({
     this.child,
     this.fitColor,
     this.borderColor,
-    this.radius = const Radius.circular(5),
+    this.radius = const Radius.circular(20),
     this.onPressed,
     this.round = false,
     this.type = FButtonType.min,
     this.roundSize = 40,
     this.outLine = false,
+    this.enable = true,
     Key key,
   }) : super(key: key);
 
@@ -41,14 +43,14 @@ class FButton extends StatelessWidget {
     if (outLine) {
       tempChild = OutlineButton(
         child: Util.getView(child),
-        onPressed: _onTag,
-        borderSide: BorderSide(color: getBorderColor(context),width: 1),
+        onPressed: enable ? _onTag : null,
+        borderSide: BorderSide(color: getBorderColor(context), width: 1),
         shape: _getShapeBorder(context),
       );
     } else {
       tempChild = RaisedButton(
         child: Util.getView(child),
-        onPressed: _onTag,
+        onPressed: enable ? _onTag : null,
         color: getFitColor(context),
         shape: _getShapeBorder(context),
       );

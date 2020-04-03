@@ -13,7 +13,7 @@ class FToast {
     BuildContext context, {
     String msg,
     int showTime = 2000,
-    Color bgColor = Colors.black87,
+    Color bgColor = Colors.black45,
     Color textColor = Colors.white,
     double textSize = 14,
     ToastPosition position = ToastPosition.bottom,
@@ -37,7 +37,7 @@ class FToast {
   static Function showLoading(
     BuildContext context, {
     String msg,
-    Color bgColor = Colors.black87,
+    Color bgColor = Colors.black45,
     Color textColor = Colors.white,
     double pdHorizontal = 20,
     double pdVertical = 10,
@@ -60,7 +60,7 @@ Function _showToast(
   BuildContext context, {
   String msg,
   int showTime = 1000,
-  Color bgColor = Colors.black87,
+  Color bgColor = Colors.black45,
   Color textColor = Colors.white,
   double textSize,
   ToastPosition position = ToastPosition.center,
