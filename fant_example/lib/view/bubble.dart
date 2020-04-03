@@ -22,27 +22,27 @@ class BubbleDemoState extends State<BubbleDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton.fButton(
+            FButton(
               key: keyLeft,
-              msg: '左边显示',
+              child: '左边显示',
               onPressed: () => showPop(key: keyLeft, fPopupPosition: FPopupPosition.left, value: '我显示在左边'),
             ),
             SizedBox(height: 16),
-            FButton.fButton(
+            FButton(
               key: keyTop,
-              msg: '上面显示',
+              child: '上面显示',
               onPressed: () => showPop(key: keyTop, fPopupPosition: FPopupPosition.top, value: '我显示在上面'),
             ),
             SizedBox(height: 16),
-            FButton.fButton(
+            FButton(
               key: keyRight,
-              msg: '右边显示',
+              child: '右边显示',
               onPressed: () => showPop(key: keyRight, fPopupPosition: FPopupPosition.right, value: '我显示在右边'),
             ),
             SizedBox(height: 16),
-            FButton.fButton(
+            FButton(
               key: keyBottom,
-              msg: '下面显示',
+              child: '下面显示',
               onPressed: () => showPop(key: keyBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面'),
             ),
           ],

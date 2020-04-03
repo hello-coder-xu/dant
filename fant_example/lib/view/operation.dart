@@ -19,8 +19,8 @@ class OperationDemoState extends State<OperationDemo> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton.fButton(
-              msg: '空视图',
+            FButton(
+              child: '空视图',
               onPressed: () {
                 Navigator.push(
                     context,
@@ -32,8 +32,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '空视图-自定义',
+            FButton(
+              child: '空视图-自定义',
               onPressed: () {
                 Navigator.push(
                     context,
@@ -51,8 +51,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '加载视图',
+            FButton(
+              child: '加载视图',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -65,8 +65,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '加载视图-自定义',
+            FButton(
+              child: '加载视图-自定义',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -85,8 +85,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '错误视图',
+            FButton(
+              child: '错误视图',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -99,8 +99,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '错误视图-自定义',
+            FButton(
+              child: '错误视图-自定义',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -119,8 +119,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '重新加载',
+            FButton(
+              child: '重新加载',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -136,8 +136,8 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '重新加载-自定义',
+            FButton(
+              child: '重新加载-自定义',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -150,8 +150,8 @@ class OperationDemoState extends State<OperationDemo> {
                       child: Column(
                         children: <Widget>[
                           Text('data reload'),
-                          FButton.fButton(
-                              msg: '重新加载',
+                          FButton(
+                              child: '重新加载',
                               onPressed: () {
                                 FToast.showToast(context, msg: '重新加载');
                               }),

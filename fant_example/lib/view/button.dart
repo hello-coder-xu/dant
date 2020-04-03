@@ -10,49 +10,52 @@ class ButtonDemo extends StatefulWidget {
 class ButtonDemoState extends State<ButtonDemo> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('ButtonDemo'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('ButtonDemo'),
       ),
-      body: Center(
+      body: Container(
+        alignment: Alignment.center,
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              FButton.fButtonFit(
-                  msg: "button fit",
+              FButton(child: "默认"),
+              SizedBox(height: 8),
+              FButton(
+                  child: "圆角20，填充",
                   radius: Radius.circular(20),
                   onPressed: () {
                     FToast.showToast(context, msg: 'hello');
                   }),
               SizedBox(height: 8),
-              FButton.fButtonFit(
-                  msg: "button fit",
+              FButton(
+                  child: "圆角20，不填充",
                   radius: Radius.circular(20),
                   outLine: true,
                   onPressed: () {
                     FToast.showToast(context, msg: 'hello');
                   }),
               SizedBox(height: 8),
-              FButton.fButton(msg: "button"),
-              SizedBox(height: 8),
-              FButton.fButtonFit(
-                msg: "button fit icon button fit icon button fit icon button fit icon button fit icon",
-                icon: Icon(Icons.add, size: 18),
+              FButton(
+                child: "圆角10，宽度自适应屏幕宽度",
+                type: FButtonType.max,
+                radius: Radius.circular(10),
               ),
               SizedBox(height: 8),
-              FButton.fButton(
-                msg: "button icon",
-                icon: Icon(Icons.add, size: 18),
+              FButton(
+                child: "圆型按钮",
+                roundSize: 80,
+                round: true,
               ),
               SizedBox(height: 8),
-              FButton.fButtonRound(
-                  msg: "round",
-                  roundSize: 80,
-                  icon: Icon(Icons.add, size: 18),
-                  position: IconPosition.Top,
-                  iconTextSpace: 0),
+              FButton(
+                child: "不填充",
+                roundSize: 80,
+                round: true,
+                outLine: true,
+              ),
             ],
           ),
         ),

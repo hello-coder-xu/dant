@@ -32,8 +32,8 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton.fButton(
-              msg: '菜单选择',
+            FButton(
+              child: '菜单选择',
               onPressed: () {
                 FBottomSheet.fBottomSheetOption(
                   context,
@@ -47,8 +47,8 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: '自定义视图',
+            FButton(
+              child: '自定义视图',
               onPressed: () {
                 FBottomSheet.fBottomSheetView(context,
                     roundTop: true,
@@ -114,8 +114,8 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
                           decoration: InputDecoration(hintText: '请输入内容'),
                         ),
                         SizedBox(height: 16),
-                        FButton.fButtonFit(
-                          msg: '确定',
+                        FButton(
+                          child: '确定',
                           onPressed: () {
                             Navigator.pop(context);
                           },

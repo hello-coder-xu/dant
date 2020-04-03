@@ -23,15 +23,15 @@ class DialogDemoState extends State<DialogDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton.fButton(
-              msg: 'alert 无标题',
+            FButton(
+              child: 'alert 无标题',
               onPressed: () {
                 FDialog.showAlert(context, content: 'hello');
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: 'alert 有标题 有X',
+            FButton(
+              child: 'alert 有标题 有X',
               onPressed: () {
                 FDialog.showAlert(
                   context,
@@ -45,8 +45,8 @@ class DialogDemoState extends State<DialogDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: 'confirm',
+            FButton(
+              child: 'confirm',
               onPressed: () {
                 FDialog.showConfirm(
                   context,
@@ -62,8 +62,8 @@ class DialogDemoState extends State<DialogDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton.fButton(
-              msg: 'confirm 自定义',
+            FButton(
+              child: 'confirm 自定义',
               onPressed: () {
                 FDialog.showConfirm(
                   context,
