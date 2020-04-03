@@ -15,3 +15,5 @@ export 'package:fant/notice/index.dart';
 export 'package:fant/star/index.dart';
 export 'package:fant/popup/index.dart';
 export 'package:fant/popup/ftriangle.dart';
+export 'package:fant/radio/index.dart';
+export 'package:fant/checkbox/index.dart';
