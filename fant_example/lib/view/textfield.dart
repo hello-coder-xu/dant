@@ -8,11 +8,6 @@ class TextFieldDemo extends StatefulWidget {
 
 class TextFieldDemoState extends State<TextFieldDemo> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +25,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
                 hint: '请输入内容',
                 value: '我是默认值',
                 isPassword: true,
-                onChange: (value) {
+                onChanged: (value) {
                   print('test onChange=$value');
                 },
                 onEditingComplete: () {
@@ -46,7 +41,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
                 isPassword: true,
                 borderType: FTextFieldBorderType.round,
                 textInputAction: TextInputAction.search,
-                onChange: (value) {
+                onChanged: (value) {
                   print('test onChange=$value');
                 },
                 onEditingComplete: () {
@@ -64,7 +59,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
                 borderType: FTextFieldBorderType.round,
                 maxLine: null,
                 height: 50,
-                onChange: (value) {
+                onChanged: (value) {
                   print('test onChange=$value');
                 },
                 onEditingComplete: () {

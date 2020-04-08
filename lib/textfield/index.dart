@@ -21,9 +21,10 @@ class FTextField extends StatefulWidget {
   final double contentPadding;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
-  final ValueChanged<String> onChange;
+  final ValueChanged<String> onChanged;
   final ValueChanged<String> onSubmitted;
   final VoidCallback onEditingComplete;
+  final FocusNode focusNode;
 
   FTextField({
     this.hint,
@@ -43,9 +44,10 @@ class FTextField extends StatefulWidget {
     this.contentPadding = 16,
     this.keyboardType,
     this.textInputAction,
-    this.onChange,
+    this.onChanged,
     this.onSubmitted,
     this.onEditingComplete,
+    this.focusNode,
   });
 
   @override
@@ -71,6 +73,7 @@ class FTextFieldState extends State<FTextField> {
       textAlign: widget.textAlign,
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
+      focusNode: widget.focusNode,
       decoration: InputDecoration(
         icon: widget.icon,
         prefixIcon: widget.prefixIcon,
@@ -85,7 +88,7 @@ class FTextFieldState extends State<FTextField> {
       ),
       maxLength: widget.maxLength,
       maxLines: widget.maxLine,
-      onChanged: widget.onChange,
+      onChanged: widget.onChanged,
       onEditingComplete: onEditingComplete,
       onSubmitted: onSubmitted,
     );

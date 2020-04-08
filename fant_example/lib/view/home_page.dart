@@ -8,6 +8,7 @@ import 'package:example/view/dialog.dart';
 import 'package:example/view/marquee.dart';
 import 'package:example/view/number.dart';
 import 'package:example/view/operation.dart';
+import 'package:example/view/pwdfield.dart';
 import 'package:example/view/radio.dart';
 import 'package:example/view/star.dart';
 import 'package:example/view/swipe.dart';
@@ -31,6 +32,7 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'theme', page: ThemeDemo()),
     HomeBean(name: 'button', page: ButtonDemo()),
     HomeBean(name: 'textfield', page: TextFieldDemo()),
+    HomeBean(name: 'pwdfield', page: PwdFieldDemo()),
     HomeBean(name: 'Badge', page: BadgeDemo()),
     HomeBean(name: 'dialog', page: DialogDemo()),
     HomeBean(name: 'bottomsheet', page: BottomSheetDemo()),
