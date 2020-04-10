@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 enum FPopupPosition { top, left, right, bottom }
 
 class FPopup {
-  static void show(
+  static Future show(
     BuildContext context, {
     GlobalKey key,
     @required Widget child,
@@ -29,7 +29,7 @@ class FPopup {
         position: position,
       ),
     );
-    Navigator.push(context, popRoute);
+    return Navigator.push(context, popRoute);
   }
 }
 
@@ -117,21 +117,66 @@ class FPopupViewState extends State<FPopupView> {
 
   //计算显示内容
   void calculateChild(Size childSize) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     if (widget.position == FPopupPosition.left) {
       contentTop = tagOffset.dy + tagHeight / 2 - childSize.height / 2;
       contentLeft = tagOffset.dx - childSize.width - widget.triangleWidth;
+
+      if (childSize.height < screenHeight) {
+        //显示高度不超过屏幕高度
+        double centerPointY = triangleTop + widget.triangleHeight / 2;
+        if (centerPointY > screenHeight / 2 && childSize.height + contentTop > screenHeight) {
+          //三角形x 在1/2屏幕下方  &  内容超出下方屏幕
+          contentTop -= childSize.height + contentTop - screenWidth;
+        } else if (centerPointY <= screenWidth / 2 && contentTop < 0) {
+          //三角形x 在1/2屏幕上方方  &  内容超出上方屏幕
+          contentTop = 0;
+        }
+      }
     } else if (widget.position == FPopupPosition.top) {
       contentTop = tagOffset.dy - childSize.height - widget.triangleHeight;
       contentLeft = tagOffset.dx + tagWidth / 2 - childSize.width / 2;
+      if (childSize.width < screenWidth) {
+        //显示宽度不超过屏幕宽度
+        double centerPointX = triangleLeft + widget.triangleWidth / 2;
+        if (centerPointX > screenWidth / 2 && childSize.width + contentLeft > screenWidth) {
+          //三角形x 在1/2屏幕右侧  &  内容超出右侧屏幕
+          contentLeft -= childSize.width + contentLeft - screenWidth;
+        } else if (centerPointX <= screenWidth / 2 && contentLeft < 0) {
+          //三角形x 在1/2屏幕左侧  &  内容超出左侧屏幕
+          contentLeft = 0;
+        }
+      }
     } else if (widget.position == FPopupPosition.right) {
       contentTop = tagOffset.dy + tagHeight / 2 - childSize.height / 2;
       contentLeft = tagOffset.dx + tagWidth + widget.triangleWidth;
+      if (childSize.height < screenHeight) {
+        //显示高度不超过屏幕高度
+        double centerPointY = triangleTop + widget.triangleHeight / 2;
+        if (centerPointY > screenHeight / 2 && childSize.height + contentTop > screenHeight) {
+          //三角形x 在1/2屏幕下方  &  内容超出下方屏幕
+          contentTop -= childSize.height + contentTop - screenWidth;
+        } else if (centerPointY <= screenWidth / 2 && contentTop < 0) {
+          //三角形x 在1/2屏幕上方方  &  内容超出上方屏幕
+          contentTop = 0;
+        }
+      }
     } else if (widget.position == FPopupPosition.bottom) {
       contentTop = tagOffset.dy + tagHeight + widget.triangleHeight;
       contentLeft = tagOffset.dx + tagWidth / 2 - childSize.width / 2;
+      if (childSize.width < screenWidth) {
+        //显示宽度不超过屏幕宽度
+        double centerPointX = triangleLeft + widget.triangleWidth / 2;
+        if (centerPointX > screenWidth / 2 && childSize.width + contentLeft > screenWidth) {
+          //三角形x 在1/2屏幕右侧  &  内容超出右侧屏幕
+          contentLeft -= childSize.width + contentLeft - screenWidth;
+        } else if (centerPointX <= screenWidth / 2 && contentLeft < 0) {
+          //三角形x 在1/2屏幕左侧  &  内容超出左侧屏幕
+          contentLeft = 0;
+        }
+      }
     }
-    //待处理-显示内容宽度超过屏幕宽度时
-    //待处理-显示内容高度超过屏幕高度时
   }
 
   //透明图层

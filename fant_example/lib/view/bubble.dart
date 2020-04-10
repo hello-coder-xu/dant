@@ -7,6 +7,9 @@ class BubbleDemo extends StatefulWidget {
 }
 
 class BubbleDemoState extends State<BubbleDemo> {
+  GlobalKey keyTitleBottom = GlobalKey();
+  GlobalKey actionBottom = GlobalKey();
+  GlobalKey actionLeft = GlobalKey();
   GlobalKey keyLeft = GlobalKey();
   GlobalKey keyTop = GlobalKey();
   GlobalKey keyRight = GlobalKey();
@@ -16,7 +19,31 @@ class BubbleDemoState extends State<BubbleDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('bubbledemo'),
+        title: GestureDetector(
+          child: Text('bubbledemo', key: keyTitleBottom),
+          onTap: () {
+            showPop(key: keyTitleBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面靠左，而且我的内容很长很长很长很长很长');
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+            key: actionLeft,
+            icon: Icon(Icons.add),
+            onPressed: () {
+              showPop(
+                  key: actionLeft,
+                  fPopupPosition: FPopupPosition.left,
+                  value: '我显示在左边靠上\n我显示在左边靠上\n我显示在左边靠上\n我显示在左边靠上\n我显示在左边靠上\n我显示在左边靠上\n我显示在左边靠上\n我显示在左边靠上');
+            },
+          ),
+          IconButton(
+            key: actionBottom,
+            icon: Icon(Icons.more_horiz),
+            onPressed: () {
+              showPop(key: actionBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面靠右');
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
