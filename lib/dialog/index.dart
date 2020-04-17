@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fant/fant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class FDialog {
         barrierDismissible: barrierDismissible,
         builder: (context) {
           return AlertDialog(
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: EdgeInsets.zero,
             content: _FDialog(
               title: title,
               showClose: showClose,
@@ -57,7 +59,7 @@ class FDialog {
         barrierDismissible: barrierDismissible,
         builder: (context) {
           return AlertDialog(
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: EdgeInsets.zero,
             content: _FDialog(
               title: title,
               showClose: showClose,
@@ -70,6 +72,39 @@ class FDialog {
               confirmTextColor: confirmTextColor,
               cancelOnPress: onCancelPress,
               confirmOnPress: onConfirmPress,
+            ),
+            shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+          );
+        });
+  }
+
+  static void showReading(
+    BuildContext context, {
+    String title,
+    bool showClose = false,
+    dynamic content,
+    String confirm = '確定',
+    int second = 3,
+    Color confirmBgColor,
+    Color confirmTextColor,
+    VoidCallback onConfirmPress,
+    bool barrierDismissible = true,
+  }) {
+    showDialog(
+        context: context,
+        barrierDismissible: barrierDismissible,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            content: _FDialog(
+              title: title,
+              showClose: showClose,
+              content: content,
+              cancel: confirm,
+              cancelBgColor: confirmBgColor,
+              cancelTextColor: confirmTextColor,
+              cancelOnPress: onConfirmPress,
+              second: second,
             ),
             shape: RoundedRectangleBorder(borderRadius: _borderRadius),
           );
@@ -89,6 +124,7 @@ class _FDialog extends StatelessWidget {
   final Color confirmTextColor;
   final VoidCallback cancelOnPress;
   final VoidCallback confirmOnPress;
+  final int second;
 
   _FDialog({
     @required this.content,
@@ -102,6 +138,7 @@ class _FDialog extends StatelessWidget {
     this.confirmTextColor,
     this.cancelOnPress,
     this.confirmOnPress,
+    this.second,
   });
 
   @override
@@ -158,6 +195,16 @@ class _FDialog extends StatelessWidget {
   }
 
   Widget buttonView(BuildContext context) {
+    if (second != null) {
+      return ReadingButton(
+        second: second,
+        bgColor: cancelBgColor,
+        textColor: cancelTextColor,
+        button: cancel,
+        tap: () => onCancel(context),
+      );
+    }
+
     if (confirm == null) {
       return InkWell(
         onTap: () => onCancel(context),
@@ -165,12 +212,10 @@ class _FDialog extends StatelessWidget {
           height: 42,
           decoration: BoxDecoration(
             color: cancelBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius:
-                BorderRadius.vertical(bottom: Radius.circular(_circular)),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(_circular)),
           ),
           alignment: Alignment.center,
-          child: Text(cancel,
-              style: TextStyle(color: cancelTextColor, fontSize: 14)),
+          child: Text(cancel, style: TextStyle(color: cancelTextColor, fontSize: 14)),
         ),
       );
     }
@@ -181,13 +226,11 @@ class _FDialog extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: cancelBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius:
-                BorderRadius.only(bottomLeft: Radius.circular(_circular)),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(_circular)),
           ),
           height: 42,
           alignment: Alignment.center,
-          child: Text(cancel,
-              style: TextStyle(color: cancelTextColor, fontSize: 14)),
+          child: Text(cancel, style: TextStyle(color: cancelTextColor, fontSize: 14)),
         ),
       ),
     ));
@@ -201,13 +244,11 @@ class _FDialog extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: confirmBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius:
-                BorderRadius.only(bottomRight: Radius.circular(_circular)),
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(_circular)),
           ),
           alignment: Alignment.center,
           height: 42,
-          child: Text(confirm,
-              style: TextStyle(color: confirmTextColor, fontSize: 14)),
+          child: Text(confirm, style: TextStyle(color: confirmTextColor, fontSize: 14)),
         ),
       ),
     ));
@@ -234,5 +275,81 @@ class _FDialog extends StatelessWidget {
     if (confirmOnPress != null) {
       confirmOnPress();
     }
+  }
+}
+
+///阅读按钮
+class ReadingButton extends StatefulWidget {
+  final int second;
+  final Color bgColor;
+  final Color textColor;
+  final String button;
+  final VoidCallback tap;
+
+  ReadingButton({
+    this.second,
+    this.bgColor,
+    this.textColor,
+    this.button,
+    this.tap,
+  });
+
+  @override
+  ReadingButtonState createState() => new ReadingButtonState();
+}
+
+class ReadingButtonState extends State<ReadingButton> {
+  int tempSecond;
+  Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    tempSecond = widget.second ?? 3;
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (tempSecond >= 1) {
+        tempSecond -= 1;
+      } else {
+        tempSecond = 0;
+        timer.cancel();
+        timer = null;
+      }
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String buttonValue = widget.button;
+    if (tempSecond > 0) {
+      buttonValue = '$tempSecond s';
+    }
+    Widget child = Container(
+      height: 42,
+      decoration: BoxDecoration(
+        color: widget.bgColor ?? Theme.of(context).backgroundColor,
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(_circular)),
+      ),
+      alignment: Alignment.center,
+      child: Text(buttonValue, style: TextStyle(color: widget.textColor, fontSize: 14)),
+    );
+
+    if (tempSecond > 0) {
+      child = Opacity(opacity: 0.5, child: child);
+    }
+    return InkWell(onTap: onTap, child: child);
+  }
+
+  void onTap() {
+    if (tempSecond > 0) return;
+    if (widget.tap != null) {
+      widget.tap();
+    }
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 }

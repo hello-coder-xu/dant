@@ -63,6 +63,21 @@ class DialogDemoState extends State<DialogDemo> {
             ),
             SizedBox(height: 16),
             FButton(
+              child: 'reading',
+              onPressed: () {
+                FDialog.showReading(
+                  context,
+                  content: '我是一个内容',
+                  title: '提示',
+                  second: 3,
+                  onConfirmPress: () {
+                    FToast.showToast(context, msg: '确认');
+                  },
+                );
+              },
+            ),
+            SizedBox(height: 16),
+            FButton(
               child: 'confirm 自定义',
               onPressed: () {
                 FDialog.showConfirm(
