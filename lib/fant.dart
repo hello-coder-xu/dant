@@ -21,3 +21,4 @@ export 'package:fant/operation/index.dart';
 export 'package:fant/textfield/index.dart';
 export 'package:fant/pwd_field/index.dart';
 export 'package:fant/drawer/index.dart';
+export 'package:fant/skeleton/index.dart';
