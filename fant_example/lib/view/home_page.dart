@@ -5,6 +5,7 @@ import 'package:example/view/bubble.dart';
 import 'package:example/view/button.dart';
 import 'package:example/view/checkbox.dart';
 import 'package:example/view/dialog.dart';
+import 'package:example/view/drawer.dart';
 import 'package:example/view/marquee.dart';
 import 'package:example/view/number.dart';
 import 'package:example/view/operation.dart';
@@ -45,6 +46,7 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'radio', page: RadioDemo()),
     HomeBean(name: 'checkbox', page: CheckBoxDemo()),
     HomeBean(name: 'operation', page: OperationDemo()),
+    HomeBean(name: 'drawer', page: DrawerDemo()),
   ];
 
   @override
