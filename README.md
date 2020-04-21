@@ -1,4 +1,6 @@
-# [![Flutter logo][]][flutter.dev]
+<p align="center">
+    <img alt="logo" src="https://github.com/yx544806988/fant/blob/master/fant_example/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" width="120" height="120" style="margin-bottom: 10px;">
+</p>
 
 
 ## Getting Started
