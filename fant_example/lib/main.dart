@@ -21,9 +21,11 @@ class IndexPageState extends State<IndexPage> {
   @override
   void initState() {
     super.initState();
-    SpUtil.getInstance();
-    App.isDark = SpUtil.getBool(Params.IS_DARK, defValue: false);
-    toggleThemeMode();
+    SpUtil.getInstance().then((_) {
+      App.isDark = SpUtil.getBool(Params.IS_DARK, defValue: false);
+      toggleThemeMode();
+      setState(() {});
+    });
   }
 
   @override

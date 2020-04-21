@@ -12,7 +12,7 @@ class FDivider extends StatelessWidget {
   FDivider({
     this.type = FDividerType.horizontal,
     this.color,
-    this.width=1,
+    this.width = 1,
     this.indent,
     this.endIndent,
   });
@@ -23,10 +23,7 @@ class FDivider extends StatelessWidget {
     final double indent = this.indent ?? dividerTheme.indent ?? 0.0;
     final double endIndent = this.endIndent ?? dividerTheme.endIndent ?? 0.0;
 
-    final Color effectiveColor = color ??
-        (context != null
-            ? (DividerTheme.of(context).color ?? Theme.of(context).dividerColor)
-            : null);
+    final Color effectiveColor = color ?? DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
 
     if (type == FDividerType.horizontal) {
       return Container(

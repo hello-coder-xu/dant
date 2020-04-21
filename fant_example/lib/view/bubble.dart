@@ -1,4 +1,3 @@
-import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,7 @@ class BubbleDemoState extends State<BubbleDemo> {
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
-          child: Text('bubbledemo', key: keyTitleBottom),
+          child: Text('BubbleDemo', key: keyTitleBottom),
           onTap: () {
             showPop(key: keyTitleBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面靠左，而且我的内容很长很长很长很长很长');
           },

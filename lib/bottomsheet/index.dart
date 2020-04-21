@@ -104,7 +104,8 @@ class _FBottomSheetOption extends StatelessWidget {
   Widget bottomView(BuildContext context) {
     List<Widget> children = [];
 
-    children.add(Container(height: 16, color: Colors.grey[100]));
+    final Color effectiveColor = DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
+    children.add(Container(height: 16, color: effectiveColor));
 
     children.add(InkWell(
       onTap: () => close(context),

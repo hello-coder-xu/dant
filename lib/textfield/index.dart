@@ -27,6 +27,7 @@ class FTextField extends StatefulWidget {
   final FocusNode focusNode;
 
   FTextField({
+    Key key,
     this.hint,
     this.value,
     this.clear = true,
@@ -48,7 +49,7 @@ class FTextField extends StatefulWidget {
     this.onSubmitted,
     this.onEditingComplete,
     this.focusNode,
-  });
+  }) : super(key: key);
 
   @override
   FTextFieldState createState() => new FTextFieldState();
