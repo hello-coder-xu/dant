@@ -4,7 +4,7 @@ A new Flutter application.
 
 ## Getting Started
 
-[![pub package](https://img.shields.io/pub/v/flui.svg)]
+
 
 A few resources to get you started if this is your first Flutter project:
 

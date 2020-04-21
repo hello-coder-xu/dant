@@ -4,6 +4,9 @@ A new Flutter package.
 
 ## Getting Started
 
+
+[![pub package](https://img.shields.io/pub/v/flui.svg)]
+
 This project is a starting point for a Dart
 [package](https://flutter.dev/developing-packages/),
 a library module containing code that can be shared easily across
