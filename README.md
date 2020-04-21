@@ -5,7 +5,7 @@ A new Flutter package.
 ## Getting Started
 
 
-[![pub package](https://img.shields.io/pub/v/flui.svg)]
+<img src="https://raw.githubusercontent.com/Rannie/Rannie.github.io/master/images/2019-12-18-overview-2.png" />
 
 This project is a starting point for a Dart
 [package](https://flutter.dev/developing-packages/),
