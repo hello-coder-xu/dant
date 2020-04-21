@@ -1,6 +1,5 @@
 import 'package:fant/divider/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FBottomSheet {
   static void fBottomSheetOption(
@@ -13,10 +12,7 @@ class FBottomSheet {
   }) async {
     List result = await showModalBottomSheet(
       context: context,
-      shape: roundTop
-          ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)))
-          : null,
+      shape: roundTop ? RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))) : null,
       isScrollControlled: true,
       isDismissible: isDismissible,
       backgroundColor: Theme.of(context).backgroundColor,
@@ -41,10 +37,7 @@ class FBottomSheet {
   }) {
     showModalBottomSheet(
       context: context,
-      shape: roundTop
-          ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)))
-          : null,
+      shape: roundTop ? RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))) : null,
       isScrollControlled: true,
       isDismissible: isDismissible,
       backgroundColor: Theme.of(context).backgroundColor,
@@ -94,8 +87,8 @@ class _FBottomSheetOption extends StatelessWidget {
 
     return Container(
       constraints: BoxConstraints(
-        maxHeight: ScreenUtil.screenHeightDp * 0.8,
-        minHeight: ScreenUtil.screenHeightDp * 0.1,
+        maxHeight: MediaQuery.of(context).size.height * 0.8,
+        minHeight: MediaQuery.of(context).size.height * 0.1,
       ),
       child: SingleChildScrollView(child: Column(children: children)),
     );
@@ -137,8 +130,8 @@ class _FBottomSheetView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: ScreenUtil.screenHeightDp * 0.8,
-        minHeight: ScreenUtil.screenHeightDp * 0.1,
+        maxHeight: MediaQuery.of(context).size.height * 0.8,
+        minHeight: MediaQuery.of(context).size.height * 0.1,
       ),
       child: SingleChildScrollView(child: Column(children: [child])),
     );

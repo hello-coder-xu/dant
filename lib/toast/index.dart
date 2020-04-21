@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 //Toast 显示位置控制
 enum ToastPosition { top, center, bottom }
@@ -162,8 +161,8 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
     Widget toastView = FadeTransition(
       opacity: _controller,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(40)),
-        width: ScreenUtil.screenWidthDp,
+        padding: EdgeInsets.symmetric(horizontal: 40),
+        width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,
         child: _buildToastWidget(),
       ),
@@ -206,7 +205,8 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
                 SizedBox(height: 8),
                 Text(
                   widget.msg,
-                  style: TextStyle(fontSize: widget.textSize, color: widget.textColor ?? Theme.of(context).backgroundColor),
+                  style: TextStyle(
+                      fontSize: widget.textSize, color: widget.textColor ?? Theme.of(context).backgroundColor),
                 )
               ],
             ),

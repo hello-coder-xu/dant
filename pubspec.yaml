@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_screenutil: ^1.1.0
+#  flutter_screenutil: ^1.1.0
 
 dev_dependencies:
   flutter_test:
