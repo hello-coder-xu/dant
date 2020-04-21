@@ -7,8 +7,7 @@ A new Flutter package.
 
 
 <center class="half">
-    <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
-    <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
+    <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" /><img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
     <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
     <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
     <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
