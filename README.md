@@ -5,7 +5,7 @@ A new Flutter package.
 ## Getting Started
 
 
-####step
+#### step
 
 ```
 dependencies:
@@ -13,7 +13,7 @@ dependencies:
 ```
 
 
-####Usage
+#### Usage
 
 ```
 import 'package:example/comm/app.dart';
