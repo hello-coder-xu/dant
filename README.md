@@ -6,6 +6,10 @@ A new Flutter package.
 
 
 <img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
+<img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
+<img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
+<img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
+<img  width="160" src="https://github.com/yx544806988/fant/blob/master/fant_example/image/Screenshot_20200421-144658.jpg" />
 
 This project is a starting point for a Dart
 [package](https://flutter.dev/developing-packages/),
