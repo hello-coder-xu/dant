@@ -1,11 +1,10 @@
 import 'package:dant/dant.dart';
+import 'package:example/comm/app.dart';
+import 'package:example/comm/params.dart';
+import 'package:example/comm/sp_util.dart';
+import 'package:example/comm/theme_notification.dart';
+import 'package:example/view/home_page.dart';
 import 'package:flutter/material.dart';
-
-import 'comm/app.dart';
-import 'comm/params.dart';
-import 'comm/sp_util.dart';
-import 'comm/theme_notification.dart';
-import 'view/home_page.dart';
 
 void main() {
   runApp(IndexPage());
