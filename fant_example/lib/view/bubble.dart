@@ -22,7 +22,7 @@ class BubbleDemoState extends State<BubbleDemo> {
         title: GestureDetector(
           child: Text('BubbleDemo', key: keyTitleBottom),
           onTap: () {
-            showPop(key: keyTitleBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面靠左，而且我的内容很长很长很长很长很长');
+            showPop(key: keyTitleBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面靠左，而且我的内容很长很长很长很长');
           },
         ),
         actions: <Widget>[
@@ -52,7 +52,12 @@ class BubbleDemoState extends State<BubbleDemo> {
             FButton(
               key: keyLeft,
               child: '左边显示',
-              onPressed: () => showPop(key: keyLeft, fPopupPosition: FPopupPosition.left, value: '我显示在左边'),
+              onPressed: () => showPop(
+                key: keyLeft,
+                fPopupPosition: FPopupPosition.left,
+                value: '我显示在左边',
+                color: Colors.red,
+              ),
             ),
             SizedBox(height: 16),
             FButton(
@@ -78,11 +83,11 @@ class BubbleDemoState extends State<BubbleDemo> {
     );
   }
 
-  void showPop({GlobalKey key, FPopupPosition fPopupPosition, String value}) {
+  void showPop({GlobalKey key, FPopupPosition fPopupPosition, String value, Color color}) {
     FPopup.show(
       context,
       key: key,
-      color: Colors.red,
+      color: color,
       position: fPopupPosition,
       child: Container(
         alignment: Alignment.center,

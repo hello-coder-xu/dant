@@ -206,7 +206,7 @@ class FPopupViewState extends State<FPopupView> {
     return FTriangle(
       width: widget.triangleWidth,
       height: widget.triangleHeight,
-      color: widget.color,
+      color: widget.color??Theme.of(context).textTheme.title.color,
       position: trianglePosition,
     );
   }
@@ -216,9 +216,12 @@ class FPopupViewState extends State<FPopupView> {
       key: globalKey,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(widget.angle)),
-        color: widget.color,
+        color: widget.color??Theme.of(context).textTheme.title.color,
       ),
-      child: widget.child,
+      child: DefaultTextStyle(
+        style: TextStyle(color: Theme.of(context).backgroundColor),
+        child: widget.child,
+      ),
     );
   }
 
