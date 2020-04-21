@@ -1,4 +1,3 @@
-
 import 'package:dant/button/index.dart';
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
@@ -11,19 +10,7 @@ class BottomSheetDemo extends StatefulWidget {
 }
 
 class BottomSheetDemoState extends State<BottomSheetDemo> {
-  List<String> list = [
-    'java',
-    'C#',
-    'PHP',
-    'ios',
-    'C++',
-    'Object',
-    'android',
-    'swift',
-    'vb',
-    'sql',
-    'python'
-  ];
+  List<String> list = ['java', 'C#', 'PHP', 'ios', 'C++', 'Object', 'android', 'swift', 'vb', 'sql', 'python'];
 
   @override
   Widget build(BuildContext context) {

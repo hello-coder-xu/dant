@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="https://github.com/yx544806988/dant/blob/master/dant_example/android/app/src/main/res/drawable/dant.png" width="120" height="120" style="margin-bottom: 10px;">
+    <img alt="logo" src="https://github.com/yx544806988/dant/blob/master/example/android/app/src/main/res/drawable/dant.png" width="120" height="120" style="margin-bottom: 10px;">
 </p>
 
 <h3 align="center" style="margin: 30px 0 35px;">Flutter UI Components built on dant</h3>
