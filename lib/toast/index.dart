@@ -4,8 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //Toast 显示位置控制
-enum ToastPosition { top, center, bottom }
-enum ToastType { text, loading }
+enum ToastPosition {
+  top,
+  center,
+  bottom,
+}
+enum ToastType {
+  text,
+  loading,
+}
 
 class FToast {
   static void showToast(

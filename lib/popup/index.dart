@@ -1,7 +1,12 @@
 import 'package:dant/popup/ftriangle.dart';
 import 'package:flutter/material.dart';
 
-enum FPopupPosition { top, left, right, bottom }
+enum FPopupPosition {
+  top,
+  left,
+  right,
+  bottom,
+}
 
 class FPopup {
   static Future show(
@@ -29,7 +34,10 @@ class FPopup {
         position: position,
       ),
     );
-    return Navigator.push(context, popRoute);
+    return Navigator.push(
+      context,
+      popRoute,
+    );
   }
 }
 
@@ -278,7 +286,11 @@ class PopRoute extends PopupRoute {
   String get barrierLabel => null;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     return child;
   }
 

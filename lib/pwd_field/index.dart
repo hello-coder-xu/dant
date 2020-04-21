@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-enum FPwdBorderType { underline, round }
+enum FPwdBorderType {
+  underline,
+  round,
+}
 
 class FPwdField extends StatefulWidget {
   final double size;
@@ -72,7 +75,10 @@ class FPwdFieldState extends State<FPwdField> {
             border: InputBorder.none,
             counterText: '',
           ),
-          style: TextStyle(color: Colors.transparent, fontSize: 1),
+          style: TextStyle(
+            color: Colors.transparent,
+            fontSize: 1,
+          ),
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           focusNode: widget.focusNode,
@@ -156,7 +162,10 @@ class FPwdPainter extends CustomPainter {
         rect,
         Radius.circular(radius),
       );
-      canvas.drawRRect(rRect, paint);
+      canvas.drawRRect(
+        rRect,
+        paint,
+      );
     } else {
       Offset offset1 = Offset(
         index * mSize + index * space,

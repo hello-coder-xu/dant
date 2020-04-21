@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 const int _kDefaultMS = 1000;
 
-enum FSkeletonAnimationType { shimmer, stretch }
+enum FSkeletonAnimationType {
+  shimmer,
+  stretch,
+}
 
 class FSkeleton extends StatefulWidget {
   final BoxShape shape;

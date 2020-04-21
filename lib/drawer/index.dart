@@ -2,7 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-enum FDrawerType { left, right, top, bottom }
+enum FDrawerType {
+  left,
+  right,
+  top,
+  bottom,
+}
 
 class FDrawer {
   static VoidCallback showNotification(
@@ -91,7 +96,10 @@ class FDrawer {
     };
 
     if (autoHide) {
-      Future.delayed(Duration(milliseconds: 2000), hide);
+      Future.delayed(
+        Duration(milliseconds: 2000),
+        hide,
+      );
     }
 
     return hide;
@@ -209,9 +217,15 @@ class _FDrawerState extends State<_FDrawer> with TickerProviderStateMixin {
         builder: (BuildContext context, Widget child) {
           // 方向
           if (widget.type == FDrawerType.top || widget.type == FDrawerType.bottom) {
-            offset = Offset(0, offsetAnimation.value);
+            offset = Offset(
+              0,
+              offsetAnimation.value,
+            );
           } else {
-            offset = Offset(offsetAnimation.value, 0);
+            offset = Offset(
+              offsetAnimation.value,
+              0,
+            );
           }
 
           final List<Widget> children = [];
@@ -225,7 +239,9 @@ class _FDrawerState extends State<_FDrawer> with TickerProviderStateMixin {
               child: GestureDetector(
                 onTap: maskTap,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.black45),
+                  decoration: BoxDecoration(
+                    color: Colors.black45,
+                  ),
                 ),
               ),
             ));

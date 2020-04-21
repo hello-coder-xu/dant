@@ -109,7 +109,10 @@ class _FStarRatingState extends State<FStarRating> {
     int full = fullStars();
     List<Widget> children = [];
     for (int i = 0; i < full; i++) {
-      children.add(getStarItemView(widget.selectImage, widget.selectColor));
+      children.add(getStarItemView(
+        widget.selectImage,
+        widget.selectColor,
+      ));
       if (i < widget.count - 1) {
         children.add(
           SizedBox(
@@ -203,7 +206,12 @@ class SMClipper extends CustomClipper<Rect> {
 
   @override
   Rect getClip(Size size) {
-    return Rect.fromLTRB(0.0, 0.0, rating, size.height);
+    return Rect.fromLTRB(
+      0.0,
+      0.0,
+      rating,
+      size.height,
+    );
   }
 
   @override

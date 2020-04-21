@@ -48,7 +48,9 @@ class FBottomSheet {
       context: context,
       shape: roundTop
           ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(25.0),
+              ),
             )
           : null,
       isScrollControlled: true,
@@ -80,7 +82,11 @@ class _FBottomSheetOption extends StatelessWidget {
     children.add(contentView(context));
     children.add(bottomView(context));
 
-    return IntrinsicHeight(child: Column(children: children));
+    return IntrinsicHeight(
+      child: Column(
+        children: children,
+      ),
+    );
   }
 
   Widget contentView(BuildContext context) {
@@ -103,7 +109,11 @@ class _FBottomSheetOption extends StatelessWidget {
         maxHeight: MediaQuery.of(context).size.height * 0.8,
         minHeight: MediaQuery.of(context).size.height * 0.1,
       ),
-      child: SingleChildScrollView(child: Column(children: children)),
+      child: SingleChildScrollView(
+        child: Column(
+          children: children,
+        ),
+      ),
     );
   }
 
@@ -112,7 +122,10 @@ class _FBottomSheetOption extends StatelessWidget {
 
     final Color effectiveColor = DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
     children.add(
-      Container(height: 16, color: effectiveColor),
+      Container(
+        height: 16,
+        color: effectiveColor,
+      ),
     );
 
     children.add(InkWell(
@@ -124,7 +137,9 @@ class _FBottomSheetOption extends StatelessWidget {
       ),
     ));
 
-    return Column(children: children);
+    return Column(
+      children: children,
+    );
   }
 
   void itemClick(BuildContext context, int index, String value) {
@@ -149,7 +164,9 @@ class _FBottomSheetView extends StatelessWidget {
         minHeight: MediaQuery.of(context).size.height * 0.1,
       ),
       child: SingleChildScrollView(
-        child: Column(children: [child]),
+        child: Column(
+          children: [child],
+        ),
       ),
     );
   }

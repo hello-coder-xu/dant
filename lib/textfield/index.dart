@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-enum FTextFieldBorderType { none, round, line }
+enum FTextFieldBorderType {
+  none,
+  round,
+  line,
+}
 
 class FTextField extends StatefulWidget {
   final String hint;
@@ -196,7 +200,10 @@ class FTextFieldState extends State<FTextField> {
       }
     } else if (widget.borderType == FTextFieldBorderType.line) {
       return UnderlineInputBorder(
-        borderSide: BorderSide(color: tempColor, width: 1),
+        borderSide: BorderSide(
+          color: tempColor,
+          width: 1,
+        ),
       );
     }
     return null;

@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 
-enum FSwipeIndicatorAxis { horizontal, vertical }
+enum FSwipeIndicatorAxis {
+  horizontal,
+  vertical,
+}
 
 class FSwipe extends StatefulWidget {
   final GlobalKey key;
@@ -140,12 +143,18 @@ class FSwipeState extends State<FSwipe> {
     double paddingHorizontal;
     double paddingVertical;
     if (widget.fSwipeIndicatorAxis == FSwipeIndicatorAxis.horizontal) {
-      child = Row(children: children, mainAxisSize: MainAxisSize.min);
+      child = Row(
+        children: children,
+        mainAxisSize: MainAxisSize.min,
+      );
       paddingHorizontal = pointPaddingSpace * 2;
       paddingVertical = pointPaddingSpace;
       pointPaddingHorizontal = pointPaddingSpace;
     } else {
-      child = Column(children: children, mainAxisSize: MainAxisSize.min);
+      child = Column(
+        children: children,
+        mainAxisSize: MainAxisSize.min,
+      );
       paddingHorizontal = pointPaddingSpace;
       paddingVertical = pointPaddingSpace * 2;
       pointPaddingVertical = pointPaddingSpace;

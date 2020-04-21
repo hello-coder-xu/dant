@@ -232,7 +232,9 @@ class _FDialog extends StatelessWidget {
           height: 42,
           decoration: BoxDecoration(
             color: cancelBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(_circular)),
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(_circular),
+            ),
           ),
           alignment: Alignment.center,
           child: Text(
@@ -385,9 +387,15 @@ class ReadingButtonState extends State<ReadingButton> {
     );
 
     if (tempSecond > 0) {
-      child = Opacity(opacity: 0.5, child: child);
+      child = Opacity(
+        opacity: 0.5,
+        child: child,
+      );
     }
-    return InkWell(onTap: onTap, child: child);
+    return InkWell(
+      onTap: onTap,
+      child: child,
+    );
   }
 
   void onTap() {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-enum FDividerType { horizontal, vertical }
+enum FDividerType {
+  horizontal,
+  vertical,
+}
 
 class FDivider extends StatelessWidget {
   final FDividerType type;

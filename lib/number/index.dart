@@ -120,7 +120,10 @@ class FNumberState extends State<FNumber> {
   void onRemove() {
     unFocus();
     int number = getNumber();
-    number = math.max(widget.min, number - widget.step);
+    number = math.max(
+      widget.min,
+      number - widget.step,
+    );
     if (number != recordNumber) {
       updateControllerValue(number);
     }
@@ -129,7 +132,10 @@ class FNumberState extends State<FNumber> {
   void onAdd() {
     unFocus();
     int number = getNumber();
-    number = math.min(widget.max, number + widget.step);
+    number = math.min(
+      widget.max,
+      number + widget.step,
+    );
     if (number != recordNumber) {
       updateControllerValue(number);
     }
@@ -140,7 +146,10 @@ class FNumberState extends State<FNumber> {
     if (temp == null || temp.length == 0) {
       return widget.min;
     } else {
-      return math.min(widget.max, num.parse(temp));
+      return math.min(
+        widget.max,
+        num.parse(temp),
+      );
     }
   }
 

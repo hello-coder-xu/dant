@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class FMarquee extends StatefulWidget {
@@ -42,29 +41,32 @@ class FMarqueeState extends State<FMarquee> with SingleTickerProviderStateMixin 
     double widgetWidth = _key.currentContext.findRenderObject().paintBounds.size.width;
     double widgetHeight = _key.currentContext.findRenderObject().paintBounds.size.height;
 
-    timer = Timer.periodic(new Duration(milliseconds: duration), (timer) {
-      double maxScrollExtent = scrollController.position.maxScrollExtent;
-      double pixels = scrollController.position.pixels;
-      //当animateTo的距离大于最大滑动距离时，则要返回第一个child的特定位置，让末尾正好处于最右侧，然后继续滚动，造成跑马灯的假象
-      if (pixels + _moveDistance >= maxScrollExtent) {
-        if (widget.scrollAxis == Axis.horizontal) {
-          //maxScrollExtent是可滑动的最大距离，不可滑动的距离并不计算在内（即ListView的控件宽度），maxScrollExtent + widgetWidth才是children的真正宽度
-          //(maxScrollExtent+widgetWidth-blankWidth)/2 可计算出一个TextView控件的长度，然后再减去widgetWidth。计算出第一个child偏移到最右侧所需要的偏移量
-          //当animateTo滑动到末尾，但是距末尾还有一段距离，jumpTo的时候要将这段距离考虑进去 pixels-maxScrollExtent
-          //原始计算公式 (maxScrollExtent+widgetWidth-blankWidth)/2 -widgetWidth + pixels- maxScrollExtent，下面的计算公式是经过简化的
-          position = (maxScrollExtent - blankWidth - widgetWidth) / 2 + pixels - maxScrollExtent;
-        } else {
-          position = (maxScrollExtent - blankHeight - widgetHeight) / 2 + pixels - maxScrollExtent;
+    timer = Timer.periodic(
+      new Duration(milliseconds: duration),
+      (timer) {
+        double maxScrollExtent = scrollController.position.maxScrollExtent;
+        double pixels = scrollController.position.pixels;
+        //当animateTo的距离大于最大滑动距离时，则要返回第一个child的特定位置，让末尾正好处于最右侧，然后继续滚动，造成跑马灯的假象
+        if (pixels + _moveDistance >= maxScrollExtent) {
+          if (widget.scrollAxis == Axis.horizontal) {
+            //maxScrollExtent是可滑动的最大距离，不可滑动的距离并不计算在内（即ListView的控件宽度），maxScrollExtent + widgetWidth才是children的真正宽度
+            //(maxScrollExtent+widgetWidth-blankWidth)/2 可计算出一个TextView控件的长度，然后再减去widgetWidth。计算出第一个child偏移到最右侧所需要的偏移量
+            //当animateTo滑动到末尾，但是距末尾还有一段距离，jumpTo的时候要将这段距离考虑进去 pixels-maxScrollExtent
+            //原始计算公式 (maxScrollExtent+widgetWidth-blankWidth)/2 -widgetWidth + pixels- maxScrollExtent，下面的计算公式是经过简化的
+            position = (maxScrollExtent - blankWidth - widgetWidth) / 2 + pixels - maxScrollExtent;
+          } else {
+            position = (maxScrollExtent - blankHeight - widgetHeight) / 2 + pixels - maxScrollExtent;
+          }
+          scrollController.jumpTo(position);
         }
-        scrollController.jumpTo(position);
-      }
-      position += _moveDistance;
-      scrollController.animateTo(
-        position,
-        duration: new Duration(milliseconds: duration),
-        curve: Curves.linear,
-      );
-    });
+        position += _moveDistance;
+        scrollController.animateTo(
+          position,
+          duration: new Duration(milliseconds: duration),
+          curve: Curves.linear,
+        );
+      },
+    );
   }
 
   @override
