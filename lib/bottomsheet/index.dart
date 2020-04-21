@@ -34,7 +34,10 @@ class FBottomSheet {
       },
     );
     if (onSelect != null && result != null) {
-      onSelect(result.first, result.last);
+      onSelect(
+        result.first,
+        result.last,
+      );
     }
   }
 
@@ -143,11 +146,17 @@ class _FBottomSheetOption extends StatelessWidget {
   }
 
   void itemClick(BuildContext context, int index, String value) {
-    close(context, result: [index, value]);
+    close(
+      context,
+      result: [index, value],
+    );
   }
 
   void close(BuildContext context, {var result}) {
-    Navigator.pop(context, result);
+    Navigator.pop(
+      context,
+      result,
+    );
   }
 }
 
