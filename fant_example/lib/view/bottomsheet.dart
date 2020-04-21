@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/button/index.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,7 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('dialogdemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'BottomSheetDemo'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

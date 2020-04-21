@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,8 @@ class NumberDemo extends StatefulWidget {
 class NumberDemoState extends State<NumberDemo> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('NumberDemo'),
-      ),
+    return Scaffold(
+      appBar: Comm.getTitleBar(title: 'NumberDemo'),
       body: Center(
         child: Column(
           children: <Widget>[

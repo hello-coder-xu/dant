@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,7 @@ class OperationDemoState extends State<OperationDemo> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('OperationDemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'OperationDemo'),
       body: Container(
         alignment: Alignment.center,
         child: Column(

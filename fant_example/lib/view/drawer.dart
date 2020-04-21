@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/button/index.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,7 @@ class DrawerDemoState extends State<DrawerDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('drawerdemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'DrawerDemo'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

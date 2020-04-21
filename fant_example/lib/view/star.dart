@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +18,7 @@ class StarDemoState extends State<StarDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('stardemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'StarDemo'),
       body: Container(
         alignment: Alignment.center,
         child: Column(

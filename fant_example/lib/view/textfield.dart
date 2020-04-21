@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('textfielddemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'TextFieldDemo'),
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16),

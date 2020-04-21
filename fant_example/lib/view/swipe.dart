@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -22,9 +23,7 @@ class SwipeDemoState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('swipedemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'SwipeDemo'),
       body: Padding(
         padding: EdgeInsets.all(32),
         child: SingleChildScrollView(

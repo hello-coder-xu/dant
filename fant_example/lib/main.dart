@@ -1,8 +1,10 @@
+import 'package:example/comm/app.dart';
+import 'package:example/comm/params.dart';
+import 'package:example/comm/sp_util.dart';
 import 'package:example/comm/theme_notification.dart';
 import 'package:example/view/home_page.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(IndexPage());
@@ -19,18 +21,18 @@ class IndexPageState extends State<IndexPage> {
   @override
   void initState() {
     super.initState();
+    SpUtil.getInstance();
+    App.isDark = SpUtil.getBool(Params.IS_DARK, defValue: false);
+    toggleThemeMode();
   }
 
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ThemeNotification>(
       onNotification: (ThemeNotification bean) {
-        if (bean.isDark) {
-          themeMode = ThemeMode.dark;
-        } else {
-          themeMode = ThemeMode.system;
-
-        }
+        App.isDark = bean.isDark;
+        SpUtil.putBool(Params.IS_DARK, App.isDark);
+        toggleThemeMode();
         setState(() {});
         return true;
       },
@@ -42,5 +44,9 @@ class IndexPageState extends State<IndexPage> {
         home: HomePage(),
       ),
     );
+  }
+
+  void toggleThemeMode() {
+    themeMode = App.isDark ? ThemeMode.dark : ThemeMode.system;
   }
 }

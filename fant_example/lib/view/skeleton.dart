@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -86,9 +87,7 @@ class SkeletonDemoState extends State<SkeletonDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('skeletondemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'SkeletonDemo'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

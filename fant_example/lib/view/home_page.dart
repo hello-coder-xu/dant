@@ -15,7 +15,6 @@ import 'package:example/view/skeleton.dart';
 import 'package:example/view/star.dart';
 import 'package:example/view/swipe.dart';
 import 'package:example/view/textfield.dart';
-import 'package:example/view/theme.dart';
 import 'package:example/view/toast.dart';
 import 'package:example/view/triangle.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +30,6 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   List<HomeBean> list = [
     HomeBean(name: 'toast', page: ToastDemo()),
-    HomeBean(name: 'theme', page: ThemeDemo()),
     HomeBean(name: 'button', page: ButtonDemo()),
     HomeBean(name: 'textfield', page: TextFieldDemo()),
     HomeBean(name: 'pwdfield', page: PwdFieldDemo()),

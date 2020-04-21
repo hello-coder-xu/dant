@@ -1,3 +1,5 @@
+import 'package:example/comm/comm.dart';
+
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +11,8 @@ class BadgeDemo extends StatefulWidget {
 class BadgeDemoState extends State<BadgeDemo> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('BadgeDemo'),
-      ),
+    return Scaffold(
+      appBar: Comm.getTitleBar(title: 'BadgeDemo'),
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16),

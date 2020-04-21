@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +15,7 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('checkboxdemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'CheckboxDemo'),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

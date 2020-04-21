@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,7 @@ class TriangleDemoState extends State<TriangleDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('triangledemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'TriangleDemo'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

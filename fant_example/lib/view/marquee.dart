@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,7 @@ class MarqueeDemoState extends State<MarqueeDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('marqueedemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'MarqueeDemo'),
       body: Center(
         child: Column(
           children: <Widget>[

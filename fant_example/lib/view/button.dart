@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +12,7 @@ class ButtonDemoState extends State<ButtonDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ButtonDemo'),
-      ),
+      appBar: Comm.getTitleBar(title: 'ButtonDemo'),
       body: Container(
         alignment: Alignment.center,
         child: SingleChildScrollView(

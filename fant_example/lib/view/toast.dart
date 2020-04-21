@@ -1,3 +1,4 @@
+import 'package:example/comm/comm.dart';
 import 'package:fant/fant.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +7,7 @@ class ToastDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('toast'),
-      ),
+      appBar: Comm.getTitleBar(title: 'Toast'),
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16),
