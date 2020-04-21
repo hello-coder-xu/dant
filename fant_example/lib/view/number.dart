@@ -23,11 +23,11 @@ class NumberDemoState extends State<NumberDemo> {
               },
             ),
             SizedBox(height: 16),
-            ListTile(title: Text('min:10,max:99,不可编辑,每次以2变化')),
+            ListTile(title: Text('min:-10,max:99,不可编辑,每次以2变化')),
             FNumber(
               disableInput: true,
               min: -10,
-              max: 999,
+              max: 99,
               step: 2,
               onChange: (num) {
                 print('test num=$num');
