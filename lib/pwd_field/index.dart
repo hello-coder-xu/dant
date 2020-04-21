@@ -23,8 +23,8 @@ class FPwdField extends StatefulWidget {
   FPwdField({
     Key key,
     this.size = 40,
-    this.contentColor = Colors.black,
-    this.color = Colors.black,
+    this.contentColor,
+    this.color,
     this.radius = 3,
     this.count = 6,
     this.type = FPwdBorderType.round,
@@ -53,8 +53,8 @@ class FPwdFieldState extends State<FPwdField> {
     double tempHeight = widget.size;
     return CustomPaint(
       foregroundPainter: FPwdPainter(
-        color: widget.color,
-        contentColor: widget.contentColor,
+        color: widget.color ?? Theme.of(context).textTheme.title.color,
+        contentColor: widget.contentColor ?? Theme.of(context).textTheme.title.color,
         radius: widget.radius,
         type: widget.type,
         count: widget.count,
@@ -85,7 +85,7 @@ class FPwdFieldState extends State<FPwdField> {
           onChanged: (value) {
             textValue = value;
             setState(() {});
-            if(widget.onChanged!=null){
+            if (widget.onChanged != null) {
               widget.onChanged(value);
             }
           },

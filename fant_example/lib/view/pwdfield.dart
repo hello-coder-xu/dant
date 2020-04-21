@@ -16,7 +16,13 @@ class PwdFieldDemoState extends State<PwdFieldDemo> {
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: <Widget>[
-            ListTile(title: Text('下划线 默认6个')),
+            ListTile(
+                title: Text(
+              '下划线 默认6个',
+              style: TextStyle(
+                color: Theme.of(context).textTheme.title.color,
+              ),
+            )),
             FPwdField(
               type: FPwdBorderType.underline,
             ),
