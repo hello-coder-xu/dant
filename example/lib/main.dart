@@ -39,7 +39,7 @@ class IndexPageState extends State<IndexPage> {
         return true;
       },
       child: MaterialApp(
-        title: 'Fant',
+        title: 'Dant',
         darkTheme: kDarkTheme,
         theme: kLightTheme,
         themeMode: themeMode,

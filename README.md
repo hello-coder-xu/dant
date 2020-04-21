@@ -60,7 +60,7 @@ class IndexPageState extends State<IndexPage> {
         return true;
       },
       child: MaterialApp(
-        title: 'Fant',
+        title: 'Dant',
         darkTheme: kDarkTheme,
         theme: kLightTheme,
         themeMode: themeMode,
@@ -80,26 +80,26 @@ class IndexPageState extends State<IndexPage> {
 
 ## Widgets
 
-- [Badge](https://github.com/yx544806988/fant/blob/master/lib/badge/index.dart) 
-- [BottomSheet](https://github.com/yx544806988/fant/blob/master/lib/bottomsheet/index.dart)
-- [Button](https://github.com/yx544806988/fant/blob/master/lib/button/index.dart)
-- [CheckBox](https://github.com/yx544806988/fant/blob/master/lib/checkbox/index.dart)
-- [Dialog](https://github.com/yx544806988/fant/blob/master/lib/dialog/index.dart)
-- [Divider](https://github.com/yx544806988/fant/blob/master/lib/divider/index.dart)
-- [Drawer](https://github.com/yx544806988/fant/blob/master/lib/drawer/index.dart)
-- [Marquee](https://github.com/yx544806988/fant/blob/master/lib/marquee/index.dart)
-- [Notice](https://github.com/yx544806988/fant/blob/master/lib/notice/index.dart)
-- [Number](https://github.com/yx544806988/fant/blob/master/lib/number/index.dart)
-- [Operation](https://github.com/yx544806988/fant/blob/master/lib/operation/index.dart)
-- [Popup](https://github.com/yx544806988/fant/blob/master/lib/popup/index.dart)
-- [PwdField](https://github.com/yx544806988/fant/blob/master/lib/pwd_field/index.dart)
-- [Radio](https://github.com/yx544806988/fant/blob/master/lib/radio/index.dart)
-- [Round](https://github.com/yx544806988/fant/blob/master/lib/round/index.dart)
-- [Skeleton](https://github.com/yx544806988/fant/blob/master/lib/skeleton/index.dart)
-- [Star](https://github.com/yx544806988/fant/blob/master/lib/star/index.dart)
-- [Swipe](https://github.com/yx544806988/fant/blob/master/lib/swipe/index.dart)
-- [TextField](https://github.com/yx544806988/fant/blob/master/lib/textfield/index.dart)
-- [Theme](https://github.com/yx544806988/fant/blob/master/lib/theme/index.dart)
-- [Toast](https://github.com/yx544806988/fant/blob/master/lib/toast/index.dart)
+- [Badge](https://github.com/yx544806988/dant/blob/master/lib/badge/index.dart) 
+- [BottomSheet](https://github.com/yx544806988/dant/blob/master/lib/bottomsheet/index.dart)
+- [Button](https://github.com/yx544806988/dant/blob/master/lib/button/index.dart)
+- [CheckBox](https://github.com/yx544806988/dant/blob/master/lib/checkbox/index.dart)
+- [Dialog](https://github.com/yx544806988/dant/blob/master/lib/dialog/index.dart)
+- [Divider](https://github.com/yx544806988/dant/blob/master/lib/divider/index.dart)
+- [Drawer](https://github.com/yx544806988/dant/blob/master/lib/drawer/index.dart)
+- [Marquee](https://github.com/yx544806988/dant/blob/master/lib/marquee/index.dart)
+- [Notice](https://github.com/yx544806988/dant/blob/master/lib/notice/index.dart)
+- [Number](https://github.com/yx544806988/dant/blob/master/lib/number/index.dart)
+- [Operation](https://github.com/yx544806988/dant/blob/master/lib/operation/index.dart)
+- [Popup](https://github.com/yx544806988/dant/blob/master/lib/popup/index.dart)
+- [PwdField](https://github.com/yx544806988/dant/blob/master/lib/pwd_field/index.dart)
+- [Radio](https://github.com/yx544806988/dant/blob/master/lib/radio/index.dart)
+- [Round](https://github.com/yx544806988/dant/blob/master/lib/round/index.dart)
+- [Skeleton](https://github.com/yx544806988/dant/blob/master/lib/skeleton/index.dart)
+- [Star](https://github.com/yx544806988/dant/blob/master/lib/star/index.dart)
+- [Swipe](https://github.com/yx544806988/dant/blob/master/lib/swipe/index.dart)
+- [TextField](https://github.com/yx544806988/dant/blob/master/lib/textfield/index.dart)
+- [Theme](https://github.com/yx544806988/dant/blob/master/lib/theme/index.dart)
+- [Toast](https://github.com/yx544806988/dant/blob/master/lib/toast/index.dart)
 
 
