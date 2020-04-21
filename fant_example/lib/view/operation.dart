@@ -176,7 +176,7 @@ class _FOperation extends StatelessWidget {
 
   _FOperation({
     this.child,
-    this.bgColor = Colors.white,
+    this.bgColor,
     this.type = FOperationType.loading,
     this.reload,
   });
@@ -184,9 +184,7 @@ class _FOperation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('_FOperation'),
-      ),
+      appBar: Comm.getTitleBar(title: '_FOperation'),
       body: FOperation(type: type, reload: reload, bgColor: bgColor, child: child),
     );
   }

@@ -11,7 +11,7 @@ class FOperation extends StatelessWidget {
 
   FOperation({
     this.type = FOperationType.loading,
-    this.bgColor = Colors.white,
+    this.bgColor,
     this.child,
     this.reload,
   });
@@ -39,7 +39,7 @@ class FOperation extends StatelessWidget {
     }
 
     return Container(
-      color: bgColor,
+      color: bgColor ?? Theme.of(context).backgroundColor,
       alignment: Alignment.center,
       child: Column(children: children, mainAxisSize: MainAxisSize.min),
     );
