@@ -13,8 +13,8 @@ class FToast {
     BuildContext context, {
     String msg,
     int showTime = 2000,
-    Color bgColor = Colors.black45,
-    Color textColor = Colors.white,
+    Color bgColor,
+    Color textColor,
     double textSize = 14,
     ToastPosition position = ToastPosition.bottom,
     double pdHorizontal = 20,
@@ -37,8 +37,8 @@ class FToast {
   static Function showLoading(
     BuildContext context, {
     String msg,
-    Color bgColor = Colors.black45,
-    Color textColor = Colors.white,
+    Color bgColor,
+    Color textColor,
     double pdHorizontal = 20,
     double pdVertical = 10,
     double textSize = 14,
@@ -60,8 +60,8 @@ Function _showToast(
   BuildContext context, {
   String msg,
   int showTime = 1000,
-  Color bgColor = Colors.black45,
-  Color textColor = Colors.white,
+  Color bgColor,
+  Color textColor,
   double textSize,
   ToastPosition position = ToastPosition.center,
   double pdHorizontal,
@@ -179,12 +179,12 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
     if (widget.type == ToastType.text) {
       return Center(
         child: Card(
-          color: widget.bgColor,
+          color: widget.bgColor ?? Theme.of(context).textTheme.title.color,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: widget.pdHorizontal, vertical: widget.pdVertical),
             child: Text(
               widget.msg,
-              style: TextStyle(fontSize: widget.textSize, color: widget.textColor),
+              style: TextStyle(fontSize: widget.textSize, color: widget.textColor ?? Theme.of(context).backgroundColor),
             ),
           ),
         ),
@@ -192,7 +192,7 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
     } else if (widget.type == ToastType.loading) {
       return Center(
         child: Card(
-          color: widget.bgColor,
+          color: widget.bgColor ?? Theme.of(context).textTheme.title.color,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: widget.pdHorizontal, vertical: widget.pdVertical),
             child: Column(
@@ -201,12 +201,12 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
               children: <Widget>[
                 CircularProgressIndicator(
                   strokeWidth: 3.0,
-                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                  valueColor: AlwaysStoppedAnimation(Theme.of(context).backgroundColor),
                 ),
                 SizedBox(height: 8),
                 Text(
                   widget.msg,
-                  style: TextStyle(fontSize: widget.textSize, color: widget.textColor),
+                  style: TextStyle(fontSize: widget.textSize, color: widget.textColor ?? Theme.of(context).backgroundColor),
                 )
               ],
             ),
