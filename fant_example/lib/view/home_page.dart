@@ -49,11 +49,6 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'skeleton', page: SkeletonDemo()),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Widget getItemContainer(int position) {
     HomeBean bean = list[position];
     return GestureDetector(
