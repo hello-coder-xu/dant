@@ -1,4 +1,4 @@
-import 'package:fant/comm/util.dart';
+import 'package:dant/comm/util.dart';
 import 'package:flutter/material.dart';
 
 enum FButtonType { min, max }

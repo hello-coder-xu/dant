@@ -2,6 +2,7 @@
     <img alt="logo" src="https://github.com/yx544806988/fant/blob/master/fant_example/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" width="120" height="120" style="margin-bottom: 10px;">
 </p>
 
+<h3 align="center" style="margin: 30px 0 35px;">Flutter UI Components built on Fui</h3>
 
 ## Getting Started
 
@@ -11,7 +12,7 @@
 
 ```yaml
 dependencies:
-  fant: lastVersion
+  dant: lastVersion
 ```
 
 
@@ -23,7 +24,7 @@ import 'package:example/comm/params.dart';
 import 'package:example/comm/sp_util.dart';
 import 'package:example/comm/theme_notification.dart';
 import 'package:example/view/home_page.dart';
-import 'package:fant/fant.dart';
+import 'dant.dart';
 import 'package:flutter/material.dart';
 
 void main() {

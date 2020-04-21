@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fant/fant.dart';
+import 'package:dant/dant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

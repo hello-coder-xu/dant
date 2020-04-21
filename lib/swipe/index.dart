@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fant/fant.dart';
+import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 
 enum FSwipeIndicatorAxis { horizontal, vertical }
@@ -166,8 +166,8 @@ class FSwipeState extends State<FSwipe> {
   }
 
   void _onPageChanged(int index) {
-    if(index!=position){
-      _callBackOnChange(index%widget.itemCount);
+    if (index != position) {
+      _callBackOnChange(index % widget.itemCount);
     }
     if (widget.loop) {
       if (index == 0) {

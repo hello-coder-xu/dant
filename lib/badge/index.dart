@@ -1,4 +1,4 @@
-import 'package:fant/fant.dart';
+import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 
 enum FBadgeType { Point, Round, Ellipse }

@@ -1,8 +1,8 @@
-name: fant
-description: Fant is a powerful UI framework for Google Flutter.
+name: dant
+description: Dant is a powerful UI framework for Google Flutter.
 version: 0.0.1
-homepage: https://github.com/yx544806988/fant.git
-repository: https://github.com/yx544806988/fant.git
+homepage: https://github.com/yx544806988/dant.git
+repository: https://github.com/yx544806988/dant.git
 environment:
   sdk: ">=2.7.0 <3.0.0"
 

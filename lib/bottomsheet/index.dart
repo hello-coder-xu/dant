@@ -1,4 +1,4 @@
-import 'package:fant/divider/index.dart';
+import 'package:dant/divider/index.dart';
 import 'package:flutter/material.dart';
 
 class FBottomSheet {
