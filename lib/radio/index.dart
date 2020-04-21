@@ -50,7 +50,10 @@ class FRadio<T> extends StatelessWidget {
     if (child is String) {
       contentView = GestureDetector(
         onTap: () => value != groupValue && enable ? onChanged(value) : null,
-        child: Text(child, style: TextStyle(fontSize: 14)),
+        child: Text(
+          child,
+          style: TextStyle(fontSize: 14),
+        ),
       );
     } else if (child is Widget) {
       contentView = GestureDetector(
@@ -58,7 +61,11 @@ class FRadio<T> extends StatelessWidget {
         child: child,
       );
     }
-    children.add(Flexible(child: contentView));
+    children.add(
+      Flexible(
+        child: contentView,
+      ),
+    );
 
     Widget rowView = Row(
       children: children,

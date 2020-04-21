@@ -152,7 +152,11 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: _fadeInDuration, reverseDuration: _fadeOutDuration, vsync: this);
+    _controller = AnimationController(
+      duration: _fadeInDuration,
+      reverseDuration: _fadeOutDuration,
+      vsync: this,
+    );
     _show();
   }
 
@@ -170,7 +174,10 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
     if (widget.toastPosition == ToastPosition.center || widget.type == ToastType.loading) {
       return toastView;
     }
-    return Positioned(top: buildToastPosition(context), child: toastView);
+    return Positioned(
+      top: buildToastPosition(context),
+      child: toastView,
+    );
   }
 
   //toast绘制
@@ -180,10 +187,16 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
         child: Card(
           color: widget.bgColor ?? Theme.of(context).textTheme.title.color,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: widget.pdHorizontal, vertical: widget.pdVertical),
+            padding: EdgeInsets.symmetric(
+              horizontal: widget.pdHorizontal,
+              vertical: widget.pdVertical,
+            ),
             child: Text(
               widget.msg,
-              style: TextStyle(fontSize: widget.textSize, color: widget.textColor ?? Theme.of(context).backgroundColor),
+              style: TextStyle(
+                fontSize: widget.textSize,
+                color: widget.textColor ?? Theme.of(context).backgroundColor,
+              ),
             ),
           ),
         ),
@@ -193,20 +206,27 @@ class _FToastViewState extends State<_FToastView> with SingleTickerProviderState
         child: Card(
           color: widget.bgColor ?? Theme.of(context).textTheme.title.color,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: widget.pdHorizontal, vertical: widget.pdVertical),
+            padding: EdgeInsets.symmetric(
+              horizontal: widget.pdHorizontal,
+              vertical: widget.pdVertical,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 CircularProgressIndicator(
                   strokeWidth: 3.0,
-                  valueColor: AlwaysStoppedAnimation(Theme.of(context).backgroundColor),
+                  valueColor: AlwaysStoppedAnimation(
+                    Theme.of(context).backgroundColor,
+                  ),
                 ),
                 SizedBox(height: 8),
                 Text(
                   widget.msg,
                   style: TextStyle(
-                      fontSize: widget.textSize, color: widget.textColor ?? Theme.of(context).backgroundColor),
+                    fontSize: widget.textSize,
+                    color: widget.textColor ?? Theme.of(context).backgroundColor,
+                  ),
                 )
               ],
             ),

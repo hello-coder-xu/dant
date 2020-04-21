@@ -67,7 +67,10 @@ class FTextFieldState extends State<FTextField> {
 
   @override
   Widget build(BuildContext context) {
-    double tempPaddingVertical = math.min(widget.contentPadding, widget.height - 30);
+    double tempPaddingVertical = math.min(
+      widget.contentPadding,
+      widget.height - 30,
+    );
     Widget textField = TextField(
       controller: controller,
       obscureText: obscureText,
@@ -82,7 +85,10 @@ class FTextFieldState extends State<FTextField> {
         hintText: widget.hint,
         fillColor: widget.fillColor,
         filled: true,
-        contentPadding: EdgeInsets.symmetric(horizontal: widget.contentPadding, vertical: tempPaddingVertical / 2),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: widget.contentPadding,
+          vertical: tempPaddingVertical / 2,
+        ),
         counterText: '',
         enabledBorder: getInputBorder(),
         focusedBorder: getInputBorder(),
@@ -97,7 +103,9 @@ class FTextFieldState extends State<FTextField> {
     if (widget.maxLine == null && widget.borderType == FTextFieldBorderType.round) {
       return Container(
         decoration: getBoxDecoration(),
-        constraints: BoxConstraints(minHeight: widget.height),
+        constraints: BoxConstraints(
+          minHeight: widget.height,
+        ),
         child: textField,
       );
     }
@@ -116,7 +124,13 @@ class FTextFieldState extends State<FTextField> {
         onTap: () {
           controller.clear();
         },
-        child: Icon(Icons.clear, size: math.min(widget.height / 2, 24)),
+        child: Icon(
+          Icons.clear,
+          size: math.min(
+            widget.height / 2,
+            24,
+          ),
+        ),
       ));
     }
 
@@ -129,7 +143,13 @@ class FTextFieldState extends State<FTextField> {
           obscureText = !obscureText;
           setState(() {});
         },
-        child: Icon(obscureText ? Icons.visibility : Icons.visibility_off, size: math.min(widget.height / 2, 24)),
+        child: Icon(
+          obscureText ? Icons.visibility : Icons.visibility_off,
+          size: math.min(
+            widget.height / 2,
+            24,
+          ),
+        ),
       ));
     }
 
@@ -154,14 +174,24 @@ class FTextFieldState extends State<FTextField> {
       if (widget.maxLine == null) {
         return OutlineInputBorder(
           gapPadding: 0,
-          borderSide: BorderSide(color: Colors.transparent, width: 1),
-          borderRadius: BorderRadius.circular(widget.borderRadius ?? widget.height / 2),
+          borderSide: BorderSide(
+            color: Colors.transparent,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(
+            widget.borderRadius ?? widget.height / 2,
+          ),
         );
       } else {
         return OutlineInputBorder(
           gapPadding: 0,
-          borderSide: BorderSide(color: tempColor, width: 1),
-          borderRadius: BorderRadius.circular(widget.borderRadius ?? widget.height / 2),
+          borderSide: BorderSide(
+            color: tempColor,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(
+            widget.borderRadius ?? widget.height / 2,
+          ),
         );
       }
     } else if (widget.borderType == FTextFieldBorderType.line) {
@@ -177,8 +207,13 @@ class FTextFieldState extends State<FTextField> {
     if (widget.borderType == FTextFieldBorderType.round) {
       return BoxDecoration(
         color: widget.fillColor,
-        border: Border.all(color: tempColor, width: 1),
-        borderRadius: BorderRadius.circular(widget.borderRadius ?? widget.height / 2),
+        border: Border.all(
+          color: tempColor,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(
+          widget.borderRadius ?? widget.height / 2,
+        ),
       );
     }
     return null;

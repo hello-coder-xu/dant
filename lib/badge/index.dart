@@ -48,11 +48,28 @@ class FBadge extends StatelessWidget {
   //获取角标
   Widget getFRound() {
     if (type == FBadgeType.Point) {
-      return FRound(type: FRoundType.Point, color: color);
+      return FRound(
+        type: FRoundType.Point,
+        color: color,
+      );
     } else if (type == FBadgeType.Round) {
-      return FRound(type: FRoundType.Round, color: color, child: Text(getNumber(), style: getTextStyle()));
+      return FRound(
+        type: FRoundType.Round,
+        color: color,
+        child: Text(
+          getNumber(),
+          style: getTextStyle(),
+        ),
+      );
     } else {
-      return FRound(type: FRoundType.Ellipse, color: color, child: Text(getNumber(), style: getTextStyle()));
+      return FRound(
+        type: FRoundType.Ellipse,
+        color: color,
+        child: Text(
+          getNumber(),
+          style: getTextStyle(),
+        ),
+      );
     }
   }
 
@@ -79,9 +96,16 @@ class FBadge extends StatelessWidget {
     }
 
     if (position == FBadgePosition.Left || position == FBadgePosition.Right) {
-      return Row(children: children, mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min);
+      return Row(
+        children: children,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+      );
     } else {
-      return Stack(children: children, overflow: Overflow.visible);
+      return Stack(
+        children: children,
+        overflow: Overflow.visible,
+      );
     }
   }
 }

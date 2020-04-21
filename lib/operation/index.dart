@@ -29,19 +29,30 @@ class FOperation extends StatelessWidget {
     } else if (type == FOperationType.loading) {
       children.add(CircularProgressIndicator());
     } else if (type == FOperationType.error) {
-      children.add(Icon(Icons.error, color: Theme.of(context).errorColor));
+      children.add(
+        Icon(
+          Icons.error,
+          color: Theme.of(context).errorColor,
+        ),
+      );
       children.add(SizedBox(height: 8));
       children.add(Text('数据异常'));
     } else if (type == FOperationType.reload) {
       children.add(Icon(Icons.hourglass_empty));
       children.add(SizedBox(height: 8));
-      children.add(FButton(child: '点击重新加载', onPressed: onReload));
+      children.add(FButton(
+        child: '点击重新加载',
+        onPressed: onReload,
+      ));
     }
 
     return Container(
       color: bgColor ?? Theme.of(context).backgroundColor,
       alignment: Alignment.center,
-      child: Column(children: children, mainAxisSize: MainAxisSize.min),
+      child: Column(
+        children: children,
+        mainAxisSize: MainAxisSize.min,
+      ),
     );
   }
 

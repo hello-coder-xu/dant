@@ -68,7 +68,10 @@ class FPwdFieldState extends State<FPwdField> {
         width: tempWidth,
         height: tempHeight,
         child: TextField(
-          decoration: InputDecoration(border: InputBorder.none, counterText: ''),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            counterText: '',
+          ),
           style: TextStyle(color: Colors.transparent, fontSize: 1),
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
@@ -141,14 +144,33 @@ class FPwdPainter extends CustomPainter {
       if (fill) {
         paint.style = PaintingStyle.fill;
       }
-      Offset offset = Offset((2 * index + 1) * mSize / 2 + index * space, mSize / 2);
-      Rect rect = Rect.fromCircle(center: offset, radius: mSize / 2);
-      RRect rRect = RRect.fromRectAndRadius(rect, Radius.circular(radius));
+      Offset offset = Offset(
+        (2 * index + 1) * mSize / 2 + index * space,
+        mSize / 2,
+      );
+      Rect rect = Rect.fromCircle(
+        center: offset,
+        radius: mSize / 2,
+      );
+      RRect rRect = RRect.fromRectAndRadius(
+        rect,
+        Radius.circular(radius),
+      );
       canvas.drawRRect(rRect, paint);
     } else {
-      Offset offset1 = Offset(index * mSize + index * space, mSize);
-      Offset offset2 = Offset((index + 1) * mSize + index * space, mSize);
-      canvas.drawLine(offset1, offset2, paint);
+      Offset offset1 = Offset(
+        index * mSize + index * space,
+        mSize,
+      );
+      Offset offset2 = Offset(
+        (index + 1) * mSize + index * space,
+        mSize,
+      );
+      canvas.drawLine(
+        offset1,
+        offset2,
+        paint,
+      );
     }
   }
 
@@ -157,22 +179,41 @@ class FPwdPainter extends CustomPainter {
     if (obscureText) {
       paint.style = PaintingStyle.fill;
       paint.color = contentColor;
-      Offset offset = Offset((2 * index + 1) * mSize / 2 + index * space, mSize / 2);
-      Rect rect = Rect.fromCircle(center: offset, radius: mSize / 8);
-      RRect rRect = RRect.fromRectAndRadius(rect, Radius.circular(mSize / 8));
+      Offset offset = Offset(
+        (2 * index + 1) * mSize / 2 + index * space,
+        mSize / 2,
+      );
+      Rect rect = Rect.fromCircle(
+        center: offset,
+        radius: mSize / 8,
+      );
+      RRect rRect = RRect.fromRectAndRadius(
+        rect,
+        Radius.circular(mSize / 8),
+      );
       canvas.drawRRect(rRect, paint);
     } else {
       String tempValue = value.split('')[index];
       ui.ParagraphBuilder pb = ui.ParagraphBuilder(
-          ui.ParagraphStyle(textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontSize: 15.0));
+        ui.ParagraphStyle(
+          textAlign: TextAlign.center,
+          fontStyle: FontStyle.normal,
+          fontSize: 15.0,
+        ),
+      );
       pb.pushStyle(ui.TextStyle(color: contentColor));
       pb.addText(tempValue);
 
       ui.ParagraphConstraints pc = ui.ParagraphConstraints(width: mSize / 2);
       ui.Paragraph paragraph = pb.build()..layout(pc);
-      Offset offset =
-          Offset((2 * index + 1) * mSize / 2 + index * space - paragraph.width / 2, mSize / 2 - paragraph.height / 2);
-      canvas.drawParagraph(paragraph, offset);
+      Offset offset = Offset(
+        (2 * index + 1) * mSize / 2 + index * space - paragraph.width / 2,
+        mSize / 2 - paragraph.height / 2,
+      );
+      canvas.drawParagraph(
+        paragraph,
+        offset,
+      );
     }
   }
 

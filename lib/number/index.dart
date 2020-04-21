@@ -75,7 +75,9 @@ class FNumberState extends State<FNumber> {
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
         enabled: !widget.disableInput,
-        style: TextStyle(fontSize: _KDefaultTextFontSize),
+        style: TextStyle(
+          fontSize: _KDefaultTextFontSize,
+        ),
         keyboardType: TextInputType.number,
         inputFormatters: [
           WhitelistingTextInputFormatter(RegExp("[-0-9]")),
@@ -83,7 +85,10 @@ class FNumberState extends State<FNumber> {
         ],
         decoration: InputDecoration(
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 0),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 14,
+            horizontal: 0,
+          ),
         ),
         onEditingComplete: inputComplete,
       ),
@@ -100,7 +105,10 @@ class FNumberState extends State<FNumber> {
       ),
     ));
 
-    return Row(children: children, mainAxisSize: MainAxisSize.min);
+    return Row(
+      children: children,
+      mainAxisSize: MainAxisSize.min,
+    );
   }
 
   void unFocus() {
@@ -160,7 +168,6 @@ class FNumberState extends State<FNumber> {
     int temp = getNumber();
     controller.text = '$temp';
     recordNumber = temp;
-//    callBackNumber();
   }
 
   void callBackNumber() {

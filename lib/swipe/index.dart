@@ -82,7 +82,9 @@ class FSwipeState extends State<FSwipe> {
     position = widget.defaultIndex;
     pointPaddingSpace = widget.height / 50;
     pointSize = widget.height / 40;
-    _pageController = PageController(initialPage: position);
+    _pageController = PageController(
+      initialPage: position,
+    );
     startAutoPlay();
   }
 
@@ -93,10 +95,20 @@ class FSwipeState extends State<FSwipe> {
       List<Widget> children = [];
       children.add(child);
 
-      children.add(Positioned(child: _indicatorView()));
-      child = Stack(children: children, alignment: widget.pointPosition);
+      children.add(
+        Positioned(
+          child: _indicatorView(),
+        ),
+      );
+      child = Stack(
+        children: children,
+        alignment: widget.pointPosition,
+      );
     }
-    return Container(height: widget.height, child: child);
+    return Container(
+      height: widget.height,
+      child: child,
+    );
   }
 
   Widget _pageView() {
@@ -109,7 +121,11 @@ class FSwipeState extends State<FSwipe> {
     );
 
     if (widget.autoPlay) {
-      child = Listener(onPointerDown: onPointerDown, onPointerUp: onPointerUp, child: child);
+      child = Listener(
+        onPointerDown: onPointerDown,
+        onPointerUp: onPointerUp,
+        child: child,
+      );
     }
 
     return child;
@@ -137,7 +153,10 @@ class FSwipeState extends State<FSwipe> {
 
     List.generate(widget.itemCount, (index) {
       children.add(Padding(
-        padding: EdgeInsets.symmetric(horizontal: pointPaddingHorizontal, vertical: pointPaddingVertical),
+        padding: EdgeInsets.symmetric(
+          horizontal: pointPaddingHorizontal,
+          vertical: pointPaddingVertical,
+        ),
         child: FRound(
           type: FRoundType.Point,
           size: pointSize,
@@ -148,9 +167,16 @@ class FSwipeState extends State<FSwipe> {
 
     return Container(
       margin: EdgeInsets.all(widget.height / 20),
-      padding: EdgeInsets.symmetric(horizontal: paddingHorizontal, vertical: paddingVertical),
+      padding: EdgeInsets.symmetric(
+        horizontal: paddingHorizontal,
+        vertical: paddingVertical,
+      ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(pointSize + pointPaddingSpace * 2)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            pointSize + pointPaddingSpace * 2,
+          ),
+        ),
         color: Colors.black12,
       ),
       child: child,
@@ -190,15 +216,25 @@ class FSwipeState extends State<FSwipe> {
   }
 
   void setIndex(int index) {
-    _pageController.animateToPage(index, duration: Duration(milliseconds: widget.speed), curve: widget.curve);
+    _pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: widget.speed),
+      curve: widget.curve,
+    );
   }
 
   void previousPage() {
-    _pageController.previousPage(duration: Duration(milliseconds: widget.speed), curve: widget.curve);
+    _pageController.previousPage(
+      duration: Duration(milliseconds: widget.speed),
+      curve: widget.curve,
+    );
   }
 
   void nextPage() {
-    _pageController.nextPage(duration: Duration(milliseconds: widget.speed), curve: widget.curve);
+    _pageController.nextPage(
+      duration: Duration(milliseconds: widget.speed),
+      curve: widget.curve,
+    );
   }
 
   void startAutoPlay() {
@@ -207,13 +243,16 @@ class FSwipeState extends State<FSwipe> {
       timer.cancel();
     }
 
-    timer = Timer.periodic(Duration(milliseconds: widget.duration), (_) {
-      if (position == widget.itemCount - 1 && !widget.loop) {
-        setIndex(0);
-        return;
-      }
-      nextPage();
-    });
+    timer = Timer.periodic(
+      Duration(milliseconds: widget.duration),
+      (_) {
+        if (position == widget.itemCount - 1 && !widget.loop) {
+          setIndex(0);
+          return;
+        }
+        nextPage();
+      },
+    );
   }
 
   // 停止自动播放

@@ -29,7 +29,14 @@ class FNotice extends StatelessWidget {
       children.add(SizedBox(width: space));
     }
 
-    children.add(Expanded(child: FMarquee(text: text, textStyle: textStyle)));
+    children.add(
+      Expanded(
+        child: FMarquee(
+          text: text,
+          textStyle: textStyle,
+        ),
+      ),
+    );
 
     if (trailing != null) {
       children.add(SizedBox(width: space));
@@ -39,7 +46,10 @@ class FNotice extends StatelessWidget {
     return Container(
       height: height,
       decoration: BoxDecoration(color: bgColor),
-      child: Row(children: children, mainAxisSize: MainAxisSize.max),
+      child: Row(
+        children: children,
+        mainAxisSize: MainAxisSize.max,
+      ),
     );
   }
 }

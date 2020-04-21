@@ -46,7 +46,10 @@ class FSkeletonState extends State<FSkeleton> with SingleTickerProviderStateMixi
   void initState() {
     super.initState();
     final Duration duration = widget.duration ?? const Duration(milliseconds: _kDefaultMS);
-    _controller = AnimationController(vsync: this, duration: duration);
+    _controller = AnimationController(
+      vsync: this,
+      duration: duration,
+    );
     _setupAnimationAndStart();
   }
 
@@ -57,7 +60,12 @@ class FSkeletonState extends State<FSkeleton> with SingleTickerProviderStateMixi
   }
 
   void _setupAnimationAndStart() {
-    _animation = _genTween().animate(CurvedAnimation(curve: Curves.linear, parent: _controller));
+    _animation = _genTween().animate(
+      CurvedAnimation(
+        curve: Curves.linear,
+        parent: _controller,
+      ),
+    );
 
     if (widget.type == FSkeletonAnimationType.shimmer)
       _animation.addStatusListener(_handleShimmerAnimationStatus);
@@ -70,7 +78,10 @@ class FSkeletonState extends State<FSkeleton> with SingleTickerProviderStateMixi
   Tween<double> _genTween() {
     return (widget.type == FSkeletonAnimationType.shimmer)
         ? Tween<double>(begin: -1.0, end: 2.0)
-        : Tween<double>(begin: widget.width, end: widget.stretchWidth);
+        : Tween<double>(
+            begin: widget.width,
+            end: widget.stretchWidth,
+          );
   }
 
   void _handleShimmerAnimationStatus(AnimationStatus status) {

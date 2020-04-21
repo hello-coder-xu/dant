@@ -59,7 +59,11 @@ class FMarqueeState extends State<FMarquee> with SingleTickerProviderStateMixin 
         scrollController.jumpTo(position);
       }
       position += _moveDistance;
-      scrollController.animateTo(position, duration: new Duration(milliseconds: duration), curve: Curves.linear);
+      scrollController.animateTo(
+        position,
+        duration: new Duration(milliseconds: duration),
+        curve: Curves.linear,
+      );
     });
   }
 
@@ -75,16 +79,31 @@ class FMarqueeState extends State<FMarquee> with SingleTickerProviderStateMixin 
   Widget getBothEndsChild() {
     if (widget.scrollAxis == Axis.vertical) {
       String newString = widget.text.split("").join("\n");
-      return Center(child: Text(newString, style: widget.textStyle, textAlign: TextAlign.center));
+      return Center(
+        child: Text(
+          newString,
+          style: widget.textStyle,
+          textAlign: TextAlign.center,
+        ),
+      );
     }
-    return Center(child: Text(widget.text, style: widget.textStyle));
+    return Center(
+      child: Text(
+        widget.text,
+        style: widget.textStyle,
+      ),
+    );
   }
 
   Widget getCenterChild() {
     if (widget.scrollAxis == Axis.horizontal) {
-      return Container(width: blankWidth);
+      return Container(
+        width: blankWidth,
+      );
     } else {
-      return Container(height: blankHeight);
+      return Container(
+        height: blankHeight,
+      );
     }
   }
 

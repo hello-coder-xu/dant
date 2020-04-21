@@ -50,7 +50,10 @@ class FRound extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           color: color ?? Theme.of(context).primaryColorLight,
-          borderRadius: BorderRadius.horizontal(left: radius, right: radius),
+          borderRadius: BorderRadius.horizontal(
+            left: radius,
+            right: radius,
+          ),
         ),
         child: Row(
           children: [getContent()],
@@ -68,13 +71,21 @@ class FRound extends StatelessWidget {
 
   //字体样式
   TextStyle getTextStyle() {
-    return textStyle ?? TextStyle(fontSize: 8, color: Colors.white);
+    return textStyle ??
+        TextStyle(
+          fontSize: 8,
+          color: Colors.white,
+        );
   }
 
   //内容
   Widget getContent() {
     if (child is String) {
-      return Text(child, style: getTextStyle(), maxLines: 1);
+      return Text(
+        child,
+        style: getTextStyle(),
+        maxLines: 1,
+      );
     } else if (child is Widget) {
       return child;
     } else {

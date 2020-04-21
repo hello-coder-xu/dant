@@ -11,7 +11,13 @@ class FDrawer {
     bool showMask = false,
     bool autoHide = true,
   }) {
-    return _showBaseDrawer(context, child: child, type: FDrawerType.top, showMask: showMask, autoHide: autoHide);
+    return _showBaseDrawer(
+      context,
+      child: child,
+      type: FDrawerType.top,
+      showMask: showMask,
+      autoHide: autoHide,
+    );
   }
 
   static VoidCallback showSnake(
@@ -20,7 +26,13 @@ class FDrawer {
     bool showMask = false,
     bool autoHide = true,
   }) {
-    return _showBaseDrawer(context, child: child, type: FDrawerType.bottom, showMask: showMask, autoHide: autoHide);
+    return _showBaseDrawer(
+      context,
+      child: child,
+      type: FDrawerType.bottom,
+      showMask: showMask,
+      autoHide: autoHide,
+    );
   }
 
   static VoidCallback showDrawer(
@@ -30,7 +42,13 @@ class FDrawer {
     bool showMask = true,
     bool autoHide = false,
   }) {
-    return _showBaseDrawer(context, child: child, type: type, showMask: showMask, autoHide: autoHide);
+    return _showBaseDrawer(
+      context,
+      child: child,
+      type: type,
+      showMask: showMask,
+      autoHide: autoHide,
+    );
   }
 
   static VoidCallback _showBaseDrawer(
@@ -110,10 +128,17 @@ class _FDrawerState extends State<_FDrawer> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    controller = AnimationController(duration: Duration(milliseconds: duration), vsync: this);
+    controller = AnimationController(
+      duration: Duration(milliseconds: duration),
+      vsync: this,
+    );
 
-    offsetAnimation =
-        Tween<double>(begin: 2000, end: 0).animate(CurvedAnimation(parent: controller, curve: Curves.ease));
+    offsetAnimation = Tween<double>(begin: 2000, end: 0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.ease,
+      ),
+    );
 
     WidgetsBinding.instance.addPostFrameCallback(getBoxHeight);
   }
@@ -146,8 +171,12 @@ class _FDrawerState extends State<_FDrawer> with TickerProviderStateMixin {
         break;
     }
 
-    offsetAnimation =
-        Tween<double>(begin: begin, end: 0).animate(CurvedAnimation(parent: controller, curve: Curves.ease));
+    offsetAnimation = Tween<double>(begin: begin, end: 0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.ease,
+      ),
+    );
     // 播放动画
     controller.forward();
   }
@@ -194,7 +223,11 @@ class _FDrawerState extends State<_FDrawer> with TickerProviderStateMixin {
               bottom: 0,
               left: 0,
               child: GestureDetector(
-                  onTap: maskTap, child: DecoratedBox(decoration: BoxDecoration(color: Colors.black45))),
+                onTap: maskTap,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black45),
+                ),
+              ),
             ));
           }
 
@@ -207,7 +240,12 @@ class _FDrawerState extends State<_FDrawer> with TickerProviderStateMixin {
               child: Transform.translate(
                 offset: offset,
                 child: DecoratedBox(
-                    key: boxKey, decoration: BoxDecoration(color: Colors.white), child: Material(child: widget.child)),
+                  key: boxKey,
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: Material(
+                    child: widget.child,
+                  ),
+                ),
               ),
             ),
           );

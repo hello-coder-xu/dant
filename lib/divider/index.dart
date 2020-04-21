@@ -28,13 +28,19 @@ class FDivider extends StatelessWidget {
     if (type == FDividerType.horizontal) {
       return Container(
         height: width ?? dividerTheme.thickness,
-        margin: EdgeInsetsDirectional.only(start: indent, end: endIndent),
+        margin: EdgeInsetsDirectional.only(
+          start: indent,
+          end: endIndent,
+        ),
         color: effectiveColor,
       );
     } else {
       return Container(
         width: width ?? dividerTheme.thickness,
-        margin: EdgeInsetsDirectional.only(top: indent, bottom: endIndent),
+        margin: EdgeInsetsDirectional.only(
+          top: indent,
+          bottom: endIndent,
+        ),
         color: effectiveColor,
       );
     }

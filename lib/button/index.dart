@@ -44,7 +44,10 @@ class FButton extends StatelessWidget {
       tempChild = OutlineButton(
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
-        borderSide: BorderSide(color: getBorderColor(context), width: 1),
+        borderSide: BorderSide(
+          color: getBorderColor(context),
+          width: 1,
+        ),
         shape: _getShapeBorder(context),
       );
     } else {
@@ -63,7 +66,10 @@ class FButton extends StatelessWidget {
         child: tempChild,
       );
     } else if (type == FButtonType.max) {
-      tempChild = Container(width: double.infinity, child: tempChild);
+      tempChild = Container(
+        width: double.infinity,
+        child: tempChild,
+      );
     }
     return tempChild;
   }
@@ -73,12 +79,18 @@ class FButton extends StatelessWidget {
     Color tempColor = getBorderColor(context);
     if (round) {
       shapeBorder = CircleBorder(
-        side: BorderSide(color: tempColor, width: 1),
+        side: BorderSide(
+          color: tempColor,
+          width: 1,
+        ),
       );
     } else {
       shapeBorder = RoundedRectangleBorder(
         borderRadius: BorderRadius.all(radius),
-        side: BorderSide(color: tempColor, width: 1),
+        side: BorderSide(
+          color: tempColor,
+          width: 1,
+        ),
       );
     }
     return shapeBorder;

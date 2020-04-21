@@ -53,7 +53,10 @@ class FCheckBox extends StatelessWidget {
     if (child is String) {
       contentView = GestureDetector(
         onTap: () => enable ? onChanged(!value) : null,
-        child: Text(child, style: TextStyle(fontSize: 14)),
+        child: Text(
+          child,
+          style: TextStyle(fontSize: 14),
+        ),
       );
     } else if (child is Widget) {
       contentView = GestureDetector(
@@ -61,7 +64,11 @@ class FCheckBox extends StatelessWidget {
         child: child,
       );
     }
-    children.add(Flexible(child: contentView));
+    children.add(
+      Flexible(
+        child: contentView,
+      ),
+    );
 
     Widget rowView = Row(
       children: children,
@@ -75,6 +82,8 @@ class FCheckBox extends StatelessWidget {
         child: rowView,
       );
     }
-    return IntrinsicWidth(child: rowView);
+    return IntrinsicWidth(
+      child: rowView,
+    );
   }
 }

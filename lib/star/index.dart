@@ -111,13 +111,22 @@ class _FStarRatingState extends State<FStarRating> {
     for (int i = 0; i < full; i++) {
       children.add(getStarItemView(widget.selectImage, widget.selectColor));
       if (i < widget.count - 1) {
-        children.add(SizedBox(width: widget.padding));
+        children.add(
+          SizedBox(
+            width: widget.padding,
+          ),
+        );
       }
     }
     if (full < widget.count) {
       children.add(ClipRect(
-        clipper: SMClipper(rating: star() * widget.size),
-        child: getStarItemView(widget.selectImage, widget.selectColor),
+        clipper: SMClipper(
+          rating: star() * widget.size,
+        ),
+        child: getStarItemView(
+          widget.selectImage,
+          widget.selectColor,
+        ),
       ));
     }
 
@@ -126,19 +135,41 @@ class _FStarRatingState extends State<FStarRating> {
 
   Widget getStarItemView(dynamic path, Color color) {
     if (path is IconData) {
-      return Icon(path, size: widget.size,color: color);
+      return Icon(
+        path,
+        size: widget.size,
+        color: color,
+      );
     } else if (path is String) {
-      return Image.asset(path, height: widget.size, width: widget.size,color: color);
+      return Image.asset(
+        path,
+        height: widget.size,
+        width: widget.size,
+        color: color,
+      );
     }
-    return Icon(Icons.star, size: widget.size, color: color);
+    return Icon(
+      Icons.star,
+      size: widget.size,
+      color: color,
+    );
   }
 
   List<Widget> buildNormalRow() {
     List<Widget> children = [];
     for (int i = 0; i < widget.count; i++) {
-      children.add(getStarItemView(widget.normalImage, widget.normalColor));
+      children.add(
+        getStarItemView(
+          widget.normalImage,
+          widget.normalColor,
+        ),
+      );
       if (i < widget.count - 1) {
-        children.add(SizedBox(width: widget.padding));
+        children.add(
+          SizedBox(
+            width: widget.padding,
+          ),
+        );
       }
     }
     return children;
@@ -146,11 +177,21 @@ class _FStarRatingState extends State<FStarRating> {
 
   Widget buildRowRating() {
     List<Widget> children = [];
-    children.add(Row(children: buildNormalRow()));
-    children.add(Row(children: buildRow()));
+    children.add(
+      Row(
+        children: buildNormalRow(),
+      ),
+    );
+    children.add(
+      Row(
+        children: buildRow(),
+      ),
+    );
     return Container(
       width: widget.count * widget.size + (widget.count - 1) * widget.padding,
-      child: Stack(children: children),
+      child: Stack(
+        children: children,
+      ),
     );
   }
 }

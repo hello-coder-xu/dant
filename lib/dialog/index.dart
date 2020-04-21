@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:dant/dant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -145,11 +144,23 @@ class _FDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> children = [];
     children.add(_titleView(context));
-    children.add(Flexible(child: _contentView()));
-    children.add(FDivider());
-    children.add(buttonView(context));
+    children.add(
+      Flexible(
+        child: _contentView(),
+      ),
+    );
+    children.add(
+      FDivider(),
+    );
+    children.add(
+      buttonView(context),
+    );
 
-    return IntrinsicHeight(child: Column(children: children));
+    return IntrinsicHeight(
+      child: Column(
+        children: children,
+      ),
+    );
   }
 
   Widget _titleView(BuildContext context) {
@@ -168,13 +179,19 @@ class _FDialog extends StatelessWidget {
 
     if (showClose) {
       List<Widget> children = [];
-      children.add(SizedBox(width: 40, height: 40));
-      children.add(Expanded(child: titleView));
+      children.add(
+        SizedBox(width: 40, height: 40),
+      );
+      children.add(
+        Expanded(child: titleView),
+      );
       children.add(IconButton(
         icon: Icon(Icons.close, size: 20),
         onPressed: () => hide(context),
       ));
-      return Row(children: children);
+      return Row(
+        children: children,
+      );
     } else {
       return titleView;
     }
@@ -184,7 +201,10 @@ class _FDialog extends StatelessWidget {
     assert(content != null);
     Widget child = SizedBox.shrink();
     if (content is String) {
-      child = Text(content, style: TextStyle(fontSize: 16));
+      child = Text(
+        content,
+        style: TextStyle(fontSize: 16),
+      );
     } else if (content is Widget) {
       child = content;
     }
@@ -215,7 +235,13 @@ class _FDialog extends StatelessWidget {
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(_circular)),
           ),
           alignment: Alignment.center,
-          child: Text(cancel, style: TextStyle(color: cancelTextColor, fontSize: 14)),
+          child: Text(
+            cancel,
+            style: TextStyle(
+              color: cancelTextColor,
+              fontSize: 14,
+            ),
+          ),
         ),
       );
     }
@@ -226,11 +252,19 @@ class _FDialog extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: cancelBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(_circular)),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(_circular),
+            ),
           ),
           height: 42,
           alignment: Alignment.center,
-          child: Text(cancel, style: TextStyle(color: cancelTextColor, fontSize: 14)),
+          child: Text(
+            cancel,
+            style: TextStyle(
+              color: cancelTextColor,
+              fontSize: 14,
+            ),
+          ),
         ),
       ),
     ));
@@ -244,11 +278,19 @@ class _FDialog extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: confirmBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(_circular)),
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(_circular),
+            ),
           ),
           alignment: Alignment.center,
           height: 42,
-          child: Text(confirm, style: TextStyle(color: confirmTextColor, fontSize: 14)),
+          child: Text(
+            confirm,
+            style: TextStyle(
+              color: confirmTextColor,
+              fontSize: 14,
+            ),
+          ),
         ),
       ),
     ));
@@ -328,10 +370,18 @@ class ReadingButtonState extends State<ReadingButton> {
       height: 42,
       decoration: BoxDecoration(
         color: widget.bgColor ?? Theme.of(context).backgroundColor,
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(_circular)),
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(_circular),
+        ),
       ),
       alignment: Alignment.center,
-      child: Text(buttonValue, style: TextStyle(color: widget.textColor, fontSize: 14)),
+      child: Text(
+        buttonValue,
+        style: TextStyle(
+          color: widget.textColor,
+          fontSize: 14,
+        ),
+      ),
     );
 
     if (tempSecond > 0) {

@@ -12,7 +12,13 @@ class FBottomSheet {
   }) async {
     List result = await showModalBottomSheet(
       context: context,
-      shape: roundTop ? RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))) : null,
+      shape: roundTop
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(25.0),
+              ),
+            )
+          : null,
       isScrollControlled: true,
       isDismissible: isDismissible,
       backgroundColor: Theme.of(context).backgroundColor,
@@ -20,7 +26,10 @@ class FBottomSheet {
         return AnimatedPadding(
           padding: MediaQuery.of(context).viewInsets, //边距（必要）
           duration: const Duration(milliseconds: 100), //时常 （必要）
-          child: _FBottomSheetOption(list: option, initData: initData),
+          child: _FBottomSheetOption(
+            list: option,
+            initData: initData,
+          ),
         );
       },
     );
@@ -37,7 +46,11 @@ class FBottomSheet {
   }) {
     showModalBottomSheet(
       context: context,
-      shape: roundTop ? RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))) : null,
+      shape: roundTop
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+            )
+          : null,
       isScrollControlled: true,
       isDismissible: isDismissible,
       backgroundColor: Theme.of(context).backgroundColor,
@@ -98,7 +111,9 @@ class _FBottomSheetOption extends StatelessWidget {
     List<Widget> children = [];
 
     final Color effectiveColor = DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
-    children.add(Container(height: 16, color: effectiveColor));
+    children.add(
+      Container(height: 16, color: effectiveColor),
+    );
 
     children.add(InkWell(
       onTap: () => close(context),
@@ -133,7 +148,9 @@ class _FBottomSheetView extends StatelessWidget {
         maxHeight: MediaQuery.of(context).size.height * 0.8,
         minHeight: MediaQuery.of(context).size.height * 0.1,
       ),
-      child: SingleChildScrollView(child: Column(children: [child])),
+      child: SingleChildScrollView(
+        child: Column(children: [child]),
+      ),
     );
   }
 }
