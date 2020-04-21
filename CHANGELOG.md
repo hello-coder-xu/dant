@@ -1,8 +1,8 @@
 
-## [0.0.2] - TODO: Add release date.
+## [0.0.2] 
 
 * TODO: 更新部分文案.
 
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] 
 
 * TODO: Describe initial release.
