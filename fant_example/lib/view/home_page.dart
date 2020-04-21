@@ -1,4 +1,5 @@
 import 'package:example/bean/HomeBean.dart';
+import 'package:example/comm/comm.dart';
 import 'package:example/view/badge.dart';
 import 'package:example/view/bottomsheet.dart';
 import 'package:example/view/bubble.dart';
@@ -18,7 +19,6 @@ import 'package:example/view/textfield.dart';
 import 'package:example/view/toast.dart';
 import 'package:example/view/triangle.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -61,7 +61,7 @@ class HomePageState extends State<HomePage> {
         Navigator.push(context, new MaterialPageRoute(builder: (context) => bean.page));
       },
       child: Container(
-        color: Colors.green,
+        color: Theme.of(context).primaryColor,
         alignment: Alignment.center,
         child: Text(
           bean.name,
@@ -75,10 +75,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 360, height: 640, allowFontScaling: false);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        centerTitle: true,
-      ),
+      appBar: Comm.getTitleBar(title: 'Home'),
       body: GridView.builder(
         itemCount: list.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
