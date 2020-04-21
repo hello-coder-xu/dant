@@ -67,15 +67,15 @@ class FNumberState extends State<FNumber> {
       height: _KDefaultButtonSize + 5,
       width: 40,
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: DividerTheme.of(context).color ?? Theme.of(context).dividerColor,
         borderRadius: BorderRadius.circular(3),
       ),
       child: TextField(
         controller: controller,
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
-        style: TextStyle(fontSize: _KDefaultTextFontSize),
         enabled: !widget.disableInput,
+        style: TextStyle(fontSize: _KDefaultTextFontSize),
         keyboardType: TextInputType.number,
         inputFormatters: [
           WhitelistingTextInputFormatter(RegExp("[-0-9]")),
