@@ -7,7 +7,7 @@ A new Flutter package.
 
 #### step
 
-```
+```yaml
 dependencies:
   fant: lastVersion
 ```
@@ -15,7 +15,7 @@ dependencies:
 
 #### Usage
 
-```
+```dart
 import 'package:example/comm/app.dart';
 import 'package:example/comm/params.dart';
 import 'package:example/comm/sp_util.dart';
