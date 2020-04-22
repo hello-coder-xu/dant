@@ -14,7 +14,7 @@ class FDialog {
     String confirm = '知道了',
     Color confirmBgColor,
     Color confirmTextColor,
-    bool showClose,
+    bool showClose = false,
     VoidCallback onPress,
     bool barrierDismissible = true,
   }) {
@@ -177,7 +177,7 @@ class _FDialog extends StatelessWidget {
       ),
     );
 
-    if (showClose) {
+    if (showClose ?? false) {
       List<Widget> children = [];
       children.add(
         SizedBox(width: 40, height: 40),
