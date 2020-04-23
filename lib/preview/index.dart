@@ -1,109 +1,116 @@
 import 'dart:async';
 
-import 'package:dant/dant.dart';
+import 'package:dant/round/index.dart';
 import 'package:flutter/material.dart';
 
-enum FSwipeIndicatorAxis { horizontal, vertical }
+enum FPreviewIndicatorAxis { horizontal, vertical }
 
-class FSwipe extends StatefulWidget {
+class FPreview {
+  static void showPreview(
+    BuildContext context, {
+    GlobalKey key,
+    @required int itemCount,
+    @required Widget Function(int index) itemBuilder,
+    Axis scrollDirection = Axis.horizontal,
+    int defaultIndex = 0,
+    bool loop = true,
+    int speed = 280,
+    Curve curve = Curves.bounceIn,
+    Function(int index) onChanged,
+    bool indicators = true,
+    FPreviewIndicatorAxis fPreviewIndicatorAxis = FPreviewIndicatorAxis.horizontal,
+    Color unSelectPointColor = Colors.white,
+    Color selectPointColor = Colors.red,
+  }) {
+    Widget child = _FPreview(
+      key: key,
+      itemCount: itemCount,
+      itemBuilder: itemBuilder,
+      scrollDirection: scrollDirection,
+      defaultIndex: defaultIndex,
+      loop: loop,
+      speed: speed,
+      curve: curve,
+      onChanged: onChanged,
+      indicators: indicators,
+      fPreviewIndicatorAxis: fPreviewIndicatorAxis,
+      unSelectPointColor: unSelectPointColor,
+      selectPointColor: selectPointColor,
+    );
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => child,
+    );
+  }
+}
+
+class _FPreview extends StatefulWidget {
   final GlobalKey key;
-
   final int itemCount;
-
   final Widget Function(int index) itemBuilder;
-
   final Axis scrollDirection;
-
-  final double height;
-
   final int defaultIndex;
-
   final bool loop;
-
-  final bool autoPlay;
-
-  final int duration;
-
   final int speed;
-
   final Curve curve;
-
-  // 回调
   final Function(int index) onChanged;
-
   final bool indicators;
-
-  final FSwipeIndicatorAxis fSwipeIndicatorAxis;
-
-  final Alignment pointPosition;
-
+  final FPreviewIndicatorAxis fPreviewIndicatorAxis;
   final Color unSelectPointColor;
-
   final Color selectPointColor;
 
-  FSwipe(
+  _FPreview(
       {this.key,
       @required this.itemCount,
       @required this.itemBuilder,
       this.scrollDirection = Axis.horizontal,
-      this.height = 200,
       this.defaultIndex = 0,
       this.loop = true,
       this.indicators = true,
-      this.pointPosition = Alignment.bottomCenter,
-      this.autoPlay = true,
-      this.duration = 3000,
       this.speed = 280,
       this.curve = Curves.bounceIn,
       this.unSelectPointColor = Colors.white,
       this.selectPointColor = Colors.red,
-      this.fSwipeIndicatorAxis = FSwipeIndicatorAxis.horizontal,
+      this.fPreviewIndicatorAxis = FPreviewIndicatorAxis.horizontal,
       this.onChanged})
       : assert(itemCount >= 1),
         assert(defaultIndex >= 0),
         super(key: key);
 
   @override
-  FSwipeState createState() => FSwipeState();
+  _FPreviewState createState() => new _FPreviewState();
 }
 
-class FSwipeState extends State<FSwipe> {
+class _FPreviewState extends State<_FPreview> {
   PageController _pageController;
   int position;
   int itemCount;
   double pointSize;
   double pointPaddingSpace;
-  Timer timer;
 
   @override
   void initState() {
     super.initState();
     itemCount = widget.loop ? widget.itemCount + 2 : widget.itemCount;
     position = widget.defaultIndex;
-    pointPaddingSpace = widget.height / 50;
-    pointSize = widget.height / 40;
-    _pageController = PageController(
-      initialPage: position,
-    );
-    startAutoPlay();
+    pointPaddingSpace = 4;
+    pointSize = 5;
+    _pageController = PageController(initialPage: position);
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget child = _pageView();
+    List<Widget> children = [];
+    children.add(_pageView());
     if (widget.indicators) {
-      List<Widget> children = [];
-      children.add(child);
-
       children.add(Positioned(
+        bottom: 20,
         child: _indicatorView(),
       ));
-      child = Stack(children: children, alignment: widget.pointPosition);
     }
-    return Container(
-      height: widget.height,
-      child: child,
-    );
+    return Stack(children: children, alignment: Alignment.center);
   }
 
   Widget _pageView() {
@@ -115,15 +122,7 @@ class FSwipeState extends State<FSwipe> {
       itemCount: itemCount,
     );
 
-    if (widget.autoPlay) {
-      child = Listener(
-        onPointerDown: onPointerDown,
-        onPointerUp: onPointerUp,
-        child: child,
-      );
-    }
-
-    return child;
+    return Container(child: child);
   }
 
   Widget _indicatorView() {
@@ -134,7 +133,7 @@ class FSwipeState extends State<FSwipe> {
     double pointPaddingVertical = 0;
     double paddingHorizontal;
     double paddingVertical;
-    if (widget.fSwipeIndicatorAxis == FSwipeIndicatorAxis.horizontal) {
+    if (widget.fPreviewIndicatorAxis == FPreviewIndicatorAxis.horizontal) {
       child = Row(
         children: children,
         mainAxisSize: MainAxisSize.min,
@@ -167,7 +166,7 @@ class FSwipeState extends State<FSwipe> {
     });
 
     return Container(
-      margin: EdgeInsets.all(widget.height / 20),
+      margin: EdgeInsets.all(10),
       padding: EdgeInsets.symmetric(
         horizontal: paddingHorizontal,
         vertical: paddingVertical,
@@ -238,34 +237,6 @@ class FSwipeState extends State<FSwipe> {
     );
   }
 
-  void startAutoPlay() {
-    if (!widget.autoPlay) return;
-    if (timer?.isActive ?? false) {
-      timer.cancel();
-    }
-
-    timer = Timer.periodic(
-      Duration(milliseconds: widget.duration),
-      (_) {
-        if (position == widget.itemCount - 1 && !widget.loop) {
-          setIndex(0);
-          return;
-        }
-        nextPage();
-      },
-    );
-  }
-
-  // 停止自动播放
-  void stopAutoPlay() {
-    timer?.cancel();
-    timer = null;
-  }
-
-  onPointerDown(event) => stopAutoPlay();
-
-  onPointerUp(event) => startAutoPlay();
-
   void _callBackOnChange(int number) {
     if (widget.onChanged != null) {
       widget.onChanged(number);
@@ -275,7 +246,6 @@ class FSwipeState extends State<FSwipe> {
   @override
   void dispose() {
     _pageController.dispose();
-    stopAutoPlay();
     super.dispose();
   }
 }

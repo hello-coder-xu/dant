@@ -1,3 +1,8 @@
+## [0.1.5] 
+
+* TODO: 新增自定义dialog 
+* TODO: 新增PreView
+
 ## [0.1.4] 
 
 * TODO: 优化Number

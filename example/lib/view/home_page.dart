@@ -10,6 +10,7 @@ import 'package:example/view/drawer.dart';
 import 'package:example/view/marquee.dart';
 import 'package:example/view/number.dart';
 import 'package:example/view/operation.dart';
+import 'package:example/view/preview.dart';
 import 'package:example/view/pwdfield.dart';
 import 'package:example/view/radio.dart';
 import 'package:example/view/skeleton.dart';
@@ -37,6 +38,7 @@ class HomePageState extends State<HomePage> {
     HomeBean(name: 'bottomsheet', page: BottomSheetDemo()),
     HomeBean(name: 'number', page: NumberDemo()),
     HomeBean(name: 'swipe', page: SwipeDemo()),
+    HomeBean(name: 'preView', page: PreViewDemo()),
     HomeBean(name: 'marquee', page: MarqueeDemo()),
     HomeBean(name: 'star', page: StarDemo()),
     HomeBean(name: 'triangle', page: TriangleDemo()),

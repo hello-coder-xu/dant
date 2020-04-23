@@ -22,3 +22,4 @@ export 'package:dant/textfield/index.dart';
 export 'package:dant/pwd_field/index.dart';
 export 'package:dant/drawer/index.dart';
 export 'package:dant/skeleton/index.dart';
+export 'package:dant/preview/index.dart';
