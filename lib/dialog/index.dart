@@ -109,6 +109,19 @@ class FDialog {
           );
         });
   }
+
+  static void showCustom(
+    BuildContext context, {
+    Widget child,
+    bool barrierDismissible = true,
+  }) {
+    showDialog(
+        context: context,
+        barrierDismissible: barrierDismissible,
+        builder: (context) {
+          return _FCustomDialog(child: child);
+        });
+  }
 }
 
 class _FDialog extends StatelessWidget {
@@ -409,5 +422,19 @@ class ReadingButtonState extends State<ReadingButton> {
   void dispose() {
     timer?.cancel();
     super.dispose();
+  }
+}
+
+///自定义
+class _FCustomDialog extends StatelessWidget {
+  final Widget child;
+
+  _FCustomDialog({this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> children = [];
+    children.add(child);
+    return Stack(children: children, alignment: Alignment.center);
   }
 }

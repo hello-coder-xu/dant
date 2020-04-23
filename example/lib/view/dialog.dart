@@ -1,4 +1,3 @@
-
 import 'package:dant/button/index.dart';
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +70,7 @@ class DialogDemoState extends State<DialogDemo> {
                   content: '我是一个内容',
                   title: '提示',
                   second: 3,
+                  barrierDismissible: false,
                   onConfirmPress: () {
                     FToast.showToast(context, msg: '确认');
                   },
@@ -79,7 +79,7 @@ class DialogDemoState extends State<DialogDemo> {
             ),
             SizedBox(height: 16),
             FButton(
-              child: 'confirm 自定义',
+              child: '内容 自定义',
               onPressed: () {
                 FDialog.showConfirm(
                   context,
@@ -136,6 +136,21 @@ class DialogDemoState extends State<DialogDemo> {
                   onConfirmPress: () {
                     FToast.showToast(context, msg: '前往');
                   },
+                );
+              },
+            ),
+            SizedBox(height: 16),
+            FButton(
+              child: '全部自定义',
+              onPressed: () {
+                FDialog.showCustom(
+                  context,
+                  barrierDismissible: false,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.red,
+                  ),
                 );
               },
             ),
