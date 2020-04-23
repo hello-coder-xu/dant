@@ -167,7 +167,7 @@ class FSwipeState extends State<FSwipe> {
           vertical: pointPaddingVertical,
         ),
         child: FRound(
-          type: FRoundType.Point,
+          type: FRoundType.point,
           size: pointSize,
           color: index == position % widget.itemCount ? widget.selectPointColor : widget.unSelectPointColor,
         ),

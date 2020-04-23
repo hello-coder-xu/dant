@@ -18,7 +18,7 @@ class DrawerDemoState extends State<DrawerDemo> {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: <Widget>[
-          FRound(child: Icon(Icons.supervised_user_circle, size: 40), type: FRoundType.Round, size: 40),
+          FRound(child: Icon(Icons.supervised_user_circle, size: 40), type: FRoundType.round, size: 40),
           Expanded(
             child: Container(
               alignment: Alignment.centerLeft,

@@ -1,27 +1,29 @@
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 
-enum FBadgeType { Point, Round, Ellipse }
+enum FBadgeType { point, round, ellipse }
 
-enum FBadgePosition { Left, Right, LeftTop, RightTop }
+enum FBadgePosition { left, right, leftTop, rightTop }
 
 class FBadge extends StatelessWidget {
   final FBadgeType type;
   final Color color;
-  final Color textColor;
+  final TextStyle textStyle;
   final int num;
   final bool limit;
   final Widget child;
+  final double size;
   final FBadgePosition position;
 
   FBadge({
     @required this.child,
-    this.type = FBadgeType.Point,
+    this.type = FBadgeType.point,
     this.color,
-    this.textColor,
+    this.textStyle,
     this.num,
     this.limit = false,
-    this.position = FBadgePosition.RightTop,
+    this.size,
+    this.position = FBadgePosition.rightTop,
   });
 
   @override
@@ -42,20 +44,22 @@ class FBadge extends StatelessWidget {
 
   //字体样式
   TextStyle getTextStyle() {
-    return TextStyle(fontSize: 8, color: textColor ?? Colors.white);
+    return textStyle ?? TextStyle(fontSize: 8, color: Colors.white);
   }
 
   //获取角标
   Widget getFRound() {
-    if (type == FBadgeType.Point) {
+    if (type == FBadgeType.point) {
       return FRound(
-        type: FRoundType.Point,
+        type: FRoundType.point,
+        size: size,
         color: color,
       );
-    } else if (type == FBadgeType.Round) {
+    } else if (type == FBadgeType.round) {
       return FRound(
-        type: FRoundType.Round,
+        type: FRoundType.round,
         color: color,
+        size: size,
         child: Text(
           getNumber(),
           style: getTextStyle(),
@@ -63,8 +67,9 @@ class FBadge extends StatelessWidget {
       );
     } else {
       return FRound(
-        type: FRoundType.Ellipse,
+        type: FRoundType.ellipse,
         color: color,
+        size: size,
         child: Text(
           getNumber(),
           style: getTextStyle(),
@@ -77,17 +82,17 @@ class FBadge extends StatelessWidget {
   Widget positionView() {
     List<Widget> children = [];
     children.add(child);
-    if (position == FBadgePosition.Left) {
+    if (position == FBadgePosition.left) {
       children.insert(0, getFRound());
-    } else if (position == FBadgePosition.Right) {
+    } else if (position == FBadgePosition.right) {
       children.add(getFRound());
-    } else if (position == FBadgePosition.LeftTop) {
+    } else if (position == FBadgePosition.leftTop) {
       children.add(Positioned(
         top: 0,
         left: 0,
         child: getFRound(),
       ));
-    } else if (position == FBadgePosition.RightTop) {
+    } else if (position == FBadgePosition.rightTop) {
       children.add(Positioned(
         top: 0,
         right: 0,
@@ -95,7 +100,7 @@ class FBadge extends StatelessWidget {
       ));
     }
 
-    if (position == FBadgePosition.Left || position == FBadgePosition.Right) {
+    if (position == FBadgePosition.left || position == FBadgePosition.right) {
       return Row(
         children: children,
         mainAxisAlignment: MainAxisAlignment.center,

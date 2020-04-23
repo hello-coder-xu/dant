@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum FRoundType { Point, Round, Ellipse }
+enum FRoundType { point, round, ellipse }
 
 ///圆视图
 class FRound extends StatelessWidget {
@@ -11,7 +11,7 @@ class FRound extends StatelessWidget {
   final TextStyle textStyle;
 
   FRound({
-    this.type = FRoundType.Point,
+    this.type = FRoundType.point,
     this.size,
     this.color,
     this.child,
@@ -20,7 +20,7 @@ class FRound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (type == FRoundType.Point) {
+    if (type == FRoundType.point) {
       double tempSize = size ?? 8;
       return Container(
         width: tempSize,
@@ -30,7 +30,7 @@ class FRound extends StatelessWidget {
           shape: BoxShape.circle,
         ),
       );
-    } else if (type == FRoundType.Round) {
+    } else if (type == FRoundType.round) {
       double tempSize = size ?? 16;
       return Container(
         width: tempSize,
@@ -50,10 +50,7 @@ class FRound extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           color: color ?? Theme.of(context).primaryColorLight,
-          borderRadius: BorderRadius.horizontal(
-            left: radius,
-            right: radius,
-          ),
+          borderRadius: BorderRadius.horizontal(left: radius, right: radius),
         ),
         child: Row(
           children: [getContent()],
@@ -71,21 +68,13 @@ class FRound extends StatelessWidget {
 
   //字体样式
   TextStyle getTextStyle() {
-    return textStyle ??
-        TextStyle(
-          fontSize: 8,
-          color: Colors.white,
-        );
+    return textStyle ?? TextStyle(fontSize: 8, color: Colors.white);
   }
 
   //内容
   Widget getContent() {
     if (child is String) {
-      return Text(
-        child,
-        style: getTextStyle(),
-        maxLines: 1,
-      );
+      return Text(child, style: getTextStyle(), maxLines: 1);
     } else if (child is Widget) {
       return child;
     } else {

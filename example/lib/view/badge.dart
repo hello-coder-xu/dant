@@ -1,10 +1,6 @@
-
-
 import 'package:dant/dant.dart';
 import 'package:example/comm/comm.dart';
 import 'package:flutter/material.dart';
-
-
 
 class BadgeDemo extends StatefulWidget {
   @override
@@ -23,27 +19,27 @@ class BadgeDemoState extends State<BadgeDemo> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               FBadge(
-                type: FBadgeType.Point,
+                type: FBadgeType.point,
                 color: Colors.red,
                 child: Icon(Icons.map, size: 40),
               ),
               SizedBox(height: 16),
               FBadge(
-                type: FBadgeType.Point,
+                type: FBadgeType.point,
                 color: Colors.red,
                 child: Icon(Icons.map, size: 40),
-                position: FBadgePosition.Left,
+                position: FBadgePosition.left,
               ),
               SizedBox(height: 16),
               FBadge(
-                type: FBadgeType.Point,
+                type: FBadgeType.point,
                 color: Colors.red,
                 child: Icon(Icons.map, size: 40),
-                position: FBadgePosition.Right,
+                position: FBadgePosition.right,
               ),
               SizedBox(height: 16),
               FBadge(
-                type: FBadgeType.Round,
+                type: FBadgeType.round,
                 color: Colors.red,
                 num: 189,
                 child: Icon(Icons.map, size: 40),
@@ -51,21 +47,32 @@ class BadgeDemoState extends State<BadgeDemo> {
               ),
               SizedBox(height: 16),
               FBadge(
-                type: FBadgeType.Ellipse,
+                type: FBadgeType.ellipse,
                 color: Colors.red,
                 num: 100,
                 child: Icon(Icons.map, size: 40),
                 limit: true,
-                position: FBadgePosition.LeftTop,
+                position: FBadgePosition.leftTop,
               ),
               SizedBox(height: 16),
               FBadge(
-                type: FBadgeType.Ellipse,
+                type: FBadgeType.ellipse,
                 color: Colors.red,
                 num: 100,
                 child: Icon(Icons.map, size: 40),
                 limit: true,
-                position: FBadgePosition.Right,
+                position: FBadgePosition.right,
+              ),
+              SizedBox(height: 16),
+              FBadge(
+                type: FBadgeType.round,
+                color: Colors.red,
+                num: 3,
+                size: 8,
+                textStyle: TextStyle(fontSize: 4,color: Colors.white),
+                child: Icon(Icons.map, size: 40),
+                limit: true,
+                position: FBadgePosition.right,
               ),
             ],
           ),
