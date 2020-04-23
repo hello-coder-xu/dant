@@ -22,7 +22,7 @@ class FNumber extends StatefulWidget {
     this.step = 1,
     this.disableInput = false,
     this.onChange,
-  })  : assert(max > min),
+  })  : assert(max >= min),
         assert(step >= 1),
         super(key: key);
 
@@ -64,8 +64,8 @@ class FNumberState extends State<FNumber> {
     children.add(SizedBox(width: _KDefaultSpace));
 
     children.add(Container(
-      height: _KDefaultButtonSize + 5,
-      width: 40,
+      height: _KDefaultButtonSize,
+      width: 36,
       decoration: BoxDecoration(
         color: DividerTheme.of(context).color ?? Theme.of(context).dividerColor,
         borderRadius: BorderRadius.circular(3),
@@ -75,9 +75,7 @@ class FNumberState extends State<FNumber> {
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
         enabled: !widget.disableInput,
-        style: TextStyle(
-          fontSize: _KDefaultTextFontSize,
-        ),
+        style: TextStyle(fontSize: _KDefaultTextFontSize),
         keyboardType: TextInputType.number,
         inputFormatters: [
           WhitelistingTextInputFormatter(RegExp("[-0-9]")),
@@ -85,10 +83,7 @@ class FNumberState extends State<FNumber> {
         ],
         decoration: InputDecoration(
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 14,
-            horizontal: 0,
-          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 0),
         ),
         onEditingComplete: inputComplete,
       ),
@@ -108,6 +103,7 @@ class FNumberState extends State<FNumber> {
     return Row(
       children: children,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
     );
   }
 
@@ -146,10 +142,7 @@ class FNumberState extends State<FNumber> {
     if (temp == null || temp.length == 0) {
       return widget.min;
     } else {
-      return math.min(
-        widget.max,
-        num.parse(temp),
-      );
+      return math.min(widget.max, num.parse(temp));
     }
   }
 

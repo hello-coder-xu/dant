@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:flutter/services.dart';
 
-enum FTextFieldBorderType {
-  none,
-  round,
-  line,
-}
+enum FTextFieldBorderType { none, round, line }
 
 class FTextField extends StatefulWidget {
+  final TextEditingController controller;
   final String hint;
   final String value;
   final bool clear;
@@ -25,6 +23,7 @@ class FTextField extends StatefulWidget {
   final double contentPadding;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+  final List<TextInputFormatter> inputFormatters;
   final ValueChanged<String> onChanged;
   final ValueChanged<String> onSubmitted;
   final VoidCallback onEditingComplete;
@@ -32,6 +31,7 @@ class FTextField extends StatefulWidget {
 
   FTextField({
     Key key,
+    this.controller,
     this.hint,
     this.value,
     this.clear = true,
@@ -49,6 +49,7 @@ class FTextField extends StatefulWidget {
     this.contentPadding = 16,
     this.keyboardType,
     this.textInputAction,
+    this.inputFormatters,
     this.onChanged,
     this.onSubmitted,
     this.onEditingComplete,
@@ -66,15 +67,12 @@ class FTextFieldState extends State<FTextField> {
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController(text: widget.value);
+    controller = widget.controller ?? TextEditingController(text: widget.value);
   }
 
   @override
   Widget build(BuildContext context) {
-    double tempPaddingVertical = math.min(
-      widget.contentPadding,
-      widget.height - 30,
-    );
+    double tempPaddingVertical = math.min(widget.contentPadding, widget.height - 30);
     Widget textField = TextField(
       controller: controller,
       obscureText: obscureText,
@@ -82,6 +80,7 @@ class FTextFieldState extends State<FTextField> {
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
       focusNode: widget.focusNode,
+      inputFormatters: widget.inputFormatters,
       decoration: InputDecoration(
         icon: widget.icon,
         prefixIcon: widget.prefixIcon,
@@ -107,17 +106,12 @@ class FTextFieldState extends State<FTextField> {
     if (widget.maxLine == null && widget.borderType == FTextFieldBorderType.round) {
       return Container(
         decoration: getBoxDecoration(),
-        constraints: BoxConstraints(
-          minHeight: widget.height,
-        ),
+        constraints: BoxConstraints(minHeight: widget.height),
         child: textField,
       );
     }
 
-    return Container(
-      height: widget.height,
-      child: textField,
-    );
+    return Container(height: widget.height, child: textField);
   }
 
   Widget suffixView() {
@@ -125,9 +119,7 @@ class FTextFieldState extends State<FTextField> {
 
     if (widget.clear) {
       children.add(GestureDetector(
-        onTap: () {
-          controller.clear();
-        },
+        onTap: () => controller.clear(),
         child: Icon(
           Icons.clear,
           size: math.min(
@@ -178,13 +170,8 @@ class FTextFieldState extends State<FTextField> {
       if (widget.maxLine == null) {
         return OutlineInputBorder(
           gapPadding: 0,
-          borderSide: BorderSide(
-            color: Colors.transparent,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(
-            widget.borderRadius ?? widget.height / 2,
-          ),
+          borderSide: BorderSide(color: Colors.transparent, width: 1),
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? widget.height / 2),
         );
       } else {
         return OutlineInputBorder(
@@ -193,17 +180,12 @@ class FTextFieldState extends State<FTextField> {
             color: tempColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(
-            widget.borderRadius ?? widget.height / 2,
-          ),
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? widget.height / 2),
         );
       }
     } else if (widget.borderType == FTextFieldBorderType.line) {
       return UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: tempColor,
-          width: 1,
-        ),
+        borderSide: BorderSide(color: tempColor, width: 1),
       );
     }
     return null;
@@ -214,13 +196,8 @@ class FTextFieldState extends State<FTextField> {
     if (widget.borderType == FTextFieldBorderType.round) {
       return BoxDecoration(
         color: widget.fillColor,
-        border: Border.all(
-          color: tempColor,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(
-          widget.borderRadius ?? widget.height / 2,
-        ),
+        border: Border.all(color: tempColor, width: 1),
+        borderRadius: BorderRadius.circular(widget.borderRadius ?? widget.height / 2),
       );
     }
     return null;
