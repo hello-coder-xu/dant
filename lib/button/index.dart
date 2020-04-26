@@ -14,6 +14,7 @@ class FButton extends StatelessWidget {
   final double roundSize;
   final bool outLine;
   final bool enable;
+  final EdgeInsetsGeometry padding;
 
   FButton({
     this.child,
@@ -26,6 +27,7 @@ class FButton extends StatelessWidget {
     this.roundSize = 40,
     this.outLine = false,
     this.enable = true,
+    this.padding = const EdgeInsets.symmetric(horizontal: 4),
     Key key,
   }) : super(key: key);
 
@@ -44,10 +46,8 @@ class FButton extends StatelessWidget {
       tempChild = OutlineButton(
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
-        borderSide: BorderSide(
-          color: getBorderColor(context),
-          width: 1,
-        ),
+        padding: padding,
+        borderSide: BorderSide(color: getBorderColor(context), width: 1),
         shape: _getShapeBorder(context),
       );
     } else {
@@ -55,6 +55,7 @@ class FButton extends StatelessWidget {
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
         color: getFitColor(context),
+        padding: padding,
         shape: _getShapeBorder(context),
       );
     }
@@ -78,19 +79,11 @@ class FButton extends StatelessWidget {
     ShapeBorder shapeBorder;
     Color tempColor = getBorderColor(context);
     if (round) {
-      shapeBorder = CircleBorder(
-        side: BorderSide(
-          color: tempColor,
-          width: 1,
-        ),
-      );
+      shapeBorder = CircleBorder(side: BorderSide(color: tempColor, width: 1));
     } else {
       shapeBorder = RoundedRectangleBorder(
         borderRadius: BorderRadius.all(radius),
-        side: BorderSide(
-          color: tempColor,
-          width: 1,
-        ),
+        side: BorderSide(color: tempColor, width: 1),
       );
     }
     return shapeBorder;
