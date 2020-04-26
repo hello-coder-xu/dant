@@ -10,6 +10,7 @@ class FTextField extends StatefulWidget {
   final String value;
   final bool clear;
   final bool isPassword;
+  final bool obscureText;
   final FTextFieldBorderType borderType;
   final int maxLine;
   final int maxLength;
@@ -36,6 +37,7 @@ class FTextField extends StatefulWidget {
     this.value,
     this.clear = true,
     this.isPassword = false,
+    this.obscureText = false,
     this.borderType = FTextFieldBorderType.line,
     this.maxLine = 1,
     this.maxLength,
@@ -68,6 +70,7 @@ class FTextFieldState extends State<FTextField> {
   void initState() {
     super.initState();
     controller = widget.controller ?? TextEditingController(text: widget.value);
+    obscureText = widget.obscureText;
   }
 
   @override
@@ -122,10 +125,7 @@ class FTextFieldState extends State<FTextField> {
         onTap: () => controller.clear(),
         child: Icon(
           Icons.clear,
-          size: math.min(
-            widget.height / 2,
-            24,
-          ),
+          size: math.min(widget.height / 2, 24),
         ),
       ));
     }
@@ -141,10 +141,7 @@ class FTextFieldState extends State<FTextField> {
         },
         child: Icon(
           obscureText ? Icons.visibility : Icons.visibility_off,
-          size: math.min(
-            widget.height / 2,
-            24,
-          ),
+          size: math.min(widget.height / 2, 24),
         ),
       ));
     }
