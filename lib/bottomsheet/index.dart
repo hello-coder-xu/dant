@@ -155,12 +155,12 @@ class _FBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ConstrainedBox(
       constraints: BoxConstraints(
         maxHeight: MediaQuery.of(context).size.height * (maxHeight ?? 0.8),
         minHeight: MediaQuery.of(context).size.height * (minHeight ?? 0.1),
       ),
-      child: child,
+      child: IntrinsicHeight(child: child),
     );
   }
 }
