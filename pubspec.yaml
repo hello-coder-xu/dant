@@ -1,6 +1,6 @@
 name: dant
 description: Dant is a powerful UI framework for Google Flutter.you can use  [Badge][BottomSheet] [Button] [CheckBox] [Dialog] [Divider]...
-version: 0.1.7
+version: 0.1.8
 homepage: https://github.com/yx544806988/dant.git
 repository: https://github.com/yx544806988/dant.git
 environment:
