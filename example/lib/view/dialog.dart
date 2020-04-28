@@ -35,9 +35,10 @@ class DialogDemoState extends State<DialogDemo> {
               onPressed: () {
                 FDialog.showAlert(
                   context,
-                  content: 'hello',
+                  content: 'hello,hello,hello,hello,hello,hello,hello,hello,hello,hello',
                   title: '提示',
                   showClose: true,
+                  confirm: Text('好的', style: TextStyle(color: Colors.red)),
                   onPress: () {
                     FToast.showToast(context, msg: 'alert 有标题 有X');
                   },

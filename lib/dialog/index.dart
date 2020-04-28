@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dant/comm/util.dart';
 import 'package:dant/dant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class FDialog {
     BuildContext context, {
     String title,
     dynamic content,
-    String confirm = '知道了',
+    dynamic confirm = '知道了',
     Color confirmBgColor,
     Color confirmTextColor,
     bool showClose = false,
@@ -30,7 +31,6 @@ class FDialog {
               content: content,
               cancel: confirm,
               cancelBgColor: confirmBgColor,
-              cancelTextColor: confirmTextColor,
               cancelOnPress: onPress,
             ),
             shape: RoundedRectangleBorder(borderRadius: _borderRadius),
@@ -43,8 +43,8 @@ class FDialog {
     String title,
     bool showClose = false,
     dynamic content,
-    String cancel = '取消',
-    String confirm = '確定',
+    dynamic cancel = '取消',
+    dynamic confirm = '確定',
     Color cancelBgColor,
     Color confirmBgColor,
     Color cancelTextColor,
@@ -67,8 +67,6 @@ class FDialog {
               confirm: confirm,
               cancelBgColor: cancelBgColor,
               confirmBgColor: confirmBgColor,
-              cancelTextColor: cancelTextColor,
-              confirmTextColor: confirmTextColor,
               cancelOnPress: onCancelPress,
               confirmOnPress: onConfirmPress,
             ),
@@ -82,7 +80,7 @@ class FDialog {
     String title,
     bool showClose = false,
     dynamic content,
-    String confirm = '確定',
+    dynamic confirm = '確定',
     int second = 3,
     Color confirmBgColor,
     Color confirmTextColor,
@@ -101,7 +99,6 @@ class FDialog {
               content: content,
               cancel: confirm,
               cancelBgColor: confirmBgColor,
-              cancelTextColor: confirmTextColor,
               cancelOnPress: onConfirmPress,
               second: second,
             ),
@@ -128,12 +125,10 @@ class _FDialog extends StatelessWidget {
   final String title;
   final bool showClose;
   final dynamic content;
-  final String cancel;
-  final String confirm;
+  final dynamic cancel;
+  final dynamic confirm;
   final Color cancelBgColor;
   final Color confirmBgColor;
-  final Color cancelTextColor;
-  final Color confirmTextColor;
   final VoidCallback cancelOnPress;
   final VoidCallback confirmOnPress;
   final int second;
@@ -146,8 +141,6 @@ class _FDialog extends StatelessWidget {
     this.confirm,
     this.cancelBgColor,
     this.confirmBgColor,
-    this.cancelTextColor,
-    this.confirmTextColor,
     this.cancelOnPress,
     this.confirmOnPress,
     this.second,
@@ -157,23 +150,11 @@ class _FDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> children = [];
     children.add(_titleView(context));
-    children.add(
-      Flexible(
-        child: _contentView(),
-      ),
-    );
-    children.add(
-      FDivider(),
-    );
-    children.add(
-      buttonView(context),
-    );
+    children.add(Flexible(child: _contentView()));
+    children.add(FDivider());
+    children.add(buttonView(context));
 
-    return IntrinsicHeight(
-      child: Column(
-        children: children,
-      ),
-    );
+    return IntrinsicHeight(child: Column(children: children));
   }
 
   Widget _titleView(BuildContext context) {
@@ -192,19 +173,13 @@ class _FDialog extends StatelessWidget {
 
     if (showClose ?? false) {
       List<Widget> children = [];
-      children.add(
-        SizedBox(width: 40, height: 40),
-      );
-      children.add(
-        Expanded(child: titleView),
-      );
+      children.add(SizedBox(width: 40, height: 40));
+      children.add(Expanded(child: titleView));
       children.add(IconButton(
         icon: Icon(Icons.close, size: 20),
         onPressed: () => hide(context),
       ));
-      return Row(
-        children: children,
-      );
+      return Row(children: children);
     } else {
       return titleView;
     }
@@ -212,18 +187,9 @@ class _FDialog extends StatelessWidget {
 
   Widget _contentView() {
     assert(content != null);
-    Widget child = SizedBox.shrink();
-    if (content is String) {
-      child = Text(
-        content,
-        style: TextStyle(fontSize: 16),
-      );
-    } else if (content is Widget) {
-      child = content;
-    }
     return Padding(
       padding: EdgeInsets.all(16),
-      child: child,
+      child: Util.getView(content),
     );
   }
 
@@ -232,7 +198,6 @@ class _FDialog extends StatelessWidget {
       return ReadingButton(
         second: second,
         bgColor: cancelBgColor,
-        textColor: cancelTextColor,
         button: cancel,
         tap: () => onCancel(context),
       );
@@ -250,13 +215,7 @@ class _FDialog extends StatelessWidget {
             ),
           ),
           alignment: Alignment.center,
-          child: Text(
-            cancel,
-            style: TextStyle(
-              color: cancelTextColor,
-              fontSize: 14,
-            ),
-          ),
+          child: Util.getView(cancel),
         ),
       );
     }
@@ -273,13 +232,7 @@ class _FDialog extends StatelessWidget {
           ),
           height: 42,
           alignment: Alignment.center,
-          child: Text(
-            cancel,
-            style: TextStyle(
-              color: cancelTextColor,
-              fontSize: 14,
-            ),
-          ),
+          child: Util.getView(cancel),
         ),
       ),
     ));
@@ -293,19 +246,11 @@ class _FDialog extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: confirmBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(_circular),
-            ),
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(_circular)),
           ),
           alignment: Alignment.center,
           height: 42,
-          child: Text(
-            confirm,
-            style: TextStyle(
-              color: confirmTextColor,
-              fontSize: 14,
-            ),
-          ),
+          child: Util.getView(confirm),
         ),
       ),
     ));
@@ -339,14 +284,12 @@ class _FDialog extends StatelessWidget {
 class ReadingButton extends StatefulWidget {
   final int second;
   final Color bgColor;
-  final Color textColor;
-  final String button;
+  final dynamic button;
   final VoidCallback tap;
 
   ReadingButton({
     this.second,
     this.bgColor,
-    this.textColor,
     this.button,
     this.tap,
   });
@@ -377,7 +320,7 @@ class ReadingButtonState extends State<ReadingButton> {
 
   @override
   Widget build(BuildContext context) {
-    String buttonValue = widget.button;
+    var buttonValue = widget.button;
     if (tempSecond > 0) {
       buttonValue = '$tempSecond s';
     }
@@ -390,25 +333,13 @@ class ReadingButtonState extends State<ReadingButton> {
         ),
       ),
       alignment: Alignment.center,
-      child: Text(
-        buttonValue,
-        style: TextStyle(
-          color: widget.textColor,
-          fontSize: 14,
-        ),
-      ),
+      child: Util.getView(buttonValue),
     );
 
     if (tempSecond > 0) {
-      child = Opacity(
-        opacity: 0.5,
-        child: child,
-      );
+      child = Opacity(opacity: 0.5, child: child);
     }
-    return InkWell(
-      onTap: onTap,
-      child: child,
-    );
+    return InkWell(onTap: onTap, child: child);
   }
 
   void onTap() {
