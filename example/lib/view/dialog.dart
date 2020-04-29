@@ -11,11 +11,6 @@ class DialogDemo extends StatefulWidget {
 
 class DialogDemoState extends State<DialogDemo> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Comm.getTitleBar(title: 'DialogDemo'),
@@ -147,10 +142,26 @@ class DialogDemoState extends State<DialogDemo> {
                 FDialog.showCustom(
                   context,
                   barrierDismissible: false,
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.red,
+                  child: Material(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      color: Colors.red,
+                      child: IntrinsicHeight(
+                        child: Column(children: [
+                          Image.asset('assets/comm/image1.jpeg'),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 60,
+                              alignment: Alignment.center,
+                              child: Text('点击关闭'),
+                            ),
+                          ),
+                        ]),
+                      ),
+                    ),
                   ),
                 );
               },
