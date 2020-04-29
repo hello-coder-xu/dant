@@ -9,5 +9,4 @@ class Model {
     this.context = state.context;
   }
 
-
 }
