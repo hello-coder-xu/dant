@@ -16,27 +16,32 @@ class RadioDemoState extends State<RadioDemo> {
     return Scaffold(
       appBar: Comm.getTitleBar(title: 'RadioDemo'),
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             FRadio(
               value: 1,
               groupValue: radioValue,
+              alignment: CrossAxisAlignment.start,
               onChanged: onChange,
-              child: 'Android',
+              child: '选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐',
             ),
+            SizedBox(height: 16),
             FRadio(
               value: 2,
               groupValue: radioValue,
               onChanged: onChange,
-              enable: true,
-              child:
-                  'java+++++java++++java+++java+++java++java++javajava+++++java++++java+++java+++java++java++javajava+++++java++++java+++java+++java++java++javajava+++++java++++java+++java+++java++java++java',
+              alignment: CrossAxisAlignment.center,
+              enable: false,
+              child: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐',
             ),
+            SizedBox(height: 16),
             FRadio(
               value: 3,
               groupValue: radioValue,
               onChanged: onChange,
+              alignment: CrossAxisAlignment.end,
               child: Column(
                 children: <Widget>[
                   IconButton(
@@ -45,7 +50,7 @@ class RadioDemoState extends State<RadioDemo> {
                       FToast.showToast(context, msg: 'icon');
                     },
                   ),
-                  Text('我是自定义视图'),
+                  Text('选择框底部对齐选择框底部对齐选择框底部对齐选择框底部对齐选择框底部对齐选择框底部对齐'),
                 ],
               ),
             ),

@@ -12,6 +12,7 @@ class FRadio<T> extends StatelessWidget {
   final Color activeColor;
   final Color focusColor;
   final Color hoverColor;
+  final CrossAxisAlignment alignment;
 
   FRadio({
     this.key,
@@ -19,12 +20,13 @@ class FRadio<T> extends StatelessWidget {
     this.groupValue,
     this.onChanged,
     this.child,
-    this.radioSize = 48,
-    this.padding = 0,
+    this.radioSize = 24,
+    this.padding = 8,
     this.enable = true,
     this.activeColor,
     this.focusColor,
     this.hoverColor,
+    this.alignment= CrossAxisAlignment.center,
   });
 
   @override
@@ -50,10 +52,7 @@ class FRadio<T> extends StatelessWidget {
     if (child is String) {
       contentView = GestureDetector(
         onTap: () => value != groupValue && enable ? onChanged(value) : null,
-        child: Text(
-          child,
-          style: TextStyle(fontSize: 14),
-        ),
+        child: Text(child, style: TextStyle(fontSize: 14)),
       );
     } else if (child is Widget) {
       contentView = GestureDetector(
@@ -61,23 +60,17 @@ class FRadio<T> extends StatelessWidget {
         child: child,
       );
     }
-    children.add(
-      Flexible(
-        child: contentView,
-      ),
-    );
+    children.add(Flexible(child: contentView));
 
     Widget rowView = Row(
       children: children,
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: alignment,
     );
 
     if (!enable) {
-      rowView = Opacity(
-        opacity: 0.8,
-        child: rowView,
-      );
+      rowView = Opacity(opacity: 0.8, child: rowView);
     }
     return IntrinsicWidth(child: rowView);
   }

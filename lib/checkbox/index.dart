@@ -13,20 +13,22 @@ class FCheckBox extends StatelessWidget {
   final Color checkColor;
   final Color hoverColor;
   final bool tristate;
+  final CrossAxisAlignment alignment;
 
   FCheckBox({
     this.key,
     this.value = false,
     this.onChanged,
     this.child,
-    this.checkBoxSize = 48,
-    this.padding = 0,
+    this.checkBoxSize = 24,
+    this.padding = 8,
     this.enable = true,
     this.activeColor,
     this.focusColor,
     this.hoverColor,
     this.checkColor,
     this.tristate = false,
+    this.alignment = CrossAxisAlignment.center,
   }) : super(key: key);
 
   @override
@@ -53,10 +55,7 @@ class FCheckBox extends StatelessWidget {
     if (child is String) {
       contentView = GestureDetector(
         onTap: () => enable ? onChanged(!value) : null,
-        child: Text(
-          child,
-          style: TextStyle(fontSize: 14),
-        ),
+        child: Text(child, style: TextStyle(fontSize: 14)),
       );
     } else if (child is Widget) {
       contentView = GestureDetector(
@@ -64,23 +63,17 @@ class FCheckBox extends StatelessWidget {
         child: child,
       );
     }
-    children.add(
-      Flexible(
-        child: contentView,
-      ),
-    );
+    children.add(Flexible(child: contentView));
 
     Widget rowView = Row(
       children: children,
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: alignment,
     );
 
     if (!enable) {
-      rowView = Opacity(
-        opacity: 0.8,
-        child: rowView,
-      );
+      rowView = Opacity(opacity: 0.8, child: rowView);
     }
     return IntrinsicWidth(
       child: rowView,
