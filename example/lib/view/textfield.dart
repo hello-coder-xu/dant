@@ -1,5 +1,5 @@
-
 import 'package:dant/dant.dart';
+import 'package:dant/textfield/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:example/comm/comm.dart';
@@ -40,7 +40,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               FTextField(
                 hint: '默认形式',
                 isPassword: true,
-                borderType: FTextFieldBorderType.round,
+                borderType: FTextFieldBorderType.roundLine,
                 textInputAction: TextInputAction.search,
                 onChanged: (value) {
                   print('test onChange=$value');
@@ -56,8 +56,8 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               FTextField(
                 hint: '默认形式',
                 borderColor: Colors.red,
-                borderRadius: 5,
-                borderType: FTextFieldBorderType.round,
+                borderRadius: 10,
+                borderType: FTextFieldBorderType.roundLine,
                 maxLine: null,
                 height: 50,
                 onChanged: (value) {
@@ -73,15 +73,20 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               ListTile(title: Text('图标+输入框')),
               FTextField(
                 hint: '默认形式',
+                fillColor: Colors.green,
                 borderColor: Colors.red,
                 borderRadius: 5,
+                borderType: FTextFieldBorderType.roundLine,
                 prefixIcon: Icon(Icons.search),
               ),
               ListTile(title: Text('文字+输入框')),
               FTextField(
-                hint: '默认形式',
+                hint: '多行显示',
                 borderColor: Colors.red,
-                borderRadius: 5,
+                maxLine: null,
+                contentPaddingTop: 0,
+                height: 200,
+                maxLength: 300,
                 icon: Text('账号：'),
               ),
               FButton(
