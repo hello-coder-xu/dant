@@ -31,6 +31,7 @@ class FTextField extends StatefulWidget {
   final VoidCallback onEditingComplete;
   final FocusNode focusNode;
   final String counterText;
+  final bool autofocus;
 
   FTextField({
     Key key,
@@ -60,6 +61,7 @@ class FTextField extends StatefulWidget {
     this.onEditingComplete,
     this.focusNode,
     this.counterText,
+    this.autofocus = false,
   }) : super(key: key);
 
   @override
@@ -89,6 +91,7 @@ class FTextFieldState extends State<FTextField> {
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
       focusNode: focusNode,
+      autofocus: widget.autofocus,
       inputFormatters: widget.inputFormatters,
       decoration: InputDecoration(
         icon: widget.icon,
