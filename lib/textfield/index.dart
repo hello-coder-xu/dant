@@ -245,7 +245,7 @@ class FTextFieldState extends State<FTextField> {
 
   //软键盘确认
   void onEditingComplete() {
-    FocusScope.of(context).unfocus();
+//    FocusScope.of(context).unfocus();
     if (widget.onEditingComplete != null) {
       widget.onEditingComplete();
     }
@@ -253,7 +253,7 @@ class FTextFieldState extends State<FTextField> {
 
   //软键盘确认
   void onSubmitted(String value) {
-    FocusScope.of(context).unfocus();
+//    FocusScope.of(context).unfocus();
     if (widget.onSubmitted != null) {
       widget.onSubmitted(value);
     }

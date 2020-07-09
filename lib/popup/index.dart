@@ -1,12 +1,7 @@
 import 'package:dant/popup/ftriangle.dart';
 import 'package:flutter/material.dart';
 
-enum FPopupPosition {
-  top,
-  left,
-  right,
-  bottom,
-}
+enum FPopupPosition { top, left, right, bottom }
 
 class FPopup {
   static Future show(
@@ -34,10 +29,7 @@ class FPopup {
         position: position,
       ),
     );
-    return Navigator.push(
-      context,
-      popRoute,
-    );
+    return Navigator.push(context, popRoute);
   }
 }
 
@@ -99,10 +91,10 @@ class FPopupViewState extends State<FPopupView> {
 
   //计算目标控件
   void calculateTag() {
-    RenderBox tagRenderBox = widget.tagKey.currentContext.findRenderObject();
-    Size tagSize = tagRenderBox.paintBounds.size;
-    tagWidth = tagSize.width;
-    tagHeight = tagSize.height;
+    RenderBox tagRenderBox = widget.tagKey.currentContext?.findRenderObject();
+    Size tagSize = tagRenderBox?.paintBounds?.size;
+    tagWidth = tagSize?.width ?? 0;
+    tagHeight = tagSize?.height ?? 0;
     tagOffset = tagRenderBox.localToGlobal(Offset.zero);
   }
 
@@ -214,7 +206,7 @@ class FPopupViewState extends State<FPopupView> {
     return FTriangle(
       width: widget.triangleWidth,
       height: widget.triangleHeight,
-      color: widget.color ?? Theme.of(context).textTheme.title.color,
+      color: widget.color,
       position: trianglePosition,
     );
   }
@@ -223,17 +215,10 @@ class FPopupViewState extends State<FPopupView> {
     return Container(
       key: globalKey,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(widget.angle),
-        ),
-        color: widget.color ?? Theme.of(context).textTheme.title.color,
+        borderRadius: BorderRadius.all(Radius.circular(widget.angle)),
+        color: widget.color,
       ),
-      child: DefaultTextStyle(
-        style: TextStyle(
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: widget.child,
-      ),
+      child: widget.child,
     );
   }
 
@@ -259,9 +244,7 @@ class FPopupViewState extends State<FPopupView> {
 
     return Material(
       color: Colors.transparent,
-      child: Stack(
-        children: children,
-      ),
+      child: Stack(children: children),
     );
   }
 
@@ -286,11 +269,7 @@ class PopRoute extends PopupRoute {
   String get barrierLabel => null;
 
   @override
-  Widget buildPage(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-  ) {
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     return child;
   }
 
