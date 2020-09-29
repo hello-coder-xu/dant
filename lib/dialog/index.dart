@@ -23,17 +23,20 @@ class FDialog {
         context: context,
         barrierDismissible: barrierDismissible,
         builder: (context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.zero,
-            content: _FDialog(
-              title: title,
-              showClose: showClose,
-              content: content,
-              cancel: confirm,
-              cancelBgColor: confirmBgColor,
-              cancelOnPress: onPress,
+          return WillPopScope(
+            onWillPop: () async => barrierDismissible,
+            child: AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              content: _FDialog(
+                title: title,
+                showClose: showClose,
+                content: content,
+                cancel: confirm,
+                cancelBgColor: confirmBgColor,
+                cancelOnPress: onPress,
+              ),
+              shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             ),
-            shape: RoundedRectangleBorder(borderRadius: _borderRadius),
           );
         });
   }
@@ -57,20 +60,23 @@ class FDialog {
         context: context,
         barrierDismissible: barrierDismissible,
         builder: (context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.zero,
-            content: _FDialog(
-              title: title,
-              showClose: showClose,
-              content: content,
-              cancel: cancel,
-              confirm: confirm,
-              cancelBgColor: cancelBgColor,
-              confirmBgColor: confirmBgColor,
-              cancelOnPress: onCancelPress,
-              confirmOnPress: onConfirmPress,
+          return WillPopScope(
+            onWillPop: () async => barrierDismissible,
+            child: AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              content: _FDialog(
+                title: title,
+                showClose: showClose,
+                content: content,
+                cancel: cancel,
+                confirm: confirm,
+                cancelBgColor: cancelBgColor,
+                confirmBgColor: confirmBgColor,
+                cancelOnPress: onCancelPress,
+                confirmOnPress: onConfirmPress,
+              ),
+              shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             ),
-            shape: RoundedRectangleBorder(borderRadius: _borderRadius),
           );
         });
   }
@@ -91,18 +97,21 @@ class FDialog {
         context: context,
         barrierDismissible: barrierDismissible,
         builder: (context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.zero,
-            content: _FDialog(
-              title: title,
-              showClose: showClose,
-              content: content,
-              cancel: confirm,
-              cancelBgColor: confirmBgColor,
-              cancelOnPress: onConfirmPress,
-              second: second,
+          return WillPopScope(
+            onWillPop: () async => barrierDismissible,
+            child: AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              content: _FDialog(
+                title: title,
+                showClose: showClose,
+                content: content,
+                cancel: confirm,
+                cancelBgColor: confirmBgColor,
+                cancelOnPress: onConfirmPress,
+                second: second,
+              ),
+              shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             ),
-            shape: RoundedRectangleBorder(borderRadius: _borderRadius),
           );
         });
   }
