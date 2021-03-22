@@ -1,4 +1,3 @@
-
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +30,10 @@ class NumberDemoState extends State<NumberDemo> {
               min: -10,
               max: 99,
               step: 2,
+              canToOperation: (index) {
+                print('test index=$index');
+                return index > 2;
+              },
               onChange: (num) {
                 print('test num=$num');
               },
