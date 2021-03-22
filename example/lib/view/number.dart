@@ -2,6 +2,7 @@ import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:example/comm/comm.dart';
+import 'dart:math' as math;
 
 class NumberDemo extends StatefulWidget {
   @override
@@ -9,6 +10,11 @@ class NumberDemo extends StatefulWidget {
 }
 
 class NumberDemoState extends State<NumberDemo> {
+  int number1 = 0;
+  int min = 2;
+  int max = 6;
+  int stock = 4;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,36 +22,31 @@ class NumberDemoState extends State<NumberDemo> {
       body: Center(
         child: Column(
           children: <Widget>[
-            ListTile(title: Text('默认min:0,max:999,可编辑')),
+            ListTile(title: Text('默认min:0,max:10,可编辑')),
             FNumber(
-              disableInput: false,
-              onChange: (num) {
-                print('test num=$num');
+              defaultValue: number1,
+              canRemove: number1 >= math.max(1, min),
+              canAdd: number1 <= math.min(10, max),
+              onAdd: () {
+                int temp = math.min(10, max);
+                print('test onAdd number1=$number1 temp=$temp');
+                if (number1 >= temp) {
+                  FToast.showToast(context, msg: '选择数量不能超过$temp个');
+                  return;
+                }
+                number1 += 1;
+                setState(() {});
               },
-            ),
-            SizedBox(height: 16),
-            ListTile(title: Text('min:-10,max:99,不可编辑,每次以2变化')),
-            FNumber(
-              disableInput: true,
-              min: -10,
-              max: 99,
-              step: 2,
-              canToOperation: (index) {
-                print('test index=$index');
-                return index > 2;
-              },
-              onChange: (num) {
-                print('test num=$num');
-              },
-            ),
-            ListTile(title: Text('min:-10,max:99,不可编辑,每次以2变化')),
-            FNumber(
-              disableInput: true,
-              min: -10,
-              max: 99,
-              step: 2,
-              onChange: (num) {
-                print('test num=$num');
+              onRemove: () {
+                int temp = math.max(1, min);
+                print('test onRemove number1=$number1 temp=$temp');
+
+                if (number1 <= temp) {
+                  FToast.showToast(context, msg: '选择数量不能少于$temp个');
+                  return;
+                }
+                number1 -= 1;
+                setState(() {});
               },
             ),
           ],
