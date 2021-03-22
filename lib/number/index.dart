@@ -10,7 +10,6 @@ class FNumber extends StatefulWidget {
   final num defaultValue;
   final int min;
   final int max;
-  final bool Function(int index) canToOperation;
   final int step;
   final bool disableInput;
   final ValueChanged<int> onChange;
@@ -21,10 +20,10 @@ class FNumber extends StatefulWidget {
     this.min = 0,
     this.max = 999,
     this.step = 1,
-    this.canToOperation,
     this.disableInput = false,
     this.onChange,
-  })  : assert(step >= 1),
+  })  : assert(max >= min),
+        assert(step >= 1),
         super(key: key);
 
   @override
@@ -117,8 +116,10 @@ class FNumberState extends State<FNumber> {
   void onRemove() {
     unFocus();
     int number = getNumber();
-    number = math.max(widget.min, number - widget.step);
-    if (widget.canToOperation != null && !widget.canToOperation(number)) return;
+    number = math.max(
+      widget.min,
+      number - widget.step,
+    );
     if (number != recordNumber) {
       updateControllerValue(number);
     }
@@ -127,8 +128,10 @@ class FNumberState extends State<FNumber> {
   void onAdd() {
     unFocus();
     int number = getNumber();
-    number = math.min(widget.max, number + widget.step);
-    if (widget.canToOperation != null && !widget.canToOperation(number)) return;
+    number = math.min(
+      widget.max,
+      number + widget.step,
+    );
     if (number != recordNumber) {
       updateControllerValue(number);
     }
@@ -153,7 +156,6 @@ class FNumberState extends State<FNumber> {
     num number = getNumber();
     enableMin = number != widget.min;
     enableMax = number != widget.max;
-    if (widget.canToOperation != null && !widget.canToOperation(number)) return;
     if (number != recordNumber) {
       if (enableMax || enableMin) {
         recordNumber = number;
