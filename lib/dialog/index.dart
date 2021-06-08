@@ -1,11 +1,6 @@
 import 'dart:async';
-import 'package:dant/comm/util.dart';
-import 'package:dant/dant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-double _circular = 5.0;
-BorderRadius _borderRadius = BorderRadius.circular(_circular);
 
 class FDialog {
   static void showAlert(
@@ -15,27 +10,32 @@ class FDialog {
     dynamic confirm = '知道了',
     Color confirmBgColor,
     Color confirmTextColor,
-    bool showClose = false,
-    VoidCallback onPress,
+    VoidCallback onConfirmPress,
+    bool Function() interceptConfirm,
     bool barrierDismissible = true,
+    bool scrollable = true,
+    bool useRootNavigator = false,
   }) {
     showDialog(
         context: context,
         barrierDismissible: barrierDismissible,
+        useRootNavigator: useRootNavigator,
         builder: (context) {
           return WillPopScope(
             onWillPop: () async => barrierDismissible,
             child: AlertDialog(
               contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.antiAlias,
+              scrollable: scrollable,
               content: _FDialog(
                 title: title,
-                showClose: showClose,
                 content: content,
-                cancel: confirm,
-                cancelBgColor: confirmBgColor,
-                cancelOnPress: onPress,
+                confirm: confirm,
+                confirmBgColor: confirmBgColor,
+                confirmTextColor: confirmTextColor,
+                onConfirmPress: onConfirmPress,
+                interceptConfirm: interceptConfirm,
               ),
-              shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             ),
           );
         });
@@ -44,38 +44,45 @@ class FDialog {
   static void showConfirm(
     BuildContext context, {
     String title,
-    bool showClose = false,
     dynamic content,
-    dynamic cancel = '取消',
-    dynamic confirm = '確定',
+    String cancel = '取消',
+    String confirm = '確定',
     Color cancelBgColor,
     Color confirmBgColor,
     Color cancelTextColor,
     Color confirmTextColor,
     VoidCallback onCancelPress,
     VoidCallback onConfirmPress,
+    bool Function() interceptCancel,
+    bool Function() interceptConfirm,
     bool barrierDismissible = true,
+    bool scrollable = true,
+    bool useRootNavigator = false,
   }) {
     showDialog(
         context: context,
         barrierDismissible: barrierDismissible,
+        useRootNavigator: useRootNavigator,
         builder: (context) {
           return WillPopScope(
             onWillPop: () async => barrierDismissible,
             child: AlertDialog(
               contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.antiAlias,
+              scrollable: scrollable,
               content: _FDialog(
                 title: title,
-                showClose: showClose,
                 content: content,
                 cancel: cancel,
                 confirm: confirm,
                 cancelBgColor: cancelBgColor,
                 confirmBgColor: confirmBgColor,
-                cancelOnPress: onCancelPress,
-                confirmOnPress: onConfirmPress,
+                confirmTextColor: confirmTextColor,
+                onCancelPress: onCancelPress,
+                onConfirmPress: onConfirmPress,
+                interceptConfirm: interceptConfirm,
+                interceptCancel: interceptCancel,
               ),
-              shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             ),
           );
         });
@@ -84,187 +91,213 @@ class FDialog {
   static void showReading(
     BuildContext context, {
     String title,
-    bool showClose = false,
     dynamic content,
-    dynamic confirm = '確定',
+    String confirm = '確定',
     int second = 3,
     Color confirmBgColor,
     Color confirmTextColor,
     VoidCallback onConfirmPress,
+    bool Function() interceptCancel,
+    bool Function() interceptConfirm,
     bool barrierDismissible = true,
+    bool scrollable = true,
+    bool useRootNavigator = false,
   }) {
     showDialog(
         context: context,
         barrierDismissible: barrierDismissible,
+        useRootNavigator: useRootNavigator,
         builder: (context) {
           return WillPopScope(
             onWillPop: () async => barrierDismissible,
             child: AlertDialog(
               contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.antiAlias,
+              scrollable: scrollable,
               content: _FDialog(
                 title: title,
-                showClose: showClose,
                 content: content,
-                cancel: confirm,
-                cancelBgColor: confirmBgColor,
-                cancelOnPress: onConfirmPress,
+                confirm: confirm,
+                confirmBgColor: confirmBgColor,
+                onConfirmPress: onConfirmPress,
+                interceptConfirm: interceptConfirm,
                 second: second,
+                isReadDialog: true,
               ),
-              shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             ),
           );
-        });
-  }
-
-  static void showCustom(
-    BuildContext context, {
-    Widget child,
-    bool barrierDismissible = true,
-  }) {
-    showDialog(
-        context: context,
-        barrierDismissible: barrierDismissible,
-        builder: (context) {
-          return _FCustomDialog(child: child);
         });
   }
 }
 
 class _FDialog extends StatelessWidget {
   final String title;
-  final bool showClose;
   final dynamic content;
-  final dynamic cancel;
-  final dynamic confirm;
+  final String cancel;
+  final String confirm;
   final Color cancelBgColor;
   final Color confirmBgColor;
-  final VoidCallback cancelOnPress;
-  final VoidCallback confirmOnPress;
+  final Color cancelTextColor;
+  final Color confirmTextColor;
+  final VoidCallback onCancelPress;
+  final VoidCallback onConfirmPress;
+  final bool Function() interceptCancel;
+  final bool Function() interceptConfirm;
   final int second;
+  final bool isReadDialog;
 
   _FDialog({
     @required this.content,
     this.title,
-    this.showClose = false,
     this.cancel,
     this.confirm,
     this.cancelBgColor,
     this.confirmBgColor,
-    this.cancelOnPress,
-    this.confirmOnPress,
+    this.cancelTextColor,
+    this.confirmTextColor,
+    this.onCancelPress,
+    this.onConfirmPress,
+    this.interceptCancel,
+    this.interceptConfirm,
     this.second,
+    this.isReadDialog = false,
   });
+
+  ///标题视图
+  Widget dialogTopTitleView() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.only(left: 24, right: 24, bottom: 8),
+      height: 40,
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.black87,
+        ),
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  ///内容视图
+  Widget dialogTopContentView(BuildContext context) {
+    Widget child;
+    TextStyle textStyle = TextStyle(
+      fontSize: 16,
+      color: Colors.black87,
+    );
+    if (content.runtimeType == String) {
+      child = Text(
+        '$content',
+        style: textStyle,
+      );
+    } else {
+      child = DefaultTextStyle(
+        child: content,
+        style: textStyle,
+      );
+    }
+    //最大高度-底部按钮高度-内容视图上下间距-标题高度-分割线
+    // double tempHeight = MediaQuery.of(context).size.height * 0.6 - 48 - 24 - 40 - 1;
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      constraints: BoxConstraints(minHeight: 48),
+      child: child,
+    );
+  }
+
+  /// 标题与内容视图
+  Widget dialogTitleAndContentView(BuildContext context) {
+    List<Widget> children = [];
+    if (title != null) {
+      children.add(dialogTopTitleView());
+    }
+    children.add(dialogTopContentView(context));
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 12),
+      child: Column(children: children),
+    );
+  }
+
+  ///按钮视图
+  Widget dialogBottomView(BuildContext context) {
+    double tempHeight = 48;
+    if (isReadDialog) {
+      return Container(
+        height: tempHeight,
+        child: ReadingButton(
+          second: second,
+          confirm: confirm,
+          confirmTextColor: confirmTextColor,
+          confirmBgColor: confirmBgColor,
+          onConfirmPress: onConfirmPress,
+          interceptConfirm: interceptConfirm,
+        ),
+      );
+    } else {
+      List<Widget> children = [];
+      if (cancel != null) {
+        children.add(Expanded(
+          child: GestureDetector(
+            onTap: () => onCancel(context),
+            child: Container(
+              height: tempHeight,
+              color: cancelBgColor ?? Colors.white,
+              alignment: Alignment.center,
+              child: Text(
+                cancel,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: cancelTextColor ?? Colors.black54,
+                ),
+              ),
+            ),
+          ),
+        ));
+        children.add(VerticalDivider(width: 1));
+      }
+
+      children.add(Expanded(
+        child: GestureDetector(
+          onTap: () => onConfirm(context),
+          child: Container(
+            height: tempHeight,
+            color: confirmBgColor ?? Colors.white,
+            alignment: Alignment.center,
+            child: Text(
+              confirm,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: confirmTextColor ?? Colors.black87,
+              ),
+            ),
+          ),
+        ),
+      ));
+      return Container(
+        height: tempHeight,
+        child: Row(children: children),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    children.add(_titleView(context));
-    children.add(Flexible(child: _contentView()));
-    children.add(FDivider());
-    children.add(buttonView(context));
-
-    return IntrinsicHeight(child: Column(children: children));
-  }
-
-  Widget _titleView(BuildContext context) {
-    if (title == null) return SizedBox.shrink();
-
-    Widget titleView = Container(
-      alignment: Alignment.center,
-      constraints: BoxConstraints(minHeight: 40),
-      child: Text(
-        title,
-        style: TextStyle(fontSize: 16),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
+    children.add(dialogTitleAndContentView(context));
+    children.add(Divider(height: 1));
+    children.add(dialogBottomView(context));
+    return Container(
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width * 0.8,
       ),
+      child: Column(children: children),
     );
-
-    if (showClose ?? false) {
-      List<Widget> children = [];
-      children.add(SizedBox(width: 40, height: 40));
-      children.add(Expanded(child: titleView));
-      children.add(IconButton(
-        icon: Icon(Icons.close, size: 20),
-        onPressed: () => hide(context),
-      ));
-      return Row(children: children);
-    } else {
-      return titleView;
-    }
-  }
-
-  Widget _contentView() {
-    assert(content != null);
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Util.getView(content),
-    );
-  }
-
-  Widget buttonView(BuildContext context) {
-    if (second != null) {
-      return ReadingButton(
-        second: second,
-        bgColor: cancelBgColor,
-        button: cancel,
-        tap: () => onCancel(context),
-      );
-    }
-
-    if (confirm == null) {
-      return InkWell(
-        onTap: () => onCancel(context),
-        child: Container(
-          height: 42,
-          decoration: BoxDecoration(
-            color: cancelBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(_circular),
-            ),
-          ),
-          alignment: Alignment.center,
-          child: Util.getView(cancel),
-        ),
-      );
-    }
-    List<Widget> children = [];
-    children.add(Expanded(
-      child: InkWell(
-        onTap: () => onCancel(context),
-        child: Container(
-          decoration: BoxDecoration(
-            color: cancelBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(_circular),
-            ),
-          ),
-          height: 42,
-          alignment: Alignment.center,
-          child: Util.getView(cancel),
-        ),
-      ),
-    ));
-    children.add(Container(
-      height: 16,
-      child: FDivider(type: FDividerType.vertical),
-    ));
-    children.add(Expanded(
-      child: InkWell(
-        onTap: () => onConfirm(context),
-        child: Container(
-          decoration: BoxDecoration(
-            color: confirmBgColor ?? Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(_circular)),
-          ),
-          alignment: Alignment.center,
-          height: 42,
-          child: Util.getView(confirm),
-        ),
-      ),
-    ));
-
-    return Row(children: children);
   }
 
   //关闭会话框
@@ -274,17 +307,31 @@ class _FDialog extends StatelessWidget {
 
   //取消
   void onCancel(BuildContext context) {
-    hide(context);
-    if (cancelOnPress != null) {
-      cancelOnPress();
+    if (interceptCancel == null) {
+      hide(context);
+      if (onCancelPress != null) {
+        onCancelPress();
+      }
+    } else {
+      bool tempCancel = interceptCancel();
+      if (tempCancel) {
+        hide(context);
+      }
     }
   }
 
   //确定
   void onConfirm(BuildContext context) {
-    hide(context);
-    if (confirmOnPress != null) {
-      confirmOnPress();
+    if (interceptConfirm == null) {
+      hide(context);
+      if (onConfirmPress != null) {
+        onConfirmPress();
+      }
+    } else {
+      bool tempConfirm = interceptConfirm();
+      if (tempConfirm) {
+        hide(context);
+      }
     }
   }
 }
@@ -292,15 +339,19 @@ class _FDialog extends StatelessWidget {
 ///阅读按钮
 class ReadingButton extends StatefulWidget {
   final int second;
-  final Color bgColor;
-  final dynamic button;
-  final VoidCallback tap;
+  final Color confirmBgColor;
+  final Color confirmTextColor;
+  final String confirm;
+  final VoidCallback onConfirmPress;
+  final bool Function() interceptConfirm;
 
   ReadingButton({
     this.second,
-    this.bgColor,
-    this.button,
-    this.tap,
+    this.confirmBgColor,
+    this.confirmTextColor,
+    this.confirm,
+    this.onConfirmPress,
+    this.interceptConfirm,
   });
 
   @override
@@ -329,32 +380,46 @@ class ReadingButtonState extends State<ReadingButton> {
 
   @override
   Widget build(BuildContext context) {
-    var buttonValue = widget.button;
+    var buttonValue = widget.confirm ?? '确定';
     if (tempSecond > 0) {
       buttonValue = '$tempSecond s';
     }
-    Widget child = Container(
-      height: 42,
-      decoration: BoxDecoration(
-        color: widget.bgColor ?? Theme.of(context).backgroundColor,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(_circular),
+    Color textColor = tempSecond > 0 ? Colors.black54 : widget.confirmTextColor ?? Colors.black87;
+    return GestureDetector(
+      onTap: confirmPress,
+      child: Container(
+        color: widget.confirmBgColor ?? Colors.white,
+        height: 48,
+        alignment: Alignment.center,
+        child: Text(
+          buttonValue,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 14,
+            color: textColor,
+          ),
         ),
       ),
-      alignment: Alignment.center,
-      child: Util.getView(buttonValue),
     );
-
-    if (tempSecond > 0) {
-      child = Opacity(opacity: 0.5, child: child);
-    }
-    return InkWell(onTap: onTap, child: child);
   }
 
-  void onTap() {
+  //关闭会话框
+  void hide(BuildContext context) {
+    Navigator.pop(context);
+  }
+
+  void confirmPress() async {
     if (tempSecond > 0) return;
-    if (widget.tap != null) {
-      widget.tap();
+    if (widget.interceptConfirm == null) {
+      hide(context);
+      if (widget.onConfirmPress != null) {
+        widget.onConfirmPress();
+      }
+    } else {
+      bool tempConfirm = widget.interceptConfirm();
+      if (tempConfirm) {
+        hide(context);
+      }
     }
   }
 
@@ -362,19 +427,5 @@ class ReadingButtonState extends State<ReadingButton> {
   void dispose() {
     timer?.cancel();
     super.dispose();
-  }
-}
-
-///自定义
-class _FCustomDialog extends StatelessWidget {
-  final Widget child;
-
-  _FCustomDialog({this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> children = [];
-    children.add(child);
-    return Stack(children: children, alignment: Alignment.center);
   }
 }

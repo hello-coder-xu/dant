@@ -10,6 +10,8 @@ class DialogDemo extends StatefulWidget {
 }
 
 class DialogDemoState extends State<DialogDemo> {
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,22 +23,11 @@ class DialogDemoState extends State<DialogDemo> {
             FButton(
               child: 'alert 无标题',
               onPressed: () {
-                FDialog.showAlert(context, content: 'hello');
-              },
-            ),
-            SizedBox(height: 16),
-            FButton(
-              child: 'alert 有标题 有X',
-              onPressed: () {
                 FDialog.showAlert(
                   context,
-                  content: 'hello,hello,hello,hello,hello,hello,hello,hello,hello,hello',
-                  title: '提示',
-                  showClose: true,
-                  confirm: Text('好的', style: TextStyle(color: Colors.red)),
-                  onPress: () {
-                    FToast.showToast(context, msg: 'alert 有标题 有X');
-                  },
+                  content: 'hello',
+                  confirmTextColor: Colors.white,
+                  confirmBgColor: Colors.deepOrange,
                 );
               },
             ),
@@ -47,7 +38,11 @@ class DialogDemoState extends State<DialogDemo> {
                 FDialog.showConfirm(
                   context,
                   content: '我是一个内容',
-                  title: '提示',
+                  title: '提示提示提示提示提示提示提示提示提示提示提示提示提示提示提示提示提示提示',
+                  confirm: '提交',
+                  cancel: '我知道了',
+                  confirmTextColor: Colors.white,
+                  confirmBgColor: Colors.blue,
                   onCancelPress: () {
                     FToast.showToast(context, msg: '取消');
                   },
@@ -79,47 +74,44 @@ class DialogDemoState extends State<DialogDemo> {
               onPressed: () {
                 FDialog.showConfirm(
                   context,
-                  content: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Text('输入说明：'),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: '请输入内容',
+                  content: Column(
+                    children: <Widget>[
+                      Text('输入说明：'),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: '请输入内容',
+                        ),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Checkbox(
+                            value: false,
+                            onChanged: (value) {},
                           ),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Checkbox(
-                              value: false,
-                              onChanged: (value) {},
-                            ),
-                            Expanded(child: Text('服务条款，应用规则')),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Radio(
-                              value: true,
-                              groupValue: '1',
-                              onChanged: (value) {},
-                            ),
-                            Expanded(child: Text('服务条款，应用规则，服务条款，应用规则，服务条款，应用规则，服务条款，应用规则')),
-                          ],
-                        ),
-                        Container(
-                          height: 200,
-                          color: Colors.blue,
-                        ),
-                        Container(
-                          height: 400,
-                          color: Colors.red,
-                        ),
-                      ],
-                    ),
+                          Expanded(child: Text('服务条款，应用规则')),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Radio(
+                            value: true,
+                            groupValue: '1',
+                            onChanged: (value) {},
+                          ),
+                          Expanded(child: Text('服务条款，应用规则，服务条款，应用规则，服务条款，应用规则，服务条款，应用规则')),
+                        ],
+                      ),
+                      Container(
+                        height: 200,
+                        color: Colors.blue,
+                      ),
+                      Container(
+                        height: 400,
+                        color: Colors.red,
+                      ),
+                    ],
                   ),
                   title: '提示',
-                  showClose: true,
                   cancel: '我的知道了',
                   confirm: '前往',
                   cancelBgColor: Colors.red,
@@ -137,32 +129,23 @@ class DialogDemoState extends State<DialogDemo> {
             ),
             SizedBox(height: 16),
             FButton(
-              child: '全部自定义',
+              child: '按钮拦截',
               onPressed: () {
-                FDialog.showCustom(
+                FDialog.showConfirm(
                   context,
-                  barrierDismissible: false,
-                  child: Material(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      color: Colors.red,
-                      child: IntrinsicHeight(
-                        child: Column(children: [
-                          Image.asset('assets/comm/image1.jpeg'),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              height: 60,
-                              alignment: Alignment.center,
-                              child: Text('点击关闭'),
-                            ),
-                          ),
-                        ]),
-                      ),
-                    ),
-                  ),
+                  content: '我是一个内容',
+                  title: '提示',
+                  confirm: '提交',
+                  cancel: '我知道了',
+                  confirmTextColor: Colors.white,
+                  confirmBgColor: Colors.blue,
+                  onCancelPress: () {
+                    FToast.showToast(context, msg: '取消');
+                  },
+                  onConfirmPress: () {
+                    FToast.showToast(context, msg: '确认');
+                  },
+                  interceptConfirm: interceptConfirm,
                 );
               },
             ),
@@ -170,5 +153,12 @@ class DialogDemoState extends State<DialogDemo> {
         ),
       ),
     );
+  }
+
+  bool interceptConfirm() {
+    if (index > 4) return true;
+    index += 1;
+    FToast.showToast(context, msg: 'index未大于3');
+    return false;
   }
 }
