@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  synchronized: 3.0.0  #同步锁
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

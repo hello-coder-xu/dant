@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:synchronized/synchronized.dart';
 
 class FDialog {
   static void showAlert(
@@ -11,7 +12,7 @@ class FDialog {
     Color confirmBgColor,
     Color confirmTextColor,
     VoidCallback onConfirmPress,
-    bool Function() interceptConfirm,
+    Future<bool> Function() interceptConfirm,
     bool barrierDismissible = true,
     bool scrollable = true,
     bool useRootNavigator = false,
@@ -53,8 +54,8 @@ class FDialog {
     Color confirmTextColor,
     VoidCallback onCancelPress,
     VoidCallback onConfirmPress,
-    bool Function() interceptCancel,
-    bool Function() interceptConfirm,
+    Future<bool> Function() interceptCancel,
+    Future<bool> Function() interceptConfirm,
     bool barrierDismissible = true,
     bool scrollable = true,
     bool useRootNavigator = false,
@@ -97,8 +98,8 @@ class FDialog {
     Color confirmBgColor,
     Color confirmTextColor,
     VoidCallback onConfirmPress,
-    bool Function() interceptCancel,
-    bool Function() interceptConfirm,
+    Future<bool> Function() interceptCancel,
+    Future<bool> Function() interceptConfirm,
     bool barrierDismissible = true,
     bool scrollable = true,
     bool useRootNavigator = false,
@@ -141,10 +142,13 @@ class _FDialog extends StatelessWidget {
   final Color confirmTextColor;
   final VoidCallback onCancelPress;
   final VoidCallback onConfirmPress;
-  final bool Function() interceptCancel;
-  final bool Function() interceptConfirm;
+  final Future<bool> Function() interceptCancel;
+  final Future<bool> Function() interceptConfirm;
   final int second;
   final bool isReadDialog;
+
+  //同步锁
+  final Lock lock = Lock();
 
   _FDialog({
     @required this.content,
@@ -306,32 +310,40 @@ class _FDialog extends StatelessWidget {
   }
 
   //取消
-  void onCancel(BuildContext context) {
+  void onCancel(BuildContext context) async {
     if (interceptCancel == null) {
       hide(context);
       if (onCancelPress != null) {
         onCancelPress();
       }
     } else {
-      bool tempCancel = interceptCancel();
-      if (tempCancel) {
-        hide(context);
-      }
+      //防止重复点击
+      if (lock.locked) return;
+      lock.synchronized(() async {
+        bool tempCancel = await interceptCancel();
+        if (tempCancel) {
+          hide(context);
+        }
+      });
     }
   }
 
   //确定
-  void onConfirm(BuildContext context) {
+  void onConfirm(BuildContext context) async {
     if (interceptConfirm == null) {
       hide(context);
       if (onConfirmPress != null) {
         onConfirmPress();
       }
     } else {
-      bool tempConfirm = interceptConfirm();
-      if (tempConfirm) {
-        hide(context);
-      }
+      //防止重复点击
+      if (lock.locked) return;
+      lock.synchronized(() async {
+        bool tempConfirm = await interceptConfirm();
+        if (tempConfirm) {
+          hide(context);
+        }
+      });
     }
   }
 }
@@ -343,7 +355,7 @@ class ReadingButton extends StatefulWidget {
   final Color confirmTextColor;
   final String confirm;
   final VoidCallback onConfirmPress;
-  final bool Function() interceptConfirm;
+  final Future<bool> Function() interceptConfirm;
 
   ReadingButton({
     this.second,
@@ -361,6 +373,9 @@ class ReadingButton extends StatefulWidget {
 class ReadingButtonState extends State<ReadingButton> {
   int tempSecond;
   Timer timer;
+
+  //同步锁
+  final Lock lock = Lock();
 
   @override
   void initState() {
@@ -416,10 +431,14 @@ class ReadingButtonState extends State<ReadingButton> {
         widget.onConfirmPress();
       }
     } else {
-      bool tempConfirm = widget.interceptConfirm();
-      if (tempConfirm) {
-        hide(context);
-      }
+      //防止重复点击
+      if (lock.locked) return;
+      lock.synchronized(() async {
+        bool tempConfirm = await widget.interceptConfirm();
+        if (tempConfirm) {
+          hide(context);
+        }
+      });
     }
   }
 

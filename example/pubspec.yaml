@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  synchronized: ^2.2.0
+  synchronized: 3.0.0  #同步锁
   dant:
     path: ../
 

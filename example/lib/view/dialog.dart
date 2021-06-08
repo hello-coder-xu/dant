@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:dant/button/index.dart';
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
-
 import 'package:example/comm/comm.dart';
 
 class DialogDemo extends StatefulWidget {
@@ -49,6 +50,8 @@ class DialogDemoState extends State<DialogDemo> {
                   onConfirmPress: () {
                     FToast.showToast(context, msg: '确认');
                   },
+                  interceptConfirm: interceptConfirm,
+                  interceptCancel: interceptConfirm,
                 );
               },
             ),
@@ -155,10 +158,13 @@ class DialogDemoState extends State<DialogDemo> {
     );
   }
 
-  bool interceptConfirm() {
-    if (index > 4) return true;
-    index += 1;
-    FToast.showToast(context, msg: 'index未大于3');
-    return false;
+  Future<bool> interceptConfirm() async {
+    await Future.delayed(Duration(seconds: 4));
+    print('test -----');
+    return Future.value(true);
+    // if (index > 4) return Future.value(true);
+    // index += 1;
+    // FToast.showToast(context, msg: 'index未大于3');
+    // return Future.value(false);
   }
 }
