@@ -8,7 +8,7 @@ class FDialog {
     BuildContext context, {
     String title,
     dynamic content,
-    dynamic confirm = '知道了',
+    String confirm = '知道了',
     Color confirmBgColor,
     Color confirmTextColor,
     VoidCallback onConfirmPress,
