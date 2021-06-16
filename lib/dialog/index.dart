@@ -298,7 +298,7 @@ class _FDialog extends StatelessWidget {
     children.add(dialogBottomView(context));
     return Container(
       constraints: BoxConstraints(
-        minWidth: MediaQuery.of(context).size.width * 0.8,
+        minWidth: MediaQuery.of(context).size.width * 0.9,
       ),
       child: Column(children: children),
     );
