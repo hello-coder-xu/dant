@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const double _KDefaultButtonSize = 30;
-const double _KDefaultSpace = 8;
+const double _KDefaultSpace = 10;
 
 class FNumber extends StatelessWidget {
   final num defaultValue;
@@ -9,6 +9,12 @@ class FNumber extends StatelessWidget {
   final bool canRemove;
   final VoidCallback onAdd;
   final VoidCallback onRemove;
+  final Color addEnableColor;
+  final Color addUnableColor;
+  final Color removeEnableColor;
+  final Color removeUnableColor;
+  final Color bgColor;
+  final TextStyle textStyle;
 
   FNumber({
     this.defaultValue = 0,
@@ -16,6 +22,12 @@ class FNumber extends StatelessWidget {
     this.canRemove,
     this.onAdd,
     this.onRemove,
+    this.addEnableColor = Colors.deepOrange,
+    this.addUnableColor = const Color(0xff333333),
+    this.removeEnableColor = Colors.deepOrange,
+    this.removeUnableColor = const Color(0xff333333),
+    this.bgColor = const Color(0xffF5F5F5),
+    this.textStyle,
   });
 
   @override
@@ -28,7 +40,11 @@ class FNumber extends StatelessWidget {
       alignment: Alignment.center,
       child: TextButton(
         onPressed: canRemove ? onRemove : null,
-        child: Icon(Icons.remove),
+        child: Icon(
+          Icons.remove,
+          color: canRemove ? removeEnableColor : removeUnableColor,
+          size: 24,
+        ),
         style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
       ),
     ));
@@ -37,13 +53,20 @@ class FNumber extends StatelessWidget {
 
     children.add(Container(
       height: _KDefaultButtonSize,
-      width: 36,
+      width: 40,
       decoration: BoxDecoration(
-        color: DividerTheme.of(context).color ?? Theme.of(context).dividerColor,
-        borderRadius: BorderRadius.circular(3),
+        color: bgColor,
+        borderRadius: BorderRadius.circular(5),
       ),
       alignment: Alignment.center,
-      child: Text('$defaultValue'),
+      child: Text(
+        '$defaultValue',
+        style: textStyle ??
+            TextStyle(
+              fontSize: 14,
+              color: Color(0xff333333),
+            ),
+      ),
     ));
 
     children.add(SizedBox(width: _KDefaultSpace));
@@ -53,7 +76,11 @@ class FNumber extends StatelessWidget {
       alignment: Alignment.center,
       child: TextButton(
         onPressed: canAdd ? onAdd : null,
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: canAdd ? addEnableColor : addUnableColor,
+          size: 24,
+        ),
         style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
       ),
     ));
