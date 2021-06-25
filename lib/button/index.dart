@@ -9,7 +9,6 @@ class FButton extends StatelessWidget {
   final Color borderColor;
   final Radius radius;
   final VoidCallback onPressed;
-  final bool round;
   final FButtonType type;
   final double roundSize;
   final bool outLine;
@@ -22,7 +21,6 @@ class FButton extends StatelessWidget {
     this.borderColor = Colors.deepOrange,
     this.radius = const Radius.circular(20),
     this.onPressed,
-    this.round = false,
     this.type = FButtonType.min,
     this.roundSize = 40,
     this.outLine = false,
@@ -35,51 +33,36 @@ class FButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget tempChild;
     if (outLine) {
-      tempChild = OutlineButton(
+      tempChild = OutlinedButton(
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
-        padding: padding,
-        borderSide: BorderSide(color: borderColor, width: 1),
-        shape: _getShapeBorder(context),
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(padding),
+          shape: MaterialStateProperty.all(_getShapeBorder(context)),
+        ),
       );
     } else {
-      tempChild = RaisedButton(
+      tempChild = ElevatedButton(
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
-        color: bgColor,
-        padding: padding,
-        shape: _getShapeBorder(context),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(bgColor),
+          padding: MaterialStateProperty.all(padding),
+          shape: MaterialStateProperty.all(_getShapeBorder(context)),
+        ),
       );
     }
-
-    if (round) {
-      tempChild = SizedBox(
-        width: roundSize,
-        height: roundSize,
-        child: tempChild,
-      );
-    } else if (type == FButtonType.max) {
-      tempChild = Container(
-        width: double.infinity,
-        child: tempChild,
-      );
-    }
-    return tempChild;
+    return Container(
+      width: double.infinity,
+      child: tempChild,
+    );
   }
 
   ShapeBorder _getShapeBorder(BuildContext context) {
-    ShapeBorder shapeBorder;
-    if (round) {
-      shapeBorder = CircleBorder(
-        side: BorderSide(color: borderColor, width: 1),
-      );
-    } else {
-      shapeBorder = RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(radius),
-        side: BorderSide(color: borderColor, width: 1),
-      );
-    }
-    return shapeBorder;
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(radius),
+      side: BorderSide(color: borderColor, width: 1),
+    );
   }
 
   void _onTag() {
