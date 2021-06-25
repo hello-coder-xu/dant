@@ -10,7 +10,6 @@ class FButton extends StatelessWidget {
   final Radius radius;
   final VoidCallback onPressed;
   final FButtonType type;
-  final double roundSize;
   final bool outLine;
   final bool enable;
   final EdgeInsetsGeometry padding;
@@ -22,8 +21,7 @@ class FButton extends StatelessWidget {
     this.borderColor = Colors.deepOrange,
     this.radius = const Radius.circular(20),
     this.onPressed,
-    this.type = FButtonType.min,
-    this.roundSize = 40,
+    this.type = FButtonType.max,
     this.outLine = false,
     this.enable = true,
     this.padding = const EdgeInsets.symmetric(horizontal: 4),
@@ -38,28 +36,33 @@ class FButton extends StatelessWidget {
     } else {
       tempTextStyle = TextStyle(fontSize: 14, color: Colors.white);
     }
-    return Container(
-      width: double.infinity,
-      child: OutlinedButton(
-        child: Text('$child', style: textStyle ?? tempTextStyle),
-        onPressed: enable ? _onTag : null,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            outLine ? Colors.transparent : bgColor,
-          ),
-          padding: MaterialStateProperty.all(padding),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.all(radius)),
-          ),
-          side: MaterialStateProperty.all(
-            BorderSide(
-              color: outLine ? borderColor : Colors.transparent,
-              width: 1,
-            ),
+    Widget childView = OutlinedButton(
+      child: Text('$child', style: textStyle ?? tempTextStyle),
+      onPressed: enable ? _onTag : null,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          outLine ? Colors.transparent : bgColor,
+        ),
+        padding: MaterialStateProperty.all(padding),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.all(radius)),
+        ),
+        side: MaterialStateProperty.all(
+          BorderSide(
+            color: outLine ? borderColor : Colors.transparent,
+            width: 1,
           ),
         ),
       ),
     );
+
+    if (type == FButtonType.max) {
+      childView = Container(
+        width: double.infinity,
+        child: childView,
+      );
+    }
+    return childView;
   }
 
   void _onTag() {
