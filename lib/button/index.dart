@@ -21,7 +21,7 @@ class FButton extends StatelessWidget {
     this.borderColor = Colors.deepOrange,
     this.radius = const Radius.circular(20),
     this.onPressed,
-    this.type = FButtonType.max,
+    this.type = FButtonType.min,
     this.outLine = false,
     this.enable = true,
     this.padding = const EdgeInsets.symmetric(horizontal: 4),
