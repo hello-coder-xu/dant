@@ -176,7 +176,12 @@ class FTextFieldState extends State<FTextField> {
         );
         break;
       case TextFieldStyle.line:
-        border = null;
+        border = UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
+          ),
+        );
         break;
     }
 
