@@ -21,21 +21,21 @@ class ToastDemo extends StatelessWidget {
                 onPressed: () {
                   FToast.showToast(context, msg: "顶部", position: ToastPosition.top, bgColor: Colors.red);
                 },
-                child: Text('Toast 顶部'),
+                child: 'Toast 顶部',
               ),
               FButton(
                 outLine: true,
                 onPressed: () {
                   FToast.showToast(context, msg: "中间", position: ToastPosition.center);
                 },
-                child: Text('Toast 中间'),
+                child: 'Toast 中间',
               ),
               FButton(
                 outLine: true,
                 onPressed: () {
                   FToast.showToast(context, msg: "底部", position: ToastPosition.bottom);
                 },
-                child: Text('Toast 底部'),
+                child: 'Toast 底部',
               ),
               FButton(
                 outLine: true,
@@ -43,7 +43,7 @@ class ToastDemo extends StatelessWidget {
                   Function close = FToast.showLoading(context, msg: "loading");
                   Future.delayed(Duration(seconds: 2), close);
                 },
-                child: Text('Toast loading'),
+                child: 'Toast loading',
               ),
             ],
           ),

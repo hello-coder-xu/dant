@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 enum FButtonType { min, max }
 
 class FButton extends StatelessWidget {
-  final dynamic child;
+  final String child;
+  final TextStyle textStyle;
   final Color bgColor;
   final Color borderColor;
   final Radius radius;
@@ -17,6 +18,7 @@ class FButton extends StatelessWidget {
 
   FButton({
     this.child,
+    this.textStyle = const TextStyle(fontSize: 14, color: Colors.white),
     this.bgColor = Colors.deepOrange,
     this.borderColor = Colors.deepOrange,
     this.radius = const Radius.circular(20),
@@ -34,7 +36,7 @@ class FButton extends StatelessWidget {
     Widget tempChild;
     if (outLine) {
       tempChild = OutlinedButton(
-        child: Util.getView(child),
+        child: Text('$child', style: textStyle),
         onPressed: enable ? _onTag : null,
         style: ButtonStyle(
           padding: MaterialStateProperty.all(padding),
@@ -43,7 +45,7 @@ class FButton extends StatelessWidget {
       );
     } else {
       tempChild = ElevatedButton(
-        child: Util.getView(child),
+        child: Text('$child', style: textStyle),
         onPressed: enable ? _onTag : null,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(bgColor),
