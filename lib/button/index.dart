@@ -5,7 +5,7 @@ enum FButtonType { min, max }
 
 class FButton extends StatelessWidget {
   final dynamic child;
-  final Color fitColor;
+  final Color bgColor;
   final Color borderColor;
   final Radius radius;
   final VoidCallback onPressed;
@@ -18,8 +18,8 @@ class FButton extends StatelessWidget {
 
   FButton({
     this.child,
-    this.fitColor,
-    this.borderColor,
+    this.bgColor = Colors.deepOrange,
+    this.borderColor = Colors.deepOrange,
     this.radius = const Radius.circular(20),
     this.onPressed,
     this.round = false,
@@ -46,7 +46,7 @@ class FButton extends StatelessWidget {
       tempChild = RaisedButton(
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
-        color: fitColor,
+        color: bgColor,
         padding: padding,
         shape: _getShapeBorder(context),
       );
