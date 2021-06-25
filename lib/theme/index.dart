@@ -6,15 +6,15 @@ final ThemeData kDarkTheme = _buildDarkTheme();
 
 TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(
-    headline6: base.headline6.copyWith(fontFamily: 'GoogleSans'),
+    body1: base.body1.copyWith(fontFamily: 'GoogleSans'),
   );
 }
 
 ThemeData _buildDarkTheme() {
   //主题主色，决定导航栏颜色
-  const Color primaryColor = Color(0xFF34355D);
+  const Color primaryColor = Colors.deepOrange;
   //主题辅助色
-  const Color secondaryColor = Color(0xFF5F58A0);
+  const Color secondaryColor = Colors.deepOrange;
   //配色方案
   final ColorScheme colorScheme = const ColorScheme.dark().copyWith(
     primary: primaryColor,
@@ -28,7 +28,7 @@ ThemeData _buildDarkTheme() {
     //主题色
     primaryColor: primaryColor,
     //主题色深色版
-    primaryColorDark: const Color(0xFF345B9A),
+    primaryColorDark: Colors.deepOrange,
     //主题色-亮色版
     primaryColorLight: secondaryColor,
     //按钮背景色
@@ -80,9 +80,9 @@ ThemeData _buildDarkTheme() {
 
 ThemeData _buildLightTheme() {
   //主题主色，决定导航栏颜色
-  const Color primaryColor = Color(0xFF345B9A);
+  const Color primaryColor = Colors.deepOrange;
   //主题辅助色
-  Color secondaryColor = Color(0xFF095093);
+  Color secondaryColor = Colors.deepOrange;
   //配色方案
   final ColorScheme colorScheme = const ColorScheme.light().copyWith(
     primary: primaryColor,
