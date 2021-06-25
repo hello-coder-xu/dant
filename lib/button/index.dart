@@ -61,10 +61,16 @@ class FButton extends StatelessWidget {
   }
 
   ShapeBorder _getShapeBorder(BuildContext context) {
-    return RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(radius),
-      side: BorderSide(color: borderColor, width: 1),
-    );
+    if (outLine) {
+      return RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(radius),
+        side: BorderSide(color: borderColor, width: 1),
+      );
+    } else {
+      return RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(radius),
+      );
+    }
   }
 
   void _onTag() {
