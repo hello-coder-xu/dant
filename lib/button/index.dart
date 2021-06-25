@@ -31,14 +31,6 @@ class FButton extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  Color getFitColor(BuildContext context) {
-    return fitColor ?? Theme.of(context).buttonColor;
-  }
-
-  Color getBorderColor(BuildContext context) {
-    return borderColor ?? getFitColor(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget tempChild;
@@ -47,14 +39,14 @@ class FButton extends StatelessWidget {
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
         padding: padding,
-        borderSide: BorderSide(color: getBorderColor(context), width: 1),
+        borderSide: BorderSide(color: borderColor, width: 1),
         shape: _getShapeBorder(context),
       );
     } else {
       tempChild = RaisedButton(
         child: Util.getView(child),
         onPressed: enable ? _onTag : null,
-        color: getFitColor(context),
+        color: fitColor,
         padding: padding,
         shape: _getShapeBorder(context),
       );
@@ -77,13 +69,14 @@ class FButton extends StatelessWidget {
 
   ShapeBorder _getShapeBorder(BuildContext context) {
     ShapeBorder shapeBorder;
-    Color tempColor = getBorderColor(context);
     if (round) {
-      shapeBorder = CircleBorder(side: BorderSide(color: tempColor, width: 1));
+      shapeBorder = CircleBorder(
+        side: BorderSide(color: borderColor, width: 1),
+      );
     } else {
       shapeBorder = RoundedRectangleBorder(
         borderRadius: BorderRadius.all(radius),
-        side: BorderSide(color: tempColor, width: 1),
+        side: BorderSide(color: borderColor, width: 1),
       );
     }
     return shapeBorder;
