@@ -1,4 +1,3 @@
-import 'package:dant/comm/util.dart';
 import 'package:flutter/material.dart';
 
 enum FButtonType { min, max }
@@ -33,30 +32,18 @@ class FButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget tempChild;
-    if (outLine) {
-      tempChild = OutlinedButton(
-        child: Text('$child', style: textStyle),
-        onPressed: enable ? _onTag : null,
-        style: ButtonStyle(
-          padding: MaterialStateProperty.all(padding),
-          shape: MaterialStateProperty.all(_getShapeBorder(context)),
-        ),
-      );
-    } else {
-      tempChild = ElevatedButton(
-        child: Text('$child', style: textStyle),
-        onPressed: enable ? _onTag : null,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(bgColor),
-          padding: MaterialStateProperty.all(padding),
-          shape: MaterialStateProperty.all(_getShapeBorder(context)),
-        ),
-      );
-    }
     return Container(
       width: double.infinity,
-      child: tempChild,
+      child: OutlinedButton(
+        child: Text('$child', style: textStyle),
+        onPressed: enable ? _onTag : null,
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all(outLine ? Colors.transparent : bgColor),
+          padding: MaterialStateProperty.all(padding),
+          shape: MaterialStateProperty.all(_getShapeBorder(context)),
+        ),
+      ),
     );
   }
 
