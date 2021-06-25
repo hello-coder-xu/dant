@@ -15,6 +15,9 @@ class FTextField extends StatefulWidget {
   //前缀视图
   final Widget prefixIcon;
 
+  //默认值
+  final String defaultValue;
+
   //提示文本
   final String hintText;
 
@@ -96,6 +99,7 @@ class FTextField extends StatefulWidget {
   FTextField({
     this.style = TextFieldStyle.none,
     this.prefixIcon,
+    this.defaultValue,
     this.hintText,
     this.suffixIcon,
     this.textStyle = const TextStyle(fontSize: 14, color: Colors.black87),
@@ -136,6 +140,9 @@ class FTextFieldState extends State<FTextField> {
   void initState() {
     super.initState();
     controller = widget.controller ?? TextEditingController();
+    if (widget.defaultValue.isNotEmpty) {
+      controller.text = widget.defaultValue;
+    }
     obscureText = widget.showPwd;
   }
 
