@@ -54,16 +54,8 @@ class ButtonDemoState extends State<ButtonDemo> {
               ),
               SizedBox(height: 8),
               FButton(
-                child: "圆型按钮",
-                roundSize: 80,
-                bgColor: Colors.red,
-                round: true,
-              ),
-              SizedBox(height: 8),
-              FButton(
                 child: "不填充",
                 roundSize: 80,
-                round: true,
                 outLine: true,
                 borderColor: Colors.red,
               ),
