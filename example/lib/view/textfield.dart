@@ -23,7 +23,6 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               FTextField(
                 hintText: '请输入内容',
                 showPwd: true,
-                style: TextFieldStyle.border,
                 onChanged: (value) {
                   print('test onChange=$value');
                 },

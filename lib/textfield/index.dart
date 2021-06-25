@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum TextFieldStyle {
   none, //无边框
+  line, //底部线
   border, //有边框
 }
 
@@ -100,7 +101,7 @@ class FTextField extends StatefulWidget {
   final TextEditingController controller;
 
   FTextField({
-    this.style = TextFieldStyle.none,
+    this.style = TextFieldStyle.line,
     this.prefixIcon,
     this.defaultValue,
     this.hintText,
@@ -122,7 +123,7 @@ class FTextField extends StatefulWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(4)),
     this.showPwd = false,
     this.showClear = false,
-    this.autofocus=false,
+    this.autofocus = false,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
@@ -173,6 +174,9 @@ class FTextFieldState extends State<FTextField> {
             width: widget.borderWidth,
           ),
         );
+        break;
+      case TextFieldStyle.line:
+        border = null;
         break;
     }
 
