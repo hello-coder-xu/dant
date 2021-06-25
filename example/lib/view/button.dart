@@ -26,7 +26,7 @@ class ButtonDemoState extends State<ButtonDemo> {
               FButton(
                   child: "圆角5，填充,红色",
                   radius: Radius.circular(5),
-                  bgColor: Colors.red,
+                  bgColor: Colors.blue,
                   onPressed: () {
                     FToast.showToast(context, msg: 'hello');
                   }),

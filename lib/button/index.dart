@@ -17,7 +17,7 @@ class FButton extends StatelessWidget {
 
   FButton({
     this.child,
-    this.textStyle = const TextStyle(fontSize: 14, color: Colors.white),
+    this.textStyle,
     this.bgColor = Colors.deepOrange,
     this.borderColor = Colors.deepOrange,
     this.radius = const Radius.circular(20),
@@ -32,32 +32,34 @@ class FButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle tempTextStyle;
+    if (outLine) {
+      tempTextStyle = TextStyle(fontSize: 14, color: Colors.deepOrange);
+    } else {
+      tempTextStyle = TextStyle(fontSize: 14, color: Colors.white);
+    }
     return Container(
       width: double.infinity,
       child: OutlinedButton(
-        child: Text('$child', style: textStyle),
+        child: Text('$child', style: textStyle ?? tempTextStyle),
         onPressed: enable ? _onTag : null,
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(outLine ? Colors.transparent : bgColor),
+          backgroundColor: MaterialStateProperty.all(
+            outLine ? Colors.transparent : bgColor,
+          ),
           padding: MaterialStateProperty.all(padding),
-          shape: MaterialStateProperty.all(_getShapeBorder(context)),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.all(radius)),
+          ),
+          side: MaterialStateProperty.all(
+            BorderSide(
+              color: outLine ? borderColor : Colors.transparent,
+              width: 1,
+            ),
+          ),
         ),
       ),
     );
-  }
-
-  ShapeBorder _getShapeBorder(BuildContext context) {
-    if (outLine) {
-      return RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(radius),
-        side: BorderSide(color: borderColor, width: 1),
-      );
-    } else {
-      return RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(radius),
-      );
-    }
   }
 
   void _onTag() {
