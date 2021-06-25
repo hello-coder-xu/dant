@@ -1,6 +1,7 @@
 import 'package:dant/dant.dart';
 import 'package:example/view/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(IndexPage());
@@ -19,11 +20,14 @@ class IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dant',
-      darkTheme: kDarkTheme,
-      theme: kLightTheme,
-      home: HomePage(),
+    return ScreenUtilInit(
+      designSize: Size(750, 1334),
+      builder: () => MaterialApp(
+        title: 'Dant',
+        darkTheme: kDarkTheme,
+        theme: kLightTheme,
+        home: HomePage(),
+      ),
     );
   }
 }

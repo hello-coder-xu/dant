@@ -19,13 +19,11 @@ class TextFieldDemoState extends State<TextFieldDemo> {
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: <Widget>[
-              ListTile(title: Text('默认形式')),
-              FTextField(),
               ListTile(title: Text('设置默认值+密码可见')),
               FTextField(
-                hint: '请输入内容',
-                value: '我是默认值',
-                isPassword: true,
+                hintText: '请输入内容',
+                showPwd: true,
+                style: TextFieldStyle.border,
                 onChanged: (value) {
                   print('test onChange=$value');
                 },
@@ -38,9 +36,9 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               ),
               ListTile(title: Text('圆角边框+密码可见+圆角')),
               FTextField(
-                hint: '默认形式',
-                isPassword: true,
-                borderType: FTextFieldBorderType.roundLine,
+                hintText: '默认形式',
+                showPwd: true,
+                style: TextFieldStyle.border,
                 textInputAction: TextInputAction.search,
                 onChanged: (value) {
                   print('test onChange=$value');
@@ -54,12 +52,11 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               ),
               ListTile(title: Text('圆角10+红色+多行')),
               FTextField(
-                hint: '默认形式',
+                hintText: '圆角10+红色+多行',
                 borderColor: Colors.red,
-                borderRadius: 10,
-                borderType: FTextFieldBorderType.roundLine,
-                maxLine: null,
-                height: 50,
+                borderRadius: BorderRadius.circular(10),
+                style: TextFieldStyle.border,
+                maxLines: 1,
                 onChanged: (value) {
                   print('test onChange=$value');
                 },
@@ -72,22 +69,20 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               ),
               ListTile(title: Text('图标+输入框')),
               FTextField(
-                hint: '默认形式',
+                hintText: '默认形式',
                 fillColor: Colors.green,
                 borderColor: Colors.red,
-                borderRadius: 5,
-                borderType: FTextFieldBorderType.roundLine,
+                borderRadius: BorderRadius.circular(5),
+                style: TextFieldStyle.border,
                 prefixIcon: Icon(Icons.search),
               ),
-              ListTile(title: Text('文字+输入框')),
+              ListTile(title: Text('输入框多行显示')),
               FTextField(
-                hint: '多行显示',
+                hintText: '多行显示',
                 borderColor: Colors.red,
-                maxLine: null,
-                contentPaddingTop: 0,
-                height: 200,
+                style: TextFieldStyle.border,
+                maxLines: 5,
                 maxLength: 300,
-                icon: Text('账号：'),
               ),
               FButton(
                 child: '刷新页面',

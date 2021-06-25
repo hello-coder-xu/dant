@@ -1,276 +1,251 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum FTextFieldBorderType { none, roundLine, underLine }
+enum TextFieldStyle {
+  none, //无边框
+  border, //有边框
+}
 
+///输入框
 class FTextField extends StatefulWidget {
-  final TextEditingController controller;
-  final String hint;
-  final String value;
-  final bool clear;
-  final bool isPassword;
-  final bool obscureText;
-  final FTextFieldBorderType borderType;
-  final int maxLine;
-  final int maxLength;
-  final TextAlign textAlign;
-  final Color fillColor;
-  final Color borderColor;
+  //显示样式
+  final TextFieldStyle style;
+
+  //前缀视图
   final Widget prefixIcon;
-  final double height;
-  final Widget icon;
-  final double borderRadius;
-  final double contentPaddingLeft;
-  final double contentPaddingTop;
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final List<TextInputFormatter> inputFormatters;
+
+  //提示文本
+  final String hintText;
+
+  //后缀视图
+  final Widget suffixIcon;
+
+  //文本字体样式
+  final TextStyle textStyle;
+
+  //提示文本字体样式
+  final TextStyle hintStyle;
+
+  //对齐方式
+  final TextAlign textAlign;
+
+  //垂直对齐方式
+  final TextAlignVertical textAlignVertical;
+
+  //内部间距
+  final EdgeInsetsGeometry contentPadding;
+
+  //是否填充
+  final bool filled;
+
+  //填充样式
+  final Color fillColor;
+
+  //边框颜色
+  final Color borderColor;
+
+  //边框宽度
+  final double borderWidth;
+
+  //边框圆角
+  final BorderRadius borderRadius;
+
+  //是否密码
+  final bool showPwd;
+
+  //是否显示清理按钮
+  final bool showClear;
+
+  //最大行数
+  final int maxLines;
+
+  //最小行数
+  final int minLines;
+
+  //最大字数
+  final int maxLength;
+
+  //是否只读
+  final bool readOnly;
+
+  //是否可用
+  final bool enabled;
+
+  //文本变化事件
   final ValueChanged<String> onChanged;
-  final ValueChanged<String> onSubmitted;
+
+  //软键盘完成事件
   final VoidCallback onEditingComplete;
-  final FocusNode focusNode;
-  final String counterText;
-  final bool autofocus;
+
+  //软键盘提交事件
+  final ValueChanged<String> onSubmitted;
+
+  //输入框内容限制
+  final List<TextInputFormatter> inputFormatters;
+
+  //软键盘显示样式
+  final TextInputType keyboardType;
+
+  //软键盘按钮
+  final TextInputAction textInputAction;
+
+  //控制器
+  final TextEditingController controller;
 
   FTextField({
-    Key key,
-    this.controller,
-    this.hint,
-    this.value,
-    this.clear = true,
-    this.isPassword = false,
-    this.obscureText = false,
-    this.borderType = FTextFieldBorderType.underLine,
-    this.maxLine = 1,
-    this.maxLength,
-    this.textAlign = TextAlign.left,
-    this.fillColor = Colors.white,
-    this.borderColor,
+    this.style = TextFieldStyle.none,
     this.prefixIcon,
-    this.height = 40,
-    this.icon,
-    this.borderRadius,
-    this.contentPaddingLeft,
-    this.contentPaddingTop,
+    this.hintText,
+    this.suffixIcon,
+    this.textStyle = const TextStyle(fontSize: 14, color: Colors.black87),
+    this.hintStyle = const TextStyle(fontSize: 14, color: Colors.black54),
+    this.textAlign = TextAlign.left,
+    this.textAlignVertical = TextAlignVertical.center,
+    this.contentPadding,
+    this.maxLength,
+    this.maxLines = 1,
+    this.minLines,
+    this.readOnly = false,
+    this.enabled = true,
+    this.filled = false,
+    this.fillColor = const Color(0xFFF5F5F5),
+    this.borderColor = const Color(0xFFEEEEEE),
+    this.borderWidth = 1,
+    this.borderRadius = const BorderRadius.all(Radius.circular(4)),
+    this.showPwd = false,
+    this.showClear = false,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.inputFormatters,
     this.keyboardType,
     this.textInputAction,
-    this.inputFormatters,
-    this.onChanged,
-    this.onSubmitted,
-    this.onEditingComplete,
-    this.focusNode,
-    this.counterText,
-    this.autofocus = false,
-  }) : super(key: key);
+    this.controller,
+  });
 
   @override
-  FTextFieldState createState() => new FTextFieldState();
+  FTextFieldState createState() => FTextFieldState();
 }
 
 class FTextFieldState extends State<FTextField> {
   TextEditingController controller;
-  bool obscureText = false;
-  FocusNode focusNode;
+  bool obscureText;
 
   @override
   void initState() {
     super.initState();
-    controller = widget.controller ?? TextEditingController(text: widget.value);
-    obscureText = widget.obscureText;
-    focusNode = widget.focusNode ?? FocusNode();
-    focusNode.addListener(notify);
+    controller = widget.controller ?? TextEditingController();
+    obscureText = widget.showPwd;
+  }
+
+  /// 获取装饰
+  InputDecoration getDecoration() {
+    InputBorder border;
+    switch (widget.style) {
+      case TextFieldStyle.none:
+        border = OutlineInputBorder(
+          borderRadius: BorderRadius.zero,
+          borderSide: BorderSide(
+            color: Colors.transparent,
+            width: 0,
+          ),
+        );
+        break;
+      case TextFieldStyle.border:
+        border = OutlineInputBorder(
+          borderRadius: widget.borderRadius,
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
+          ),
+        );
+        break;
+    }
+
+    //前缀与后缀视图
+    Widget prefixIcon = widget.prefixIcon;
+    Widget suffixIcon;
+    Widget suffix;
+    if (widget.showPwd) {
+      //显示 密码隐藏可见按钮
+      suffixIcon = GestureDetector(
+        onTap: toggleShowPwd,
+        child: Icon(
+          obscureText ? Icons.visibility : Icons.visibility_off,
+          size: 32.w,
+          color: Color(0xff333333),
+        ),
+      );
+    } else if (widget.showClear && !widget.readOnly && widget.enabled) {
+      //显示 清理按钮
+      suffix = GestureDetector(
+        onTap: onClear,
+        child: Icon(
+          Icons.cancel,
+          size: 32.w,
+          color: Colors.grey,
+        ),
+      );
+    }
+
+    InputDecoration inputDecoration = InputDecoration(
+      filled: widget.filled,
+      fillColor: widget.fillColor,
+      border: border,
+      enabledBorder: border,
+      focusedBorder: border,
+      disabledBorder: border,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      suffix: suffix,
+      contentPadding: widget.contentPadding ??
+          EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.w),
+      hintText: widget.hintText,
+      hintStyle: widget.hintStyle,
+      //不显示字数限制
+      counterText: '',
+      isCollapsed: true,
+    );
+    return inputDecoration;
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget textField = TextField(
-      controller: controller,
-      obscureText: obscureText,
+    InputDecoration inputDecoration = getDecoration();
+    return TextField(
+      decoration: inputDecoration,
+      textAlignVertical: widget.textAlignVertical,
+      maxLength: widget.maxLength,
+      minLines: widget.minLines,
+      maxLines: widget.maxLines,
       textAlign: widget.textAlign,
+      obscureText: obscureText,
+      readOnly: widget.readOnly,
+      enabled: widget.enabled,
+      controller: controller,
+      onChanged: widget.onChanged,
+      onEditingComplete: widget.onEditingComplete,
+      onSubmitted: widget.onSubmitted,
+      inputFormatters: widget.inputFormatters,
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
-      focusNode: focusNode,
-      autofocus: widget.autofocus,
-      inputFormatters: widget.inputFormatters,
-      decoration: InputDecoration(
-        icon: widget.icon,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: suffixView(),
-        hintText: widget.hint,
-        fillColor: widget.fillColor,
-        counterText: widget.counterText,
-        filled: true,
-        contentPadding: getContentPadding(),
-        enabledBorder: getInputBorder(),
-        focusedBorder: getInputBorder(),
-      ),
-      maxLength: widget.maxLength,
-      maxLines: widget.maxLine,
-      onChanged: onChanged,
-      onEditingComplete: onEditingComplete,
-      onSubmitted: onSubmitted,
-    );
-
-    if (widget.maxLine == null && widget.borderType == FTextFieldBorderType.roundLine) {
-      return Container(
-        decoration: getBoxDecoration(),
-        constraints: BoxConstraints(minHeight: widget.height),
-        child: textField,
-      );
-    }
-
-    return textField;
-  }
-
-  //按钮视图
-  Widget suffixView() {
-    List<Widget> children = [];
-    String tempValue = controller.text;
-    double tempSize = math.min(widget.height / 2, 24);
-    //清除按钮
-    if (widget.clear && focusNode.hasFocus && (tempValue != null && tempValue.length > 0)) {
-      children.add(GestureDetector(
-        onTap: clear,
-        child: Icon(Icons.clear, size: tempSize),
-      ));
-    }
-
-    //密码按钮
-    if (widget.isPassword) {
-      if (children.length > 0) {
-        children.add(SizedBox(width: 8));
-      }
-      children.add(GestureDetector(
-        onTap: togglePwd,
-        child: Icon(
-          obscureText ? Icons.visibility : Icons.visibility_off,
-          size: tempSize,
-        ),
-      ));
-    }
-
-    if (children.length > 0) {
-      if (widget.borderType == FTextFieldBorderType.roundLine) {
-        children.add(SizedBox(width: 8));
-      }
-      return Container(
-        child: Row(
-          children: children,
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,
-        ),
-      );
-    }
-    return null;
-  }
-
-  //内容间距
-  EdgeInsetsGeometry getContentPadding() {
-    double contentPaddingLeft = 8;
-    if (widget.prefixIcon == null) {
-      if (widget.borderType == FTextFieldBorderType.roundLine) {
-        contentPaddingLeft = getBorderRadius();
-      } else {
-        contentPaddingLeft = 0.0;
-      }
-    }
-    return EdgeInsets.only(
-      left: widget.contentPaddingLeft ?? contentPaddingLeft,
-      right: 8,
-      top: widget.contentPaddingTop ?? (widget.height - 20) / 2,
-      bottom: (widget.height - 20) / 2,
     );
   }
 
-  //圆角角度
-  double getBorderRadius() {
-    return widget.borderRadius ?? (widget.height + 10) / 2;
-  }
-
-  //非填充装饰
-  InputBorder getInputBorder() {
-    Color tempColor = widget.borderColor ?? Theme.of(context).primaryColor;
-    if (widget.borderType == FTextFieldBorderType.none) {
-      return InputBorder.none;
-    } else if (widget.borderType == FTextFieldBorderType.roundLine) {
-      if (widget.maxLine == null) {
-        return OutlineInputBorder(
-          gapPadding: 0,
-          borderSide: BorderSide(color: Colors.transparent, width: 1),
-          borderRadius: BorderRadius.circular(getBorderRadius()),
-        );
-      } else {
-        return OutlineInputBorder(
-          gapPadding: 0,
-          borderSide: BorderSide(color: tempColor, width: 1),
-          borderRadius: BorderRadius.circular(getBorderRadius()),
-        );
-      }
-    } else if (widget.borderType == FTextFieldBorderType.underLine) {
-      return UnderlineInputBorder(borderSide: BorderSide(color: tempColor, width: 1));
-    }
-    return null;
-  }
-
-  //填充装饰
-  BoxDecoration getBoxDecoration() {
-    Color tempColor = widget.borderColor ?? Theme.of(context).primaryColor;
-    if (widget.borderType == FTextFieldBorderType.roundLine) {
-      return BoxDecoration(
-        color: widget.fillColor,
-        border: Border.all(color: tempColor, width: 1),
-        borderRadius: BorderRadius.circular(getBorderRadius()),
-      );
-    }
-    return null;
-  }
-
-  //清除按钮
-  void clear() {
+  //清除内容
+  void onClear() {
     controller?.clear();
-    notify();
-  }
-
-  //切换密码显示隐藏
-  void togglePwd() {
-    obscureText = !obscureText;
-    setState(() {});
-  }
-
-  //内容改变
-  void onChanged(String value) {
-    notify();
     if (widget.onChanged != null) {
-      widget.onChanged(value);
+      widget.onChanged('');
     }
   }
 
-  //软键盘确认
-  void onEditingComplete() {
-//    FocusScope.of(context).unfocus();
-    if (widget.onEditingComplete != null) {
-      widget.onEditingComplete();
+  //密码显示切换
+  void toggleShowPwd() {
+    obscureText = !obscureText;
+    if (mounted) {
+      setState(() {});
     }
-  }
-
-  //软键盘确认
-  void onSubmitted(String value) {
-//    FocusScope.of(context).unfocus();
-    if (widget.onSubmitted != null) {
-      widget.onSubmitted(value);
-    }
-  }
-
-  //更新视图
-  void notify() {
-    if (mounted) setState(() {});
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    focusNode?.dispose();
-    super.dispose();
   }
 }
