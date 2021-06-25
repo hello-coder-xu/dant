@@ -109,7 +109,7 @@ class FBadge extends StatelessWidget {
     } else {
       return Stack(
         children: children,
-        overflow: Overflow.visible,
+        clipBehavior: Clip.antiAlias,
       );
     }
   }

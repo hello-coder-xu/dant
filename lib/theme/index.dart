@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 final ThemeData kLightTheme = _buildLightTheme();
 final ThemeData kDarkTheme = _buildDarkTheme();
 
-TextTheme _buildTextTheme(TextTheme base) {
-  return base.copyWith(
-    body1: base.body1.copyWith(fontFamily: 'GoogleSans'),
-  );
-}
-
 ThemeData _buildDarkTheme() {
   //主题主色，决定导航栏颜色
   const Color primaryColor = Colors.deepOrange;
@@ -67,14 +61,14 @@ ThemeData _buildDarkTheme() {
   );
   return base.copyWith(
     //文字-主题
-    textTheme: _buildTextTheme(base.textTheme).apply(bodyColor: Color(0xFFEDEDED)),
+    textTheme: base.textTheme.apply(bodyColor: Color(0xFFEDEDED)),
     //主题文字-主题
-    primaryTextTheme: _buildTextTheme(base.primaryTextTheme).apply(
+    primaryTextTheme: base.primaryTextTheme.apply(
       displayColor: Color(0xFFEDEDED),
       bodyColor: Color(0xFFEDEDED),
     ),
     //与强调色形成对比的文本主题
-    accentTextTheme: _buildTextTheme(base.accentTextTheme),
+    accentTextTheme: base.accentTextTheme,
   );
 }
 
@@ -128,8 +122,8 @@ ThemeData _buildLightTheme() {
         brightness: Brightness.light,
       ));
   return base.copyWith(
-    textTheme: _buildTextTheme(base.textTheme),
-    primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
-    accentTextTheme: _buildTextTheme(base.accentTextTheme),
+    textTheme: base.textTheme,
+    primaryTextTheme: base.primaryTextTheme,
+    accentTextTheme: base.accentTextTheme,
   );
 }
