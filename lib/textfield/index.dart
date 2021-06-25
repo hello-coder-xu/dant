@@ -145,9 +145,9 @@ class FTextFieldState extends State<FTextField> {
     super.initState();
     if (widget.controller != null) {
       controller = widget.controller;
-      controller.text = widget.defaultValue ?? '';
     } else {
       controller = TextEditingController();
+      controller.text = widget.defaultValue ?? '';
     }
     obscureText = widget.showPwd;
   }
