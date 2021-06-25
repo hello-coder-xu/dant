@@ -75,6 +75,9 @@ class FTextField extends StatefulWidget {
   //是否可用
   final bool enabled;
 
+  //自动获取光标
+  final bool autofocus;
+
   //文本变化事件
   final ValueChanged<String> onChanged;
 
@@ -119,6 +122,7 @@ class FTextField extends StatefulWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(4)),
     this.showPwd = false,
     this.showClear = false,
+    this.autofocus=false,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
@@ -239,6 +243,7 @@ class FTextFieldState extends State<FTextField> {
       inputFormatters: widget.inputFormatters,
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
+      autofocus: widget.autofocus,
     );
   }
 
