@@ -81,7 +81,7 @@ class FCheckBox extends StatelessWidget {
     } else {
       List<Widget> children = [];
       children.add(checkBoxIcon);
-      children.add(SizedBox(width:space ?? 18.w));
+      children.add(SizedBox(width: space ?? 18.w));
       children.add(Expanded(
         child: Container(
           alignment: Alignment.topLeft,
@@ -113,7 +113,7 @@ class FCheckBox extends StatelessWidget {
 }
 
 ///复选框
-class FCheckBoxRule extends StatelessWidget {
+class FCheckBoxTextSpan extends StatelessWidget {
   //选中图标
   final Icon selectIcon;
 
@@ -141,7 +141,7 @@ class FCheckBoxRule extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
-  FCheckBoxRule({
+  FCheckBoxTextSpan({
     this.checked = false,
     this.onChanged,
     this.child,
@@ -196,6 +196,75 @@ class FCheckBoxRule extends StatelessWidget {
           ),
         ),
       ));
+      currentChild = Row(
+        children: children,
+        crossAxisAlignment: crossAxisAlignment,
+      );
+    }
+    if (!enable) return Opacity(opacity: 0.5, child: currentChild);
+    return GestureDetector(
+      onTap: _onChanged,
+      child: currentChild,
+    );
+  }
+
+  void _onChanged() {
+    if (onChanged != null) onChanged(!checked);
+  }
+}
+
+///复选框
+class FCheckBoxView extends StatelessWidget {
+  //选中图标
+  final Icon selectIcon;
+
+  //未选中图标
+  final Icon unSelectIcon;
+
+  //显示视图
+  final Widget child;
+
+  //是否选中
+  final bool checked;
+
+  //选中变化事件
+  final Function(bool value) onChanged;
+
+  //图标与文案间距
+  final double space;
+
+  //是否可用
+  final bool enable;
+
+  //不嵌入时，对齐方式
+  final CrossAxisAlignment crossAxisAlignment;
+
+  FCheckBoxView({
+    this.checked = false,
+    this.onChanged,
+    this.child,
+    this.selectIcon,
+    this.unSelectIcon,
+    this.space,
+    this.enable = true,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Widget currentChild;
+    Widget checkBoxIcon = FCheckBoxIcon(
+      selectIcon: selectIcon,
+      unSelectIcon: unSelectIcon,
+      checked: checked,
+    );
+    if (child == null) {
+      currentChild = checkBoxIcon;
+    } else {
+      List<Widget> children = [];
+      children.add(checkBoxIcon);
+      children.add(SizedBox(width: space ?? 18.w));
+      children.add(Expanded(child: child));
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,

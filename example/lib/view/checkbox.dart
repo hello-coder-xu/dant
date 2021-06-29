@@ -54,7 +54,7 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
               space: 8,
             ),
             SizedBox(height: 16),
-            FCheckBoxRule(
+            FCheckBoxTextSpan(
               checked: check3,
               onChanged: (value) {
                 check3 = value;
@@ -74,7 +74,7 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
               ),
             ),
             SizedBox(height: 16),
-            FCheckBoxRule(
+            FCheckBoxTextSpan(
               checked: check3,
               onChanged: (value) {
                 check3 = value;
