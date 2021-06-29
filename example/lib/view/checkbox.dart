@@ -30,7 +30,6 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
               },
               child: '选择框嵌',
               textStyle: TextStyle(color: Colors.red),
-
             ),
             SizedBox(height: 16),
             FCheckBox(
@@ -69,7 +68,9 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
                     style: TextStyle(color: Colors.blue),
                   ),
                   TextSpan(text: '并继续使用'),
-                  TextSpan(text: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐'),
+                  TextSpan(
+                      text:
+                          '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐'),
                 ],
               ),
             ),
@@ -90,7 +91,25 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
                     style: TextStyle(color: Colors.blue),
                   ),
                   TextSpan(text: '并继续使用'),
-                  TextSpan(text: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐'),
+                  TextSpan(
+                      text:
+                          '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐'),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            FCheckBoxView(
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text('Title'),
+                    subtitle: Text('subTitle'),
+                    tileColor: Colors.red,
+                  ),
+                  ListTile(
+                    title: Text('Hello'),
+                    subtitle: Text('world'),
+                  ),
                 ],
               ),
             ),
