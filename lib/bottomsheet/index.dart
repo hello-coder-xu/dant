@@ -14,10 +14,13 @@ class FBottomSheet {
   }) async {
     var result = await showModalBottomSheet(
       context: context,
-      shape: roundTop ? RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))) : null,
+      shape: roundTop
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)))
+          : null,
       isScrollControlled: true,
       isDismissible: isDismissible,
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       builder: (BuildContext context) {
         return AnimatedPadding(
           padding: MediaQuery.of(context).viewInsets, //边距（必要）
@@ -48,10 +51,13 @@ class FBottomSheet {
   }) {
     return showModalBottomSheet(
       context: context,
-      shape: roundTop ? RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))) : null,
+      shape: roundTop
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)))
+          : null,
       isScrollControlled: true,
       isDismissible: isDismissible,
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       builder: (BuildContext context) {
         return AnimatedPadding(
           padding: MediaQuery.of(context).viewInsets, //边距（必要）
@@ -118,7 +124,8 @@ class _FBottomSheetOption extends StatelessWidget {
   Widget bottomView(BuildContext context) {
     List<Widget> children = [];
 
-    final Color effectiveColor = DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
+    final Color effectiveColor =
+        DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
     children.add(Container(height: 16, color: effectiveColor));
 
     children.add(InkWell(
