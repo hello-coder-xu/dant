@@ -20,28 +20,26 @@ class RadioDemoState extends State<RadioDemo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            FRadio(
+            FRadioBox(
               value: 1,
-              groupValue: radioValue,
-              alignment: CrossAxisAlignment.start,
+              group: radioValue,
               onChanged: onChange,
               child: '选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐',
             ),
             SizedBox(height: 16),
-            FRadio(
+            FRadioBox(
               value: 2,
-              groupValue: radioValue,
+              group: radioValue,
               onChanged: onChange,
-              alignment: CrossAxisAlignment.center,
               enable: false,
+              embedded: false,
               child: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐',
             ),
             SizedBox(height: 16),
-            FRadio(
+            FRadioBoxView(
               value: 3,
-              groupValue: radioValue,
+              group: radioValue,
               onChanged: onChange,
-              alignment: CrossAxisAlignment.end,
               child: Column(
                 children: <Widget>[
                   IconButton(
