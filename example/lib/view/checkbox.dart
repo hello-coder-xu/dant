@@ -23,47 +23,75 @@ class CheckBoxDemoState extends State<CheckBoxDemo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             FCheckBox(
-              value: check1,
-              alignment: CrossAxisAlignment.start,
+              checked: check1,
               onChanged: (value) {
                 check1 = value;
                 setState(() {});
               },
-              child: '选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐选择框顶部对齐',
+              child: '选择框嵌',
+              textStyle: TextStyle(color: Colors.red),
+
             ),
             SizedBox(height: 16),
             FCheckBox(
-              value: check2,
-              alignment: CrossAxisAlignment.center,
+              checked: check1,
+              embedded: false,
+              onChanged: (value) {
+                check1 = value;
+                setState(() {});
+              },
+              child: '不嵌入',
+            ),
+            SizedBox(height: 16),
+            FCheckBox(
+              checked: check2,
               onChanged: (value) {
                 check2 = value;
                 setState(() {});
               },
               enable: false,
               child: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐',
+              space: 8,
             ),
             SizedBox(height: 16),
-            FCheckBox(
-              value: check3,
+            FCheckBoxRule(
+              checked: check3,
               onChanged: (value) {
                 check3 = value;
                 setState(() {});
               },
-              checkColor: Colors.white,
-              activeColor: Colors.green,
-              alignment: CrossAxisAlignment.end,
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        FToast.showToast(context, msg: 'icon');
-                      },
-                    ),
-                    Text('选择框底部对齐选择框底部对齐选择框底部对齐选择框底部对齐选择框底部对齐选择框底部对齐'),
-                  ],
-                ),
+              child: TextSpan(
+                style: TextStyle(fontSize: 14, color: Colors.black54),
+                children: [
+                  TextSpan(text: '我同意'),
+                  TextSpan(
+                    text: '服务条款',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  TextSpan(text: '并继续使用'),
+                  TextSpan(text: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐'),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            FCheckBoxRule(
+              checked: check3,
+              onChanged: (value) {
+                check3 = value;
+                setState(() {});
+              },
+              embedded: false,
+              child: TextSpan(
+                style: TextStyle(fontSize: 14, color: Colors.black54),
+                children: [
+                  TextSpan(text: '我同意'),
+                  TextSpan(
+                    text: '服务条款',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  TextSpan(text: '并继续使用'),
+                  TextSpan(text: '选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐选择框居中对齐'),
+                ],
               ),
             ),
           ],
