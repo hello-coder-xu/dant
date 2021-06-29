@@ -24,7 +24,7 @@ class FRadioBox extends StatelessWidget {
   final dynamic group;
 
   //选中变化事件
-  final Function(bool value) onChanged;
+  final Function(dynamic value) onChanged;
 
   //图标与文案间距
   final double space;
@@ -135,7 +135,7 @@ class FRadioBoxTextSpan extends StatelessWidget {
   final dynamic group;
 
   //选中变化事件
-  final Function(bool value) onChanged;
+  final Function(dynamic value) onChanged;
 
   //图标与文案间距
   final double space;
@@ -240,7 +240,7 @@ class FRadioBoxView extends StatelessWidget {
   final dynamic group;
 
   //选中变化事件
-  final Function(bool value) onChanged;
+  final Function(dynamic value) onChanged;
 
   //图标与文案间距
   final double space;
