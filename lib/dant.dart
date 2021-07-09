@@ -1,12 +1,10 @@
 library dant;
 
-export 'package:dant/theme/index.dart';
 export 'package:dant/toast/index.dart';
 export 'package:dant/button/index.dart';
 export 'package:dant/round/index.dart';
 export 'package:dant/badge/index.dart';
 export 'package:dant/dialog/index.dart';
-export 'package:dant/divider/index.dart';
 export 'package:dant/bottomsheet/index.dart';
 export 'package:dant/number/index.dart';
 export 'package:dant/swipe/index.dart';
