@@ -1,35 +1,34 @@
-import 'package:dant/divider/index.dart';
+import 'package:dant/comm/ColorUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FBottomSheet {
   static Future fBottomSheetOption(
     BuildContext context, {
     List<String> option,
     String initData,
-    double maxHeight = 0.8,
-    double minHeight = 0.1,
     Function(int index, String value) onSelect,
-    bool roundTop = false,
+    Function onClose,
+    ShapeBorder shape,
     bool isDismissible = true,
   }) async {
     var result = await showModalBottomSheet(
       context: context,
-      shape: roundTop
-          ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)))
-          : null,
+      shape: shape,
       isScrollControlled: true,
       isDismissible: isDismissible,
       backgroundColor: Colors.white,
       builder: (BuildContext context) {
-        return AnimatedPadding(
-          padding: MediaQuery.of(context).viewInsets, //边距（必要）
-          duration: const Duration(milliseconds: 100), //时常 （必要）
-          child: _FBottomSheetOption(
-            list: option,
-            initData: initData,
-            maxHeight: maxHeight,
-            minHeight: minHeight,
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            constraints: BoxConstraints(maxHeight: 0.8.sh),
+            child: _FBottomSheetOption(
+              list: option,
+              initData: initData,
+            ),
           ),
         );
       },
@@ -37,35 +36,37 @@ class FBottomSheet {
 
     if (onSelect != null && result is List) {
       onSelect(result.first, result.last);
+    } else {
+      return onClose();
     }
-    return result;
   }
 
   static Future fBottomSheetView(
     BuildContext context, {
-    @required Widget child,
-    double maxHeight = 0.8,
-    double minHeight = 0.1,
-    bool roundTop = false,
+    Widget title,
+    @required Widget content,
+    Widget bottom,
     bool isDismissible = true,
+    ShapeBorder shape,
   }) {
     return showModalBottomSheet(
       context: context,
-      shape: roundTop
-          ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)))
-          : null,
       isScrollControlled: true,
+      shape: shape,
       isDismissible: isDismissible,
       backgroundColor: Colors.white,
       builder: (BuildContext context) {
-        return AnimatedPadding(
-          padding: MediaQuery.of(context).viewInsets, //边距（必要）
-          duration: const Duration(milliseconds: 100), //时常 （必要）
-          child: _FBottomSheetView(
-            child: child,
-            maxHeight: maxHeight,
-            minHeight: minHeight,
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            constraints: BoxConstraints(maxHeight: 0.8.sh),
+            child: _FBottomSheetView(
+              title: title,
+              content: content,
+              bottom: bottom,
+            ),
           ),
         );
       },
@@ -76,63 +77,61 @@ class FBottomSheet {
 class _FBottomSheetOption extends StatelessWidget {
   final List<String> list;
   final String initData;
-  final double maxHeight;
-  final double minHeight;
 
   _FBottomSheetOption({
     this.list,
     this.initData,
-    this.maxHeight,
-    this.minHeight,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [];
-    children.add(contentView(context));
-    children.add(bottomView(context));
-
-    return IntrinsicHeight(child: Column(children: children));
+    return _FBottomSheetView(
+      content: contentView(context),
+      bottom: bottomView(context),
+    );
   }
 
   Widget contentView(BuildContext context) {
     List<Widget> children = [];
-
     for (int i = 0; i < list.length; i++) {
       if (children.length > 0) {
-        children.add(FDivider());
+        children.add(Divider(height: 1, color: cE5E5E5));
       }
       String it = list[i];
+      bool select = it == initData;
       children.add(ListTile(
         onTap: () => itemClick(context, i, it),
-        title: Text(it, textAlign: TextAlign.center),
-        selected: it == initData,
+        title: Text(
+          it,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 28.sp,
+            color: select ? Colors.deepOrange : c666666,
+          ),
+        ),
+        selected: select,
       ));
     }
 
-    return Container(
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * (maxHeight ?? 0.8),
-        minHeight: MediaQuery.of(context).size.height * (minHeight ?? 0.1),
-      ),
-      child: SingleChildScrollView(
-        child: Column(children: children),
-      ),
-    );
+    return Column(children: children);
   }
 
   Widget bottomView(BuildContext context) {
     List<Widget> children = [];
-
-    final Color effectiveColor =
-        DividerTheme.of(context).color ?? Theme.of(context).dividerColor;
-    children.add(Container(height: 16, color: effectiveColor));
+    children.add(Divider(
+      height: 32.w,
+      color: cE5E5E5,
+      thickness: 32.w,
+    ));
 
     children.add(InkWell(
       onTap: () => close(context),
       child: Container(
-        height: 42,
-        child: Text('取消'),
+        height: 84.w,
+        child: Text(
+          '取消',
+          style: TextStyle(fontSize: 32.sp, color: c666666),
+        ),
         alignment: Alignment.center,
       ),
     ));
@@ -150,24 +149,35 @@ class _FBottomSheetOption extends StatelessWidget {
 }
 
 class _FBottomSheetView extends StatelessWidget {
-  final Widget child;
-  final double maxHeight;
-  final double minHeight;
+  final Widget title;
+  final Widget content;
+  final Widget bottom;
 
   _FBottomSheetView({
-    this.child,
-    this.maxHeight,
-    this.minHeight,
+    this.title,
+    @required this.content,
+    this.bottom,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * (maxHeight ?? 0.8),
-        minHeight: MediaQuery.of(context).size.height * (minHeight ?? 0.1),
+    List<Widget> children = [];
+    if (title != null) {
+      children.add(title);
+    }
+
+    children.add(Flexible(
+      child: SingleChildScrollView(
+        child: content,
       ),
-      child: IntrinsicHeight(child: child),
+    ));
+
+    if (bottom != null) {
+      children.add(bottom);
+    }
+    return Column(
+      children: children,
+      mainAxisSize: MainAxisSize.min,
     );
   }
 }
