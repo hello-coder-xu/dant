@@ -21,7 +21,7 @@ class DialogDemoState extends State<DialogDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton(
+            FButtonV2(
               child: 'alert 无标题',
               onTap: () {
                 FDialog.showAlert(
@@ -33,7 +33,7 @@ class DialogDemoState extends State<DialogDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: 'confirm',
               onTap: () {
                 FDialog.showConfirm(
@@ -54,7 +54,7 @@ class DialogDemoState extends State<DialogDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: 'reading',
               onTap: () {
                 FDialog.showReading(
@@ -70,7 +70,7 @@ class DialogDemoState extends State<DialogDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '内容 自定义',
               onTap: () {
                 FDialog.showConfirm(
@@ -138,7 +138,7 @@ class DialogDemoState extends State<DialogDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '按钮拦截',
               onTap: () {
                 FDialog.showConfirm(

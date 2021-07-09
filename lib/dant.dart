@@ -2,6 +2,7 @@ library dant;
 
 export 'package:dant/toast/index.dart';
 export 'package:dant/button/index.dart';
+export 'package:dant/button/index_v2.dart';
 export 'package:dant/round/index.dart';
 export 'package:dant/badge/index.dart';
 export 'package:dant/dialog/index.dart';

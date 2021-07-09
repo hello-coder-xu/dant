@@ -21,9 +21,9 @@ class ButtonDemoState extends State<ButtonDemo> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              FButton(child: "默认"),
+              FButtonV2(child: "默认"),
               SizedBox(height: 8),
-              FButton(
+              FButtonV2(
                 child: "胶囊",
                 bgColor: Colors.blue,
                 style: FButtonStyle.capsule,
@@ -32,7 +32,7 @@ class ButtonDemoState extends State<ButtonDemo> {
                 },
               ),
               SizedBox(height: 8),
-              FButton(
+              FButtonV2(
                 child: "镂空",
                 hollow: true,
                 onTap: () {
@@ -40,7 +40,7 @@ class ButtonDemoState extends State<ButtonDemo> {
                 },
               ),
               SizedBox(height: 8),
-              FButton(
+              FButtonV2(
                 child: "圆角5，不填充,不可点击",
                 enable: false,
                 hollow: true,
@@ -49,7 +49,7 @@ class ButtonDemoState extends State<ButtonDemo> {
                 },
               ),
               SizedBox(height: 8),
-              FButton(
+              FButtonV2(
                 child: "宽度自适应屏幕宽度",
                 size: FButtonSize.small,
               ),
@@ -58,21 +58,21 @@ class ButtonDemoState extends State<ButtonDemo> {
                 spacing: 16,
                 runSpacing: 16,
                 children: [
-                  FButton(
+                  FButtonV2(
                     child: "小",
                     size: FButtonSize.mini,
                   ),
-                  FButton(
+                  FButtonV2(
                     child: "小",
                     size: FButtonSize.mini,
                     style: FButtonStyle.capsule,
                   ),
-                  FButton(
+                  FButtonV2(
                     child: "小",
                     size: FButtonSize.mini,
                     hollow: true,
                   ),
-                  FButton(
+                  FButtonV2(
                     child: "小",
                     size: FButtonSize.mini,
                     style: FButtonStyle.capsule,

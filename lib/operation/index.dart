@@ -1,4 +1,4 @@
-import 'package:dant/button/index.dart';
+import 'package:dant/button/index_v2.dart';
 import 'package:flutter/material.dart';
 
 enum FOperationType { empty, loading, error, reload }
@@ -40,7 +40,7 @@ class FOperation extends StatelessWidget {
     } else if (type == FOperationType.reload) {
       children.add(Icon(Icons.hourglass_empty));
       children.add(SizedBox(height: 8));
-      children.add(FButton(
+      children.add(FButtonV2(
         child: '点击重新加载',
         onTap: onReload,
       ));

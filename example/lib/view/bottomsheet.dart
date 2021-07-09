@@ -26,13 +26,13 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    children.add(FButton(
+    children.add(FButtonV2(
       child: '菜单选择',
       onTap: showSheetOption,
     ));
 
     children.add(SizedBox(height: 16));
-    children.add(FButton(
+    children.add(FButtonV2(
       child: '自定义视图',
       onTap: showSheetView,
     ));
@@ -159,7 +159,7 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
       ],
     );
 
-    Widget bottom = FButton(
+    Widget bottom = FButtonV2(
       child: '确定',
       onTap: () => Navigator.pop(context, 'sure'),
     );

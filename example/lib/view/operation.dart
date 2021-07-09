@@ -20,7 +20,7 @@ class OperationDemoState extends State<OperationDemo> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton(
+            FButtonV2(
               child: '空视图',
               onTap: () {
                 Navigator.push(
@@ -33,7 +33,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '空视图-自定义',
               onTap: () {
                 Navigator.push(
@@ -52,7 +52,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '加载视图',
               onTap: () {
                 Navigator.push(
@@ -66,7 +66,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '加载视图-自定义',
               onTap: () {
                 Navigator.push(
@@ -86,7 +86,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '错误视图',
               onTap: () {
                 Navigator.push(
@@ -100,7 +100,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '错误视图-自定义',
               onTap: () {
                 Navigator.push(
@@ -120,7 +120,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '重新加载',
               onTap: () {
                 Navigator.push(
@@ -137,7 +137,7 @@ class OperationDemoState extends State<OperationDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '重新加载-自定义',
               onTap: () {
                 Navigator.push(
@@ -151,7 +151,7 @@ class OperationDemoState extends State<OperationDemo> {
                       child: Column(
                         children: <Widget>[
                           Text('data reload'),
-                          FButton(
+                          FButtonV2(
                               child: '重新加载',
                               onTap: () {
                                 FToast.showToast(context, msg: '重新加载');

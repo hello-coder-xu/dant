@@ -83,7 +83,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
                 maxLines: 5,
                 maxLength: 300,
               ),
-              FButton(
+              FButtonV2(
                 child: '刷新页面',
                 onTap: () {
                   setState(() {});

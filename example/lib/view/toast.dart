@@ -8,7 +8,7 @@ class ToastDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    children.add(FButton(
+    children.add(FButtonV2(
       hollow: true,
       onTap: () {
         FToast.showToast(context,
@@ -18,7 +18,7 @@ class ToastDemo extends StatelessWidget {
     ));
 
     children.add(SizedBox(height: 16));
-    children.add(FButton(
+    children.add(FButtonV2(
       hollow: true,
       onTap: () {
         FToast.showToast(context, msg: "中间", position: ToastPosition.center);
@@ -27,7 +27,7 @@ class ToastDemo extends StatelessWidget {
     ));
 
     children.add(SizedBox(height: 16));
-    children.add(FButton(
+    children.add(FButtonV2(
       hollow: true,
       onTap: () {
         FToast.showToast(context, msg: "底部", position: ToastPosition.bottom);
@@ -36,7 +36,7 @@ class ToastDemo extends StatelessWidget {
     ));
 
     children.add(SizedBox(height: 16));
-    children.add(FButton(
+    children.add(FButtonV2(
       hollow: true,
       onTap: () {
         Function close = FToast.showLoading(context, msg: "loading");

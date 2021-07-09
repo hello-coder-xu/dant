@@ -75,7 +75,7 @@ class DrawerDemoState extends State<DrawerDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton(
+            FButtonV2(
               child: '顶部通知',
               onTap: () {
                 FDrawer.showNotification(
@@ -90,7 +90,7 @@ class DrawerDemoState extends State<DrawerDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '底部通知',
               onTap: () {
                 FDrawer.showSnake(
@@ -105,7 +105,7 @@ class DrawerDemoState extends State<DrawerDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '抽屉-左',
               onTap: () {
                 Function tap;
@@ -122,7 +122,7 @@ class DrawerDemoState extends State<DrawerDemo> {
               },
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               child: '抽屉-右',
               onTap: () {
                 Function tap;

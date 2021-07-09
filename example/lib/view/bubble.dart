@@ -49,7 +49,7 @@ class BubbleDemoState extends State<BubbleDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FButton(
+            FButtonV2(
               key: keyLeft,
               child: '左边显示',
               size: FButtonSize.mini,
@@ -61,21 +61,21 @@ class BubbleDemoState extends State<BubbleDemo> {
               ),
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               key: keyTop,
               child: '上面显示',
               size: FButtonSize.mini,
               onTap: () => showPop(key: keyTop, fPopupPosition: FPopupPosition.top, value: '我显示在上面'),
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               key: keyRight,
               child: '右边显示',
               size: FButtonSize.mini,
               onTap: () => showPop(key: keyRight, fPopupPosition: FPopupPosition.right, value: '我显示在右边'),
             ),
             SizedBox(height: 16),
-            FButton(
+            FButtonV2(
               key: keyBottom,
               child: '下面显示',
               size: FButtonSize.mini,

@@ -70,7 +70,7 @@ class SwipeDemoState extends State {
               ListTile(title: Text('手动切换到指定页')),
               FSwipe(key: swipeKey, height: 150.0, itemCount: 4, itemBuilder: itemTextBuilder),
               SizedBox(height: 16),
-              FButton(
+              FButtonV2(
                 child: '外部控制',
                 onTap: () {
                   (swipeKey.currentState as FSwipeState).setIndex(2);
