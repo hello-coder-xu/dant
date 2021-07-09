@@ -23,7 +23,7 @@ class DialogDemoState extends State<DialogDemo> {
           children: <Widget>[
             FButton(
               child: 'alert 无标题',
-              onPressed: () {
+              onTap: () {
                 FDialog.showAlert(
                   context,
                   content: 'hello',
@@ -35,7 +35,7 @@ class DialogDemoState extends State<DialogDemo> {
             SizedBox(height: 16),
             FButton(
               child: 'confirm',
-              onPressed: () {
+              onTap: () {
                 FDialog.showConfirm(
                   context,
                   content: '我是一个内容',
@@ -50,15 +50,13 @@ class DialogDemoState extends State<DialogDemo> {
                   onConfirmPress: () {
                     FToast.showToast(context, msg: '确认');
                   },
-                  interceptConfirm: interceptConfirm,
-                  interceptCancel: interceptConfirm,
                 );
               },
             ),
             SizedBox(height: 16),
             FButton(
               child: 'reading',
-              onPressed: () {
+              onTap: () {
                 FDialog.showReading(
                   context,
                   content: '我是一个内容',
@@ -74,9 +72,10 @@ class DialogDemoState extends State<DialogDemo> {
             SizedBox(height: 16),
             FButton(
               child: '内容 自定义',
-              onPressed: () {
+              onTap: () {
                 FDialog.showConfirm(
                   context,
+                  scrollable: false,
                   content: Column(
                     children: <Widget>[
                       Text('输入说明：'),
@@ -101,7 +100,10 @@ class DialogDemoState extends State<DialogDemo> {
                             groupValue: '1',
                             onChanged: (value) {},
                           ),
-                          Expanded(child: Text('服务条款，应用规则，服务条款，应用规则，服务条款，应用规则，服务条款，应用规则')),
+                          Expanded(
+                              child: Text(
+                            '服务条款，应用规则，服务条款，应用规则，服务条款，应用规则，服务条款，应用规则',
+                          )),
                         ],
                       ),
                       Container(
@@ -111,6 +113,11 @@ class DialogDemoState extends State<DialogDemo> {
                       Container(
                         height: 400,
                         color: Colors.red,
+                      ),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: '请输入内容',
+                        ),
                       ),
                     ],
                   ),
@@ -133,7 +140,7 @@ class DialogDemoState extends State<DialogDemo> {
             SizedBox(height: 16),
             FButton(
               child: '按钮拦截',
-              onPressed: () {
+              onTap: () {
                 FDialog.showConfirm(
                   context,
                   content: '我是一个内容',
@@ -158,13 +165,8 @@ class DialogDemoState extends State<DialogDemo> {
     );
   }
 
-  Future<bool> interceptConfirm() async {
-    await Future.delayed(Duration(seconds: 4));
-    print('test -----');
-    return Future.value(true);
-    // if (index > 4) return Future.value(true);
-    // index += 1;
-    // FToast.showToast(context, msg: 'index未大于3');
-    // return Future.value(false);
+  Future<bool> interceptConfirm() {
+    FToast.showToast(context, msg: '事件被拦截');
+    return Future.value(false);
   }
 }

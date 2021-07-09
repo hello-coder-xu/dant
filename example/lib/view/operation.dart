@@ -22,7 +22,7 @@ class OperationDemoState extends State<OperationDemo> {
           children: <Widget>[
             FButton(
               child: '空视图',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -35,7 +35,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '空视图-自定义',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -54,7 +54,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '加载视图',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -68,7 +68,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '加载视图-自定义',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -88,7 +88,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '错误视图',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -102,7 +102,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '错误视图-自定义',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -122,7 +122,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '重新加载',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -139,7 +139,7 @@ class OperationDemoState extends State<OperationDemo> {
             SizedBox(height: 16),
             FButton(
               child: '重新加载-自定义',
-              onPressed: () {
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -153,7 +153,7 @@ class OperationDemoState extends State<OperationDemo> {
                           Text('data reload'),
                           FButton(
                               child: '重新加载',
-                              onPressed: () {
+                              onTap: () {
                                 FToast.showToast(context, msg: '重新加载');
                               }),
                         ],

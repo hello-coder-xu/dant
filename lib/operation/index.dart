@@ -42,7 +42,7 @@ class FOperation extends StatelessWidget {
       children.add(SizedBox(height: 8));
       children.add(FButton(
         child: '点击重新加载',
-        onPressed: onReload,
+        onTap: onReload,
       ));
     }
 

@@ -1,8 +1,4 @@
-
-import 'package:example/compone/action_view.dart';
 import 'package:flutter/material.dart';
-
-
 
 class Comm {
   static Widget toWidget({dynamic title}) {
@@ -15,7 +11,7 @@ class Comm {
   static AppBar getTitleBar({dynamic title}) {
     return AppBar(
       title: toWidget(title: title),
-      actions: <Widget>[ActionsView()],
+      centerTitle: true,
     );
   }
 }

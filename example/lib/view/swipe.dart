@@ -72,7 +72,7 @@ class SwipeDemoState extends State {
               SizedBox(height: 16),
               FButton(
                 child: '外部控制',
-                onPressed: () {
+                onTap: () {
                   (swipeKey.currentState as FSwipeState).setIndex(2);
                 },
               ),

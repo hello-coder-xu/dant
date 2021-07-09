@@ -85,7 +85,7 @@ class TextFieldDemoState extends State<TextFieldDemo> {
               ),
               FButton(
                 child: '刷新页面',
-                onPressed: () {
+                onTap: () {
                   setState(() {});
                 },
               ),

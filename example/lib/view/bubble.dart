@@ -52,7 +52,8 @@ class BubbleDemoState extends State<BubbleDemo> {
             FButton(
               key: keyLeft,
               child: '左边显示',
-              onPressed: () => showPop(
+              size: FButtonSize.mini,
+              onTap: () => showPop(
                 key: keyLeft,
                 fPopupPosition: FPopupPosition.left,
                 value: '我显示在左边',
@@ -63,19 +64,22 @@ class BubbleDemoState extends State<BubbleDemo> {
             FButton(
               key: keyTop,
               child: '上面显示',
-              onPressed: () => showPop(key: keyTop, fPopupPosition: FPopupPosition.top, value: '我显示在上面'),
+              size: FButtonSize.mini,
+              onTap: () => showPop(key: keyTop, fPopupPosition: FPopupPosition.top, value: '我显示在上面'),
             ),
             SizedBox(height: 16),
             FButton(
               key: keyRight,
               child: '右边显示',
-              onPressed: () => showPop(key: keyRight, fPopupPosition: FPopupPosition.right, value: '我显示在右边'),
+              size: FButtonSize.mini,
+              onTap: () => showPop(key: keyRight, fPopupPosition: FPopupPosition.right, value: '我显示在右边'),
             ),
             SizedBox(height: 16),
             FButton(
               key: keyBottom,
               child: '下面显示',
-              onPressed: () => showPop(key: keyBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面'),
+              size: FButtonSize.mini,
+              onTap: () => showPop(key: keyBottom, fPopupPosition: FPopupPosition.bottom, value: '我显示在下面'),
             ),
           ],
         ),

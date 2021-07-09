@@ -24,53 +24,59 @@ class ButtonDemoState extends State<ButtonDemo> {
               FButton(child: "默认"),
               SizedBox(height: 8),
               FButton(
-                  child: "圆角5，填充,红色",
-                  radius: Radius.circular(5),
-                  bgColor: Colors.blue,
-                  onPressed: () {
-                    FToast.showToast(context, msg: 'hello');
-                  }),
+                child: "胶囊",
+                bgColor: Colors.blue,
+                style: FButtonStyle.capsule,
+                onTap: () {
+                  FToast.showToast(context, msg: 'hello');
+                },
+              ),
               SizedBox(height: 8),
               FButton(
-                  child: "圆角5，不填充,可点击",
-                  radius: Radius.circular(5),
-                  outLine: true,
-                  onPressed: () {
-                    FToast.showToast(context, msg: 'hello');
-                  }),
+                child: "镂空",
+                hollow: true,
+                onTap: () {
+                  FToast.showToast(context, msg: 'hello');
+                },
+              ),
               SizedBox(height: 8),
               FButton(
-                  child: "圆角5，不填充,不可点击",
-                  radius: Radius.circular(5),
-                  enable: false,
-                  outLine: true,
-                  onPressed: () {
-                    FToast.showToast(context, msg: 'hello');
-                  }),
+                child: "圆角5，不填充,不可点击",
+                enable: false,
+                hollow: true,
+                onTap: () {
+                  FToast.showToast(context, msg: 'hello');
+                },
+              ),
               SizedBox(height: 8),
               FButton(
                 child: "宽度自适应屏幕宽度",
-                type: FButtonType.max,
+                size: FButtonSize.small,
               ),
               SizedBox(height: 8),
-              FButton(
-                child: "不填充",
-                outLine: true,
-                borderColor: Colors.red,
-              ),
-              Row(
+              Wrap(
+                spacing: 16,
+                runSpacing: 16,
                 children: [
                   FButton(
-                    child: "不填充",
-                    outLine: true,
-                    type: FButtonType.min,
-                    borderColor: Colors.red,
+                    child: "小",
+                    size: FButtonSize.mini,
                   ),
                   FButton(
-                    child: "不填充",
-                    outLine: true,
-                    type: FButtonType.min,
-                    borderColor: Colors.red,
+                    child: "小",
+                    size: FButtonSize.mini,
+                    style: FButtonStyle.capsule,
+                  ),
+                  FButton(
+                    child: "小",
+                    size: FButtonSize.mini,
+                    hollow: true,
+                  ),
+                  FButton(
+                    child: "小",
+                    size: FButtonSize.mini,
+                    style: FButtonStyle.capsule,
+                    hollow: true,
                   ),
                 ],
               ),

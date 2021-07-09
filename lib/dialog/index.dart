@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:synchronized/synchronized.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FDialog {
   static void showAlert(
@@ -57,7 +58,7 @@ class FDialog {
     Future<bool> Function() interceptCancel,
     Future<bool> Function() interceptConfirm,
     bool barrierDismissible = true,
-    bool scrollable = true,
+    bool scrollable = false,
     bool useRootNavigator = false,
   }) {
     showDialog(
@@ -168,15 +169,14 @@ class _FDialog extends StatelessWidget {
   });
 
   ///标题视图
-  Widget dialogTopTitleView() {
+  Widget titleView() {
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.only(left: 24, right: 24, bottom: 8),
-      height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.w),
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 32.sp,
           color: Colors.black87,
         ),
         overflow: TextOverflow.ellipsis,
@@ -186,10 +186,10 @@ class _FDialog extends StatelessWidget {
   }
 
   ///内容视图
-  Widget dialogTopContentView(BuildContext context) {
+  Widget contentView(BuildContext context) {
     Widget child;
     TextStyle textStyle = TextStyle(
-      fontSize: 16,
+      fontSize: 28.sp,
       color: Colors.black87,
     );
     if (content.runtimeType == String) {
@@ -203,32 +203,17 @@ class _FDialog extends StatelessWidget {
         style: textStyle,
       );
     }
-    //最大高度-底部按钮高度-内容视图上下间距-标题高度-分割线
-    // double tempHeight = MediaQuery.of(context).size.height * 0.6 - 48 - 24 - 40 - 1;
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.symmetric(horizontal: 24),
-      constraints: BoxConstraints(minHeight: 48),
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
+      constraints: BoxConstraints(minHeight: 120.w),
       child: child,
     );
   }
 
-  /// 标题与内容视图
-  Widget dialogTitleAndContentView(BuildContext context) {
-    List<Widget> children = [];
-    if (title != null) {
-      children.add(dialogTopTitleView());
-    }
-    children.add(dialogTopContentView(context));
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 12),
-      child: Column(children: children),
-    );
-  }
-
   ///按钮视图
-  Widget dialogBottomView(BuildContext context) {
-    double tempHeight = 48;
+  Widget bottomView(BuildContext context) {
+    double tempHeight = 96.w;
     if (isReadDialog) {
       return Container(
         height: tempHeight,
@@ -255,7 +240,7 @@ class _FDialog extends StatelessWidget {
                 cancel,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 28.sp,
                   color: cancelTextColor ?? Colors.black54,
                 ),
               ),
@@ -276,7 +261,7 @@ class _FDialog extends StatelessWidget {
               confirm,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 28.sp,
                 color: confirmTextColor ?? Colors.black87,
               ),
             ),
@@ -293,14 +278,24 @@ class _FDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    children.add(dialogTitleAndContentView(context));
+    if (title != null) {
+      children.add(titleView());
+    }
+    children.add(Flexible(
+      child: SingleChildScrollView(
+        child: contentView(context),
+      ),
+    ));
     children.add(Divider(height: 1));
-    children.add(dialogBottomView(context));
+    children.add(bottomView(context));
     return Container(
       constraints: BoxConstraints(
-        minWidth: MediaQuery.of(context).size.width * 0.9,
+        minWidth: 0.9.sw,
       ),
-      child: Column(children: children),
+      child: Column(
+        children: children,
+        mainAxisSize: MainAxisSize.min,
+      ),
     );
   }
 
@@ -399,18 +394,20 @@ class ReadingButtonState extends State<ReadingButton> {
     if (tempSecond > 0) {
       buttonValue = '$tempSecond s';
     }
-    Color textColor = tempSecond > 0 ? Colors.black54 : widget.confirmTextColor ?? Colors.black87;
+    Color textColor = tempSecond > 0
+        ? Colors.black54
+        : widget.confirmTextColor ?? Colors.black87;
     return GestureDetector(
       onTap: confirmPress,
       child: Container(
         color: widget.confirmBgColor ?? Colors.white,
-        height: 48,
+        height: 96.w,
         alignment: Alignment.center,
         child: Text(
           buttonValue,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 28.sp,
             color: textColor,
           ),
         ),

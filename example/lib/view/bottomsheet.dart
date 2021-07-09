@@ -28,13 +28,13 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
     List<Widget> children = [];
     children.add(FButton(
       child: '菜单选择',
-      onPressed: showSheetOption,
+      onTap: showSheetOption,
     ));
 
     children.add(SizedBox(height: 16));
     children.add(FButton(
       child: '自定义视图',
-      onPressed: showSheetView,
+      onTap: showSheetView,
     ));
     return Scaffold(
       appBar: Comm.getTitleBar(title: 'BottomSheetDemo'),
@@ -161,7 +161,7 @@ class BottomSheetDemoState extends State<BottomSheetDemo> {
 
     Widget bottom = FButton(
       child: '确定',
-      onPressed: () => Navigator.pop(context, 'sure'),
+      onTap: () => Navigator.pop(context, 'sure'),
     );
 
     FBottomSheet.fBottomSheetView(
