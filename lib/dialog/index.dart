@@ -205,7 +205,7 @@ class _FDialog extends StatelessWidget {
     }
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.symmetric(horizontal: 32.w),
+      margin: EdgeInsets.symmetric(horizontal: 32.w,vertical: 16.w),
       constraints: BoxConstraints(minHeight: 120.w),
       child: child,
     );
