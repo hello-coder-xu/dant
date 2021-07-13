@@ -148,8 +148,8 @@ class FButtonV2 extends StatelessWidget {
         break;
       case FButtonSize.mini:
         boxConstraints = boxConstraints = BoxConstraints(
-          minWidth: 152.w,
-          minHeight: 54.w,
+          minWidth: 120.w,
+          minHeight: 50.w,
         );
         break;
     }
@@ -167,7 +167,7 @@ class FButtonV2 extends StatelessWidget {
         fontSize = 32.sp;
         break;
       case FButtonSize.mini:
-        fontSize = 24.sp;
+        fontSize = 28.sp;
         break;
     }
     return fontSize;
