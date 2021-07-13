@@ -75,6 +75,8 @@ class FButtonV2 extends StatelessWidget {
           style: ButtonStyle(
             shape: ButtonStyleButton.allOrNull(shapeBorder),
             backgroundColor: ButtonStyleButton.allOrNull(tempBgColor),
+            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            minimumSize: MaterialStateProperty.all(getMinSize()),
             side: hollow
                 ? MaterialStateProperty.all(
                     BorderSide(color: tempBorderColor, width: 1))
@@ -93,6 +95,8 @@ class FButtonV2 extends StatelessWidget {
           style: ButtonStyle(
             shape: ButtonStyleButton.allOrNull(shapeBorder),
             backgroundColor: ButtonStyleButton.allOrNull(tempBgColor),
+            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            minimumSize: MaterialStateProperty.all(getMinSize()),
             side: hollow
                 ? MaterialStateProperty.all(
                     BorderSide(color: tempBorderColor, width: 1))
@@ -106,10 +110,6 @@ class FButtonV2 extends StatelessWidget {
       default:
         btnView = SizedBox.shrink();
     }
-    btnView = Container(
-      constraints: getButtonConstraints(),
-      child: btnView,
-    );
     if (!enable) {
       btnView = Opacity(opacity: 0.3, child: btnView);
     }
@@ -128,32 +128,20 @@ class FButtonV2 extends StatelessWidget {
   }
 
   ///大小
-  BoxConstraints getButtonConstraints() {
-    BoxConstraints boxConstraints = BoxConstraints(
-      minWidth: 152.w,
-      minHeight: 54.w,
-    );
+  Size getMinSize() {
+    Size sizeValue = Size(152.w, 54.w);
     switch (size) {
       case FButtonSize.large:
-        boxConstraints = boxConstraints = BoxConstraints(
-          minWidth: 686.w,
-          minHeight: 96.w,
-        );
+        sizeValue = Size(686.w, 96.w);
         break;
       case FButtonSize.small:
-        boxConstraints = boxConstraints = BoxConstraints(
-          minWidth: 332.w,
-          minHeight: 96.w,
-        );
+        sizeValue = Size(332.w, 96.w);
         break;
       case FButtonSize.mini:
-        boxConstraints = boxConstraints = BoxConstraints(
-          minWidth: 96.w,
-          minHeight: 40.w,
-        );
+        sizeValue = Size(120.w, 54.w);
         break;
     }
-    return boxConstraints;
+    return sizeValue;
   }
 
   ///字体大小
@@ -167,7 +155,7 @@ class FButtonV2 extends StatelessWidget {
         fontSize = 32.sp;
         break;
       case FButtonSize.mini:
-        fontSize = 28.sp;
+        fontSize = 24.sp;
         break;
     }
     return fontSize;
