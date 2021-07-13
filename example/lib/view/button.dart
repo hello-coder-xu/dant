@@ -41,7 +41,7 @@ class ButtonDemoState extends State<ButtonDemo> {
               ),
               SizedBox(height: 8),
               FButtonV2(
-                child: "圆角5，不填充,不可点击",
+                child: "不可点击",
                 enable: false,
                 hollow: true,
                 onTap: () {

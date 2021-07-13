@@ -34,6 +34,9 @@ class FButtonV2 extends StatelessWidget {
   //阴影大小
   final double elevation;
 
+  //内部间距
+  final EdgeInsetsGeometry padding;
+
   //点击事件
   final VoidCallback onTap;
 
@@ -52,6 +55,7 @@ class FButtonV2 extends StatelessWidget {
     this.style = FButtonStyle.normal,
     this.size = FButtonSize.large,
     this.elevation = 0.0,
+    this.padding,
     this.onTap,
     this.enable = true,
     this.hollow = false,
@@ -69,13 +73,13 @@ class FButtonV2 extends StatelessWidget {
     switch (style) {
       case FButtonStyle.normal:
         shapeBorder = RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.w)),
+          borderRadius: BorderRadius.all(Radius.circular(6.w)),
         );
         btnView = ElevatedButton(
           style: ButtonStyle(
             shape: ButtonStyleButton.allOrNull(shapeBorder),
             backgroundColor: ButtonStyleButton.allOrNull(tempBgColor),
-            // padding: MaterialStateProperty.all(EdgeInsets.zero),
+            padding: MaterialStateProperty.all(padding),
             minimumSize: MaterialStateProperty.all(getMinSize()),
             side: hollow
                 ? MaterialStateProperty.all(
@@ -89,13 +93,13 @@ class FButtonV2 extends StatelessWidget {
         break;
       case FButtonStyle.capsule: //胶囊类型
         shapeBorder = RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(27)),
+          borderRadius: BorderRadius.all(Radius.circular(54.w)),
         );
         btnView = ElevatedButton(
           style: ButtonStyle(
             shape: ButtonStyleButton.allOrNull(shapeBorder),
             backgroundColor: ButtonStyleButton.allOrNull(tempBgColor),
-            // padding: MaterialStateProperty.all(EdgeInsets.zero),
+            padding: MaterialStateProperty.all(padding),
             minimumSize: MaterialStateProperty.all(getMinSize()),
             side: hollow
                 ? MaterialStateProperty.all(
