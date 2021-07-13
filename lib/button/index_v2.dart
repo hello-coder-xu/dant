@@ -37,6 +37,9 @@ class FButtonV2 extends StatelessWidget {
   //内部间距
   final EdgeInsetsGeometry padding;
 
+  //圆角角度
+  final Radius radius;
+
   //点击事件
   final VoidCallback onTap;
 
@@ -56,6 +59,7 @@ class FButtonV2 extends StatelessWidget {
     this.size = FButtonSize.large,
     this.elevation = 0.0,
     this.padding,
+    this.radius,
     this.onTap,
     this.enable = true,
     this.hollow = false,
@@ -73,7 +77,7 @@ class FButtonV2 extends StatelessWidget {
     switch (style) {
       case FButtonStyle.normal:
         shapeBorder = RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(6.w)),
+          borderRadius: BorderRadius.all(radius ?? Radius.circular(6.w)),
         );
         btnView = ElevatedButton(
           style: ButtonStyle(
@@ -93,7 +97,7 @@ class FButtonV2 extends StatelessWidget {
         break;
       case FButtonStyle.capsule: //胶囊类型
         shapeBorder = RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(54.w)),
+          borderRadius: BorderRadius.all(radius ?? Radius.circular(54.w)),
         );
         btnView = ElevatedButton(
           style: ButtonStyle(
