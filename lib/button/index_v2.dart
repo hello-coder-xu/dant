@@ -75,7 +75,7 @@ class FButtonV2 extends StatelessWidget {
           style: ButtonStyle(
             shape: ButtonStyleButton.allOrNull(shapeBorder),
             backgroundColor: ButtonStyleButton.allOrNull(tempBgColor),
-            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            // padding: MaterialStateProperty.all(EdgeInsets.zero),
             minimumSize: MaterialStateProperty.all(getMinSize()),
             side: hollow
                 ? MaterialStateProperty.all(
@@ -95,7 +95,7 @@ class FButtonV2 extends StatelessWidget {
           style: ButtonStyle(
             shape: ButtonStyleButton.allOrNull(shapeBorder),
             backgroundColor: ButtonStyleButton.allOrNull(tempBgColor),
-            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            // padding: MaterialStateProperty.all(EdgeInsets.zero),
             minimumSize: MaterialStateProperty.all(getMinSize()),
             side: hollow
                 ? MaterialStateProperty.all(
