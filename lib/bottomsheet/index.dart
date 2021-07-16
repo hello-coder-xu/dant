@@ -25,7 +25,7 @@ class FBottomSheet {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             constraints: BoxConstraints(maxHeight: 0.8.sh),
-            child: _FBottomSheetOption(
+            child: FBottomSheetOption(
               list: option,
               initData: initData,
             ),
@@ -62,7 +62,7 @@ class FBottomSheet {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             constraints: BoxConstraints(maxHeight: 0.8.sh),
-            child: _FBottomSheetView(
+            child: FBottomSheetView(
               title: title,
               content: content,
               bottom: bottom,
@@ -74,18 +74,18 @@ class FBottomSheet {
   }
 }
 
-class _FBottomSheetOption extends StatelessWidget {
+class FBottomSheetOption extends StatelessWidget {
   final List<String> list;
   final String initData;
 
-  _FBottomSheetOption({
+  FBottomSheetOption({
     this.list,
     this.initData,
   });
 
   @override
   Widget build(BuildContext context) {
-    return _FBottomSheetView(
+    return FBottomSheetView(
       content: contentView(context),
       bottom: bottomView(context),
     );
@@ -148,12 +148,12 @@ class _FBottomSheetOption extends StatelessWidget {
   }
 }
 
-class _FBottomSheetView extends StatelessWidget {
+class FBottomSheetView extends StatelessWidget {
   final Widget title;
   final Widget content;
   final Widget bottom;
 
-  _FBottomSheetView({
+  FBottomSheetView({
     this.title,
     @required this.content,
     this.bottom,
