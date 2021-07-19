@@ -15,8 +15,6 @@ class FBadge extends StatelessWidget {
   final Widget child;
   final double size;
   final FBadgePosition position;
-  final double paddingX;
-  final double paddingY;
 
   FBadge({
     @required this.child,
@@ -27,8 +25,6 @@ class FBadge extends StatelessWidget {
     this.limit = false,
     this.size,
     this.position = FBadgePosition.rightTop,
-    this.paddingX = 0,
-    this.paddingY = 0,
   });
 
   @override
@@ -62,7 +58,7 @@ class FBadge extends StatelessWidget {
         color: color,
       );
     } else if (type == FBadgeType.round) {
-      double tempSize = size ?? 28.w;
+      double tempSize = size ?? 30.w;
       return FRound(
         type: FRoundType.round,
         color: color,
@@ -73,7 +69,7 @@ class FBadge extends StatelessWidget {
         ),
       );
     } else {
-      double tempSize = size ?? 28.w;
+      double tempSize = size ?? 30.w;
       return FRound(
         type: FRoundType.ellipse,
         color: color,
@@ -96,14 +92,14 @@ class FBadge extends StatelessWidget {
       children.add(getFRound());
     } else if (position == FBadgePosition.leftTop) {
       children.add(Positioned(
-        top: paddingY,
-        left: paddingX,
+        top: 0,
+        left: 0,
         child: getFRound(),
       ));
     } else if (position == FBadgePosition.rightTop) {
       children.add(Positioned(
-        top: paddingY,
-        right: paddingX,
+        top: 0,
+        right: 0,
         child: getFRound(),
       ));
     }
@@ -117,7 +113,7 @@ class FBadge extends StatelessWidget {
     } else {
       return Stack(
         children: children,
-        // clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAlias,
       );
     }
   }
