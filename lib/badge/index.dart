@@ -54,14 +54,15 @@ class FBadge extends StatelessWidget {
 
   //获取角标
   Widget getFRound() {
-    double tempSize = size ?? 28.w;
     if (type == FBadgeType.point) {
+      double tempSize = size ?? 14.w;
       return FRound(
         type: FRoundType.point,
         size: tempSize,
         color: color,
       );
     } else if (type == FBadgeType.round) {
+      double tempSize = size ?? 28.w;
       return FRound(
         type: FRoundType.round,
         color: color,
@@ -72,6 +73,7 @@ class FBadge extends StatelessWidget {
         ),
       );
     } else {
+      double tempSize = size ?? 28.w;
       return FRound(
         type: FRoundType.ellipse,
         color: color,
