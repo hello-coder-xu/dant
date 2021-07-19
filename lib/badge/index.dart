@@ -101,7 +101,7 @@ class FBadge extends StatelessWidget {
     } else if (position == FBadgePosition.rightTop) {
       children.add(Positioned(
         top: paddingY,
-        left: paddingX,
+        right: paddingX,
         child: getFRound(),
       ));
     }
