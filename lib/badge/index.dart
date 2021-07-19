@@ -1,5 +1,6 @@
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FBadgeType { point, round, ellipse }
 
@@ -14,6 +15,8 @@ class FBadge extends StatelessWidget {
   final Widget child;
   final double size;
   final FBadgePosition position;
+  final double paddingX;
+  final double paddingY;
 
   FBadge({
     @required this.child,
@@ -24,6 +27,8 @@ class FBadge extends StatelessWidget {
     this.limit = false,
     this.size,
     this.position = FBadgePosition.rightTop,
+    this.paddingX = 0,
+    this.paddingY = 0,
   });
 
   @override
@@ -44,22 +49,23 @@ class FBadge extends StatelessWidget {
 
   //字体样式
   TextStyle getTextStyle() {
-    return textStyle ?? TextStyle(fontSize: 8, color: Colors.white);
+    return textStyle ?? TextStyle(fontSize: 16.sp, color: Colors.white);
   }
 
   //获取角标
   Widget getFRound() {
+    double tempSize = size ?? 28.w;
     if (type == FBadgeType.point) {
       return FRound(
         type: FRoundType.point,
-        size: size,
+        size: tempSize,
         color: color,
       );
     } else if (type == FBadgeType.round) {
       return FRound(
         type: FRoundType.round,
         color: color,
-        size: size,
+        size: tempSize,
         child: Text(
           getNumber(),
           style: getTextStyle(),
@@ -69,7 +75,7 @@ class FBadge extends StatelessWidget {
       return FRound(
         type: FRoundType.ellipse,
         color: color,
-        size: size,
+        size: tempSize,
         child: Text(
           getNumber(),
           style: getTextStyle(),
@@ -88,14 +94,14 @@ class FBadge extends StatelessWidget {
       children.add(getFRound());
     } else if (position == FBadgePosition.leftTop) {
       children.add(Positioned(
-        top: 0,
-        left: 0,
+        top: paddingY,
+        left: paddingX,
         child: getFRound(),
       ));
     } else if (position == FBadgePosition.rightTop) {
       children.add(Positioned(
-        top: 0,
-        right: 0,
+        top: paddingY,
+        left: paddingX,
         child: getFRound(),
       ));
     }
