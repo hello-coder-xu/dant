@@ -9,6 +9,7 @@ enum FBadgePosition { left, right, leftTop, rightTop }
 class FBadge extends StatelessWidget {
   final FBadgeType type;
   final Color color;
+  final Color borderColor;
   final TextStyle textStyle;
   final int num;
   final bool limit;
@@ -20,6 +21,7 @@ class FBadge extends StatelessWidget {
     @required this.child,
     this.type = FBadgeType.point,
     this.color,
+    this.borderColor,
     this.textStyle,
     this.num,
     this.limit = false,
@@ -56,6 +58,7 @@ class FBadge extends StatelessWidget {
         type: FRoundType.point,
         size: tempSize,
         color: color,
+        borderColor: borderColor,
       );
     } else if (type == FBadgeType.round) {
       double tempSize = size ?? 24.w;
@@ -63,6 +66,7 @@ class FBadge extends StatelessWidget {
         type: FRoundType.round,
         color: color,
         size: tempSize,
+        borderColor: borderColor,
         child: Text(
           getNumber(),
           style: getTextStyle(),
@@ -74,6 +78,7 @@ class FBadge extends StatelessWidget {
         type: FRoundType.ellipse,
         color: color,
         size: tempSize,
+        borderColor: borderColor,
         child: Text(
           getNumber(),
           style: getTextStyle(),

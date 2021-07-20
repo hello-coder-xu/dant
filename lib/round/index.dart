@@ -7,6 +7,7 @@ class FRound extends StatelessWidget {
   final FRoundType type;
   final double size;
   final Color color;
+  final Color borderColor;
   final dynamic child;
   final TextStyle textStyle;
 
@@ -14,6 +15,7 @@ class FRound extends StatelessWidget {
     this.type = FRoundType.point,
     this.size,
     this.color,
+    this.borderColor,
     this.child,
     this.textStyle,
   });
@@ -26,8 +28,9 @@ class FRound extends StatelessWidget {
         width: tempSize,
         height: tempSize,
         decoration: BoxDecoration(
-          color: color ?? Theme.of(context).primaryColorLight,
+          color: color ?? Colors.deepOrange,
           shape: BoxShape.circle,
+          border: Border.all(color: borderColor ?? Colors.deepOrange, width: 1),
         ),
       );
     } else if (type == FRoundType.round) {
@@ -36,8 +39,9 @@ class FRound extends StatelessWidget {
         width: tempSize,
         height: tempSize,
         decoration: BoxDecoration(
-          color: color ?? Theme.of(context).primaryColorLight,
+          color: color ?? Colors.deepOrange,
           shape: BoxShape.circle,
+          border: Border.all(color: borderColor ?? Colors.deepOrange, width: 1),
         ),
         alignment: Alignment.center,
         child: getContent(),
@@ -49,8 +53,9 @@ class FRound extends StatelessWidget {
         height: tempSize,
         padding: EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          color: color ?? Theme.of(context).primaryColorLight,
+          color: color ?? Colors.deepOrange,
           borderRadius: BorderRadius.horizontal(left: radius, right: radius),
+          border: Border.all(color: borderColor ?? Colors.deepOrange, width: 1),
         ),
         child: Row(
           children: [getContent()],
@@ -59,11 +64,6 @@ class FRound extends StatelessWidget {
         ),
       );
     }
-  }
-
-  //背景
-  Color getBgColor(BuildContext context) {
-    return color ?? Theme.of(context).primaryColor;
   }
 
   //字体样式
