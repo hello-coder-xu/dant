@@ -196,7 +196,7 @@ class FCheckBoxTextSpan extends StatelessWidget {
       List<Widget> children = [];
       children.add(checkBoxIcon);
       children.add(SizedBox(width: space ?? 18.w));
-      children.add(Expanded(
+      children.add(Flexible(
         child: Container(
           alignment: Alignment.topLeft,
           child: Text.rich(
@@ -278,7 +278,7 @@ class FCheckBoxView extends StatelessWidget {
       List<Widget> children = [];
       children.add(checkBoxIcon);
       children.add(SizedBox(width: space ?? 18.w));
-      children.add(Expanded(child: child));
+      children.add(Flexible(child: child));
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,
