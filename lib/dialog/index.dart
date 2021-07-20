@@ -337,6 +337,9 @@ class _FDialog extends StatelessWidget {
         bool tempConfirm = await interceptConfirm();
         if (tempConfirm) {
           hide(context);
+          if (onConfirmPress != null) {
+            onConfirmPress();
+          }
         }
       });
     }
@@ -434,6 +437,9 @@ class ReadingButtonState extends State<ReadingButton> {
         bool tempConfirm = await widget.interceptConfirm();
         if (tempConfirm) {
           hide(context);
+          if (widget.onConfirmPress != null) {
+            widget.onConfirmPress();
+          }
         }
       });
     }
