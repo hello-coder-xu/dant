@@ -21,14 +21,14 @@ class FCheckBoxIcon extends StatelessWidget {
           Icon(
             Icons.check_circle,
             size: 44.w,
-            color: Color(0xff25c489),
+            color: Colors.deepOrange,
           );
     } else {
       child = unSelectIcon ??
           Icon(
             Icons.radio_button_unchecked,
             size: 44.w,
-            color: Color(0xffb6b6b6),
+            color: Colors.black38,
           );
     }
     return child;
