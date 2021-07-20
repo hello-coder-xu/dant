@@ -30,7 +30,10 @@ class FRound extends StatelessWidget {
         decoration: BoxDecoration(
           color: color ?? Colors.deepOrange,
           shape: BoxShape.circle,
-          border: Border.all(color: borderColor ?? Colors.deepOrange, width: 1),
+          border: Border.all(
+            color: borderColor ?? color ?? Colors.deepOrange,
+            width: 1,
+          ),
         ),
       );
     } else if (type == FRoundType.round) {
@@ -41,7 +44,10 @@ class FRound extends StatelessWidget {
         decoration: BoxDecoration(
           color: color ?? Colors.deepOrange,
           shape: BoxShape.circle,
-          border: Border.all(color: borderColor ?? Colors.deepOrange, width: 1),
+          border: Border.all(
+            color: borderColor ?? color ?? Colors.deepOrange,
+            width: 1,
+          ),
         ),
         alignment: Alignment.center,
         child: getContent(),
@@ -55,7 +61,10 @@ class FRound extends StatelessWidget {
         decoration: BoxDecoration(
           color: color ?? Colors.deepOrange,
           borderRadius: BorderRadius.horizontal(left: radius, right: radius),
-          border: Border.all(color: borderColor ?? Colors.deepOrange, width: 1),
+          border: Border.all(
+            color: borderColor ?? color ?? Colors.deepOrange,
+            width: 1,
+          ),
         ),
         child: Row(
           children: [getContent()],
