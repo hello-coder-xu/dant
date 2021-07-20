@@ -58,7 +58,7 @@ class FBadge extends StatelessWidget {
         color: color,
       );
     } else if (type == FBadgeType.round) {
-      double tempSize = size ?? 30.w;
+      double tempSize = size ?? 24.w;
       return FRound(
         type: FRoundType.round,
         color: color,
@@ -69,7 +69,7 @@ class FBadge extends StatelessWidget {
         ),
       );
     } else {
-      double tempSize = size ?? 30.w;
+      double tempSize = size ?? 24.w;
       return FRound(
         type: FRoundType.ellipse,
         color: color,
