@@ -2,7 +2,6 @@ import 'package:dant/checkbox/checkbox_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 ///单选框-文本
 class FRadioBox extends StatelessWidget {
   //选中图标
@@ -38,6 +37,9 @@ class FRadioBox extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
+  //大小
+  final MainAxisSize mainAxisSize;
+
   FRadioBox({
     @required this.value,
     @required this.group,
@@ -50,6 +52,7 @@ class FRadioBox extends StatelessWidget {
     this.enable = true,
     this.embedded = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   });
 
   @override
@@ -103,6 +106,7 @@ class FRadioBox extends StatelessWidget {
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
       );
     }
     if (!enable) return Opacity(opacity: 0.5, child: currentChild);
@@ -149,6 +153,9 @@ class FRadioBoxTextSpan extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
+  //大小
+  final MainAxisSize mainAxisSize;
+
   FRadioBoxTextSpan({
     @required this.value,
     @required this.group,
@@ -160,6 +167,7 @@ class FRadioBoxTextSpan extends StatelessWidget {
     this.enable = true,
     this.embedded = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   });
 
   @override
@@ -208,6 +216,7 @@ class FRadioBoxTextSpan extends StatelessWidget {
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
       );
     }
     if (!enable) return Opacity(opacity: 0.5, child: currentChild);
@@ -251,6 +260,9 @@ class FRadioBoxView extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
+  //大小
+  final MainAxisSize mainAxisSize;
+
   FRadioBoxView({
     @required this.value,
     @required this.group,
@@ -261,6 +273,7 @@ class FRadioBoxView extends StatelessWidget {
     this.space,
     this.enable = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   });
 
   @override
@@ -281,6 +294,7 @@ class FRadioBoxView extends StatelessWidget {
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
       );
     }
     if (!enable) return Opacity(opacity: 0.5, child: currentChild);

@@ -34,6 +34,9 @@ class FCheckBox extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
+  //大小
+  final MainAxisSize mainAxisSize;
+
   FCheckBox({
     this.checked = false,
     this.onChanged,
@@ -45,6 +48,7 @@ class FCheckBox extends StatelessWidget {
     this.enable = true,
     this.embedded = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   });
 
   @override
@@ -97,6 +101,7 @@ class FCheckBox extends StatelessWidget {
       ));
       currentChild = Row(
         children: children,
+        mainAxisSize: mainAxisSize,
         crossAxisAlignment: crossAxisAlignment,
       );
     }
@@ -141,6 +146,9 @@ class FCheckBoxTextSpan extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
+  //大小
+  final MainAxisSize mainAxisSize;
+
   FCheckBoxTextSpan({
     this.checked = false,
     this.onChanged,
@@ -151,6 +159,7 @@ class FCheckBoxTextSpan extends StatelessWidget {
     this.enable = true,
     this.embedded = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   });
 
   @override
@@ -199,6 +208,7 @@ class FCheckBoxTextSpan extends StatelessWidget {
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
       );
     }
     if (!enable) return Opacity(opacity: 0.5, child: currentChild);
@@ -239,6 +249,9 @@ class FCheckBoxView extends StatelessWidget {
   //不嵌入时，对齐方式
   final CrossAxisAlignment crossAxisAlignment;
 
+  //大小
+  final MainAxisSize mainAxisSize;
+
   FCheckBoxView({
     this.checked = false,
     this.onChanged,
@@ -248,6 +261,7 @@ class FCheckBoxView extends StatelessWidget {
     this.space,
     this.enable = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   });
 
   @override
@@ -268,6 +282,7 @@ class FCheckBoxView extends StatelessWidget {
       currentChild = Row(
         children: children,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
       );
     }
     if (!enable) return Opacity(opacity: 0.5, child: currentChild);
