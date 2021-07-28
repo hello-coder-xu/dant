@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FBottomSheet {
+  ///底部弹窗-列表
   static Future fBottomSheetOption(
     BuildContext context, {
     List<String> option,
@@ -41,6 +42,7 @@ class FBottomSheet {
     }
   }
 
+  ///底部弹窗-视图
   static Future fBottomSheetView(
     BuildContext context, {
     Widget title,
@@ -67,6 +69,35 @@ class FBottomSheet {
               content: content,
               bottom: bottom,
             ),
+          ),
+        );
+      },
+    );
+  }
+
+  ///底部弹窗-自定义
+  static Future fBottomSheetViewCustom(
+    BuildContext context, {
+    Widget title,
+    @required Widget content,
+    Widget bottom,
+    bool isDismissible = true,
+    ShapeBorder shape,
+  }) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: shape,
+      isDismissible: isDismissible,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            constraints: BoxConstraints(maxHeight: 0.8.sh),
+            child: content,
           ),
         );
       },
