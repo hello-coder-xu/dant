@@ -12,6 +12,7 @@ class FBottomSheet {
     Function onClose,
     ShapeBorder shape,
     bool isDismissible = true,
+    double maxHeight,
   }) async {
     var result = await showModalBottomSheet(
       context: context,
@@ -25,7 +26,7 @@ class FBottomSheet {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            constraints: BoxConstraints(maxHeight: 0.8.sh),
+            constraints: BoxConstraints(maxHeight: maxHeight ?? 0.8.sh),
             child: FBottomSheetOption(
               list: option,
               initData: initData,
@@ -50,6 +51,7 @@ class FBottomSheet {
     Widget bottom,
     bool isDismissible = true,
     ShapeBorder shape,
+    double maxHeight,
   }) {
     return showModalBottomSheet(
       context: context,
@@ -63,7 +65,7 @@ class FBottomSheet {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            constraints: BoxConstraints(maxHeight: 0.8.sh),
+            constraints: BoxConstraints(maxHeight: maxHeight ?? 0.8.sh),
             child: FBottomSheetView(
               title: title,
               content: content,
@@ -83,6 +85,7 @@ class FBottomSheet {
     Widget bottom,
     bool isDismissible = true,
     ShapeBorder shape,
+    double maxHeight,
   }) {
     return showModalBottomSheet(
       context: context,
@@ -96,7 +99,7 @@ class FBottomSheet {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            constraints: BoxConstraints(maxHeight: 0.8.sh),
+            constraints: BoxConstraints(maxHeight: maxHeight ?? 0.8.sh),
             child: content,
           ),
         );
