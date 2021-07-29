@@ -143,7 +143,7 @@ class FButtonV2 extends StatelessWidget {
         sizeValue = Size(686.w, 96.w);
         break;
       case FButtonSize.small:
-        sizeValue = Size(332.w, 96.w);
+        sizeValue = Size(332.w, 76.w);
         break;
       case FButtonSize.mini:
         sizeValue = Size(120.w, 54.w);
