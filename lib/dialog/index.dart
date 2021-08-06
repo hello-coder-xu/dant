@@ -189,7 +189,7 @@ class _FDialog extends StatelessWidget {
   Widget contentView(BuildContext context) {
     Widget child;
     TextStyle textStyle = TextStyle(
-      fontSize: 28.sp,
+      fontSize: 32.sp,
       color: Colors.black87,
     );
     if (content.runtimeType == String) {
