@@ -240,7 +240,7 @@ class _FDialog extends StatelessWidget {
                 cancel,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 28.sp,
+                  fontSize: 32.sp,
                   color: cancelTextColor ?? Colors.black54,
                 ),
               ),
@@ -261,7 +261,7 @@ class _FDialog extends StatelessWidget {
               confirm,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 28.sp,
+                fontSize: 32.sp,
                 color: confirmTextColor ?? Colors.black87,
               ),
             ),
@@ -410,7 +410,7 @@ class ReadingButtonState extends State<ReadingButton> {
           buttonValue,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 28.sp,
+            fontSize: 32.sp,
             color: textColor,
           ),
         ),
