@@ -1,4 +1,3 @@
-import 'package:dant/comm/ColorUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -129,7 +128,7 @@ class FBottomSheetOption extends StatelessWidget {
     List<Widget> children = [];
     for (int i = 0; i < list.length; i++) {
       if (children.length > 0) {
-        children.add(Divider(height: 1, color: cE5E5E5));
+        children.add(Divider(height: 1, color: Color(0xffE5E5E5)));
       }
       String it = list[i];
       bool select = it == initData;
@@ -140,7 +139,7 @@ class FBottomSheetOption extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 28.sp,
-            color: select ? Colors.deepOrange : c666666,
+            color: select ? Colors.deepOrange : Color(0xff666666),
           ),
         ),
         selected: select,
@@ -154,7 +153,7 @@ class FBottomSheetOption extends StatelessWidget {
     List<Widget> children = [];
     children.add(Divider(
       height: 32.w,
-      color: cE5E5E5,
+      color: Color(0xffE5E5E5),
       thickness: 32.w,
     ));
 
@@ -164,7 +163,7 @@ class FBottomSheetOption extends StatelessWidget {
         height: 84.w,
         child: Text(
           '取消',
-          style: TextStyle(fontSize: 32.sp, color: c666666),
+          style: TextStyle(fontSize: 32.sp, color: Color(0xff666666)),
         ),
         alignment: Alignment.center,
       ),

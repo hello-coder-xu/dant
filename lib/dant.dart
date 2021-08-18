@@ -22,4 +22,3 @@ export 'package:dant/pwd_field/index.dart';
 export 'package:dant/drawer/index.dart';
 export 'package:dant/skeleton/index.dart';
 export 'package:dant/preview/index.dart';
-export 'package:dant/comm/ColorUtils.dart';

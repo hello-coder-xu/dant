@@ -1,4 +1,3 @@
-import 'package:dant/dant.dart';
 import 'package:example/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,22 +35,22 @@ class IndexPageState extends State<IndexPage> {
           //顶部导航栏
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
-            iconTheme: IconThemeData(color: c333333),
+            iconTheme: IconThemeData(color: Color(0xff333333)),
             textTheme: TextTheme(
-              headline6: TextStyle(color: c333333, fontSize: 32.sp),
+              headline6: TextStyle(color: Color(0xff333333), fontSize: 32.sp),
             ),
             elevation: 0,
           ),
           //底部导航栏
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             selectedItemColor: Colors.deepOrange,
-            unselectedItemColor: c333333,
+            unselectedItemColor: Color(0xff333333),
           ),
           colorScheme: colorScheme,
           //分割线
-          dividerColor: cE5E5E5,
+          dividerColor: Color(0xffE5E5E5),
           //背景色
-          scaffoldBackgroundColor: cF5F5F5,
+          scaffoldBackgroundColor: Color(0xffF5F5F5),
         ),
         home: HomePage(),
       ),
