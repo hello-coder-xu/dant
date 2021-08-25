@@ -20,7 +20,10 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  uses-material-design: true
 
+  assets:
+    - assets/comm/
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

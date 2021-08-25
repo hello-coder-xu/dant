@@ -40,10 +40,12 @@ class FNumber extends StatelessWidget {
       alignment: Alignment.center,
       child: TextButton(
         onPressed: canRemove ? onRemove : null,
-        child: Icon(
-          Icons.remove,
+        child: Image.asset(
+          'assets/comm/symbol-jian.png',
           color: canRemove ? removeEnableColor : removeUnableColor,
-          size: 24,
+          width: 24,
+          height: 24,
+          package: 'dant',
         ),
         style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
       ),
@@ -76,10 +78,12 @@ class FNumber extends StatelessWidget {
       alignment: Alignment.center,
       child: TextButton(
         onPressed: canAdd ? onAdd : null,
-        child: Icon(
-          Icons.add,
+        child: Image.asset(
+          'assets/comm/symbol-add.png',
           color: canAdd ? addEnableColor : addUnableColor,
-          size: 24,
+          width: 24,
+          height: 24,
+          package: 'dant',
         ),
         style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
       ),
