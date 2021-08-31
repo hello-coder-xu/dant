@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FRoundType { point, round, ellipse }
 
@@ -23,7 +24,7 @@ class FRound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (type == FRoundType.point) {
-      double tempSize = size ?? 8;
+      double tempSize = size ?? 16.w;
       return Container(
         width: tempSize,
         height: tempSize,
@@ -37,7 +38,7 @@ class FRound extends StatelessWidget {
         ),
       );
     } else if (type == FRoundType.round) {
-      double tempSize = size ?? 16;
+      double tempSize = size ?? 32.w;
       return Container(
         width: tempSize,
         height: tempSize,
@@ -53,11 +54,11 @@ class FRound extends StatelessWidget {
         child: getContent(),
       );
     } else {
-      double tempSize = size ?? 16;
+      double tempSize = size ?? 32.w;
       Radius radius = Radius.circular(tempSize / 2);
       return Container(
         height: tempSize,
-        padding: EdgeInsets.symmetric(horizontal: 4),
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
         decoration: BoxDecoration(
           color: color ?? Colors.deepOrange,
           borderRadius: BorderRadius.horizontal(left: radius, right: radius),
@@ -77,7 +78,7 @@ class FRound extends StatelessWidget {
 
   //字体样式
   TextStyle getTextStyle() {
-    return textStyle ?? TextStyle(fontSize: 8, color: Colors.white);
+    return textStyle ?? TextStyle(fontSize: 16.sp, color: Colors.white);
   }
 
   //内容

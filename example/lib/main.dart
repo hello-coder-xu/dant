@@ -30,15 +30,12 @@ class IndexPageState extends State<IndexPage> {
         title: 'Dant',
         theme: ThemeData(
           primaryColor: Colors.deepOrange,
-          accentColor: Colors.deepOrange,
           toggleableActiveColor: Colors.deepOrange,
           //顶部导航栏
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(color: Color(0xff333333)),
-            textTheme: TextTheme(
-              headline6: TextStyle(color: Color(0xff333333), fontSize: 32.sp),
-            ),
+            titleTextStyle:TextStyle(color: Color(0xff333333), fontSize: 32.sp),
             elevation: 0,
           ),
           //底部导航栏

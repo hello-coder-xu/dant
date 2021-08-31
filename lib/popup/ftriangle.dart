@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FTrianglePosition { top, left, right, bottom }
 
@@ -11,8 +12,8 @@ class FTriangle extends StatelessWidget {
   final FTrianglePosition position;
 
   FTriangle({
-    this.width = 10,
-    this.height = 10,
+    this.width,
+    this.height,
     this.color = Colors.grey,
     this.strokeWidth = 1.0,
     this.paintingStyle = PaintingStyle.fill,
@@ -22,7 +23,7 @@ class FTriangle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(width, height),
+      size: Size(width ?? 20.w, height ?? 20.w),
       painter: FTrianglePainter(
         color: color,
         strokeWidth: strokeWidth,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FButtonType { min, max }
 
@@ -32,9 +33,9 @@ class FButton extends StatelessWidget {
   Widget build(BuildContext context) {
     TextStyle tempTextStyle;
     if (hollow) {
-      tempTextStyle = TextStyle(fontSize: 14, color: Colors.deepOrange);
+      tempTextStyle = TextStyle(fontSize: 28.sp, color: Colors.deepOrange);
     } else {
-      tempTextStyle = TextStyle(fontSize: 14, color: Colors.white);
+      tempTextStyle = TextStyle(fontSize: 28.sp, color: Colors.white);
     }
     Widget childView = OutlinedButton(
       child: Text('$child', style: textStyle ?? tempTextStyle),
