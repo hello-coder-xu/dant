@@ -1,5 +1,6 @@
 import 'package:dant/popup/ftriangle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FPopupPosition { top, left, right, bottom }
 
@@ -11,8 +12,8 @@ class FPopup {
     bool barrierDismissible = true,
     double angle = 3,
     Color color,
-    double triangleWidth = 8,
-    double triangleHeight = 8,
+    double triangleWidth,
+    double triangleHeight,
     FPopupPosition position = FPopupPosition.bottom,
   }) {
     assert(key != null);
@@ -24,8 +25,8 @@ class FPopup {
         barrierDismissible: barrierDismissible,
         angle: angle,
         color: color,
-        triangleWidth: triangleWidth,
-        triangleHeight: triangleHeight,
+        triangleWidth: triangleWidth ?? 16.w,
+        triangleHeight: triangleHeight ?? 16.w,
         position: position,
       ),
     );
@@ -126,7 +127,8 @@ class FPopupViewState extends State<FPopupView> {
       if (childSize.height < screenHeight) {
         //显示高度不超过屏幕高度
         double centerPointY = triangleTop + widget.triangleHeight / 2;
-        if (centerPointY > screenHeight / 2 && childSize.height + contentTop > screenHeight) {
+        if (centerPointY > screenHeight / 2 &&
+            childSize.height + contentTop > screenHeight) {
           //三角形x 在1/2屏幕下方  &  内容超出下方屏幕
           contentTop -= childSize.height + contentTop - screenWidth;
         } else if (centerPointY <= screenWidth / 2 && contentTop < 0) {
@@ -140,7 +142,8 @@ class FPopupViewState extends State<FPopupView> {
       if (childSize.width < screenWidth) {
         //显示宽度不超过屏幕宽度
         double centerPointX = triangleLeft + widget.triangleWidth / 2;
-        if (centerPointX > screenWidth / 2 && childSize.width + contentLeft > screenWidth) {
+        if (centerPointX > screenWidth / 2 &&
+            childSize.width + contentLeft > screenWidth) {
           //三角形x 在1/2屏幕右侧  &  内容超出右侧屏幕
           contentLeft -= childSize.width + contentLeft - screenWidth;
         } else if (centerPointX <= screenWidth / 2 && contentLeft < 0) {
@@ -154,7 +157,8 @@ class FPopupViewState extends State<FPopupView> {
       if (childSize.height < screenHeight) {
         //显示高度不超过屏幕高度
         double centerPointY = triangleTop + widget.triangleHeight / 2;
-        if (centerPointY > screenHeight / 2 && childSize.height + contentTop > screenHeight) {
+        if (centerPointY > screenHeight / 2 &&
+            childSize.height + contentTop > screenHeight) {
           //三角形x 在1/2屏幕下方  &  内容超出下方屏幕
           contentTop -= childSize.height + contentTop - screenWidth;
         } else if (centerPointY <= screenWidth / 2 && contentTop < 0) {
@@ -168,7 +172,8 @@ class FPopupViewState extends State<FPopupView> {
       if (childSize.width < screenWidth) {
         //显示宽度不超过屏幕宽度
         double centerPointX = triangleLeft + widget.triangleWidth / 2;
-        if (centerPointX > screenWidth / 2 && childSize.width + contentLeft > screenWidth) {
+        if (centerPointX > screenWidth / 2 &&
+            childSize.width + contentLeft > screenWidth) {
           //三角形x 在1/2屏幕右侧  &  内容超出右侧屏幕
           contentLeft -= childSize.width + contentLeft - screenWidth;
         } else if (centerPointX <= screenWidth / 2 && contentLeft < 0) {
@@ -269,7 +274,8 @@ class PopRoute extends PopupRoute {
   String get barrierLabel => null;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     return child;
   }
 

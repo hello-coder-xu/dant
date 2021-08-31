@@ -1,5 +1,6 @@
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FNotice extends StatelessWidget {
   final Widget leading;
@@ -16,8 +17,8 @@ class FNotice extends StatelessWidget {
     this.text,
     this.textStyle,
     this.bgColor,
-    this.height = 36,
-    this.space = 8,
+    this.height,
+    this.space,
   }) : assert(text != null);
 
   @override
@@ -26,7 +27,7 @@ class FNotice extends StatelessWidget {
 
     if (leading != null) {
       children.add(leading);
-      children.add(SizedBox(width: space));
+      children.add(SizedBox(width: space ?? 16.w));
     }
 
     children.add(
@@ -39,12 +40,12 @@ class FNotice extends StatelessWidget {
     );
 
     if (trailing != null) {
-      children.add(SizedBox(width: space));
+      children.add(SizedBox(width: space ?? 16.w));
       children.add(trailing);
     }
 
     return Container(
-      height: height,
+      height: height ?? 72.w,
       decoration: BoxDecoration(color: bgColor),
       child: Row(
         children: children,

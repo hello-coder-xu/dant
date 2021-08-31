@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:dant/round/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum FPreviewIndicatorAxis { horizontal, vertical }
 
@@ -18,7 +18,8 @@ class FPreview {
     Curve curve = Curves.bounceIn,
     Function(int index) onChanged,
     bool indicators = true,
-    FPreviewIndicatorAxis fPreviewIndicatorAxis = FPreviewIndicatorAxis.horizontal,
+    FPreviewIndicatorAxis fPreviewIndicatorAxis =
+        FPreviewIndicatorAxis.horizontal,
     Color unSelectPointColor = Colors.white,
     Color selectPointColor = Colors.red,
   }) {
@@ -106,7 +107,7 @@ class _FPreviewState extends State<_FPreview> {
     children.add(_pageView());
     if (widget.indicators) {
       children.add(Positioned(
-        bottom: 20,
+        bottom: 40.w,
         child: _indicatorView(),
       ));
     }
@@ -160,13 +161,15 @@ class _FPreviewState extends State<_FPreview> {
         child: FRound(
           type: FRoundType.point,
           size: pointSize,
-          color: index == position % widget.itemCount ? widget.selectPointColor : widget.unSelectPointColor,
+          color: index == position % widget.itemCount
+              ? widget.selectPointColor
+              : widget.unSelectPointColor,
         ),
       ));
     });
 
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(20.w),
       padding: EdgeInsets.symmetric(
         horizontal: paddingHorizontal,
         vertical: paddingVertical,

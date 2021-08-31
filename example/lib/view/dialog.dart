@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:dant/button/index.dart';
 import 'package:dant/dant.dart';
 import 'package:flutter/material.dart';
 import 'package:example/comm/comm.dart';

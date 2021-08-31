@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const double _KDefaultButtonSize = 30;
-const double _KDefaultSpace = 10;
+double kDefaultButtonSize = 60.w;
+double kDefaultSpace = 20.w;
 
 class FNumber extends StatelessWidget {
   final num defaultValue;
@@ -35,54 +36,54 @@ class FNumber extends StatelessWidget {
     List<Widget> children = [];
 
     children.add(Container(
-      height: _KDefaultButtonSize,
-      width: _KDefaultButtonSize,
+      height: kDefaultButtonSize,
+      width: kDefaultButtonSize,
       alignment: Alignment.center,
       child: TextButton(
         onPressed: canRemove ? onRemove : null,
         child: Image.asset(
           'assets/comm/symbol-jian.png',
           color: canRemove ? removeEnableColor : removeUnableColor,
-          width: 24,
-          height: 24,
+          width: 48.w,
+          height: 48.w,
           package: 'dant',
         ),
         style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
       ),
     ));
 
-    children.add(SizedBox(width: _KDefaultSpace));
+    children.add(SizedBox(width: kDefaultSpace));
 
     children.add(Container(
-      height: _KDefaultButtonSize,
-      width: 40,
+      height: kDefaultButtonSize,
+      width: 80.w,
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10.w),
       ),
       alignment: Alignment.center,
       child: Text(
         '$defaultValue',
         style: textStyle ??
             TextStyle(
-              fontSize: 14,
+              fontSize: 28.sp,
               color: Color(0xff333333),
             ),
       ),
     ));
 
-    children.add(SizedBox(width: _KDefaultSpace));
+    children.add(SizedBox(width: kDefaultSpace));
     children.add(Container(
-      height: _KDefaultButtonSize,
-      width: _KDefaultButtonSize,
+      height: kDefaultButtonSize,
+      width: kDefaultButtonSize,
       alignment: Alignment.center,
       child: TextButton(
         onPressed: canAdd ? onAdd : null,
         child: Image.asset(
           'assets/comm/symbol-add.png',
           color: canAdd ? addEnableColor : addUnableColor,
-          width: 24,
-          height: 24,
+          width: 48.w,
+          height: 48.w,
           package: 'dant',
         ),
         style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
