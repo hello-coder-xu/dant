@@ -100,6 +100,9 @@ class FTextField extends StatefulWidget {
   //控制器
   final TextEditingController controller;
 
+  //关闭控制器
+  final FocusNode focusNode;
+
   FTextField({
     this.style = TextFieldStyle.line,
     this.prefixIcon,
@@ -131,6 +134,7 @@ class FTextField extends StatefulWidget {
     this.keyboardType,
     this.textInputAction,
     this.controller,
+    this.focusNode,
   });
 
   @override
@@ -247,6 +251,7 @@ class FTextFieldState extends State<FTextField> {
       enabled: widget.enabled,
       controller: controller,
       onChanged: widget.onChanged,
+      focusNode: widget.focusNode,
       onEditingComplete: widget.onEditingComplete,
       onSubmitted: widget.onSubmitted,
       inputFormatters: widget.inputFormatters,
