@@ -246,6 +246,7 @@ class FTextFieldState extends State<FTextField> {
       minLines: widget.minLines,
       maxLines: widget.maxLines,
       textAlign: widget.textAlign,
+      style: widget.textStyle,
       obscureText: obscureText,
       readOnly: widget.readOnly,
       enabled: widget.enabled,
