@@ -79,6 +79,7 @@ class FDialog {
                 confirm: confirm,
                 cancelBgColor: cancelBgColor,
                 confirmBgColor: confirmBgColor,
+                cancelTextColor: cancelTextColor,
                 confirmTextColor: confirmTextColor,
                 onCancelPress: onCancelPress,
                 onConfirmPress: onConfirmPress,
